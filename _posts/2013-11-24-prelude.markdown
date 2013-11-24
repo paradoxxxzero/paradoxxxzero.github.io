@@ -5,7 +5,7 @@ date:   2013-11-24 15:24:42
 categories: self
 ---
 
-Hello there and welcome to my brand new site [paradoxxxzero.github.io][site] which is currently « under construction »!
+Hello there and welcome to my brand new site [paradoxxxzero.github.io][site].
 
 I've decided to build up this site in order to write about my personal and professional projects and some less serious stuffs.
 
