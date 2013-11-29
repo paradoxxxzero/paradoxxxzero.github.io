@@ -5,11 +5,13 @@ title: paradoxxx zero
 
 
 <section id="home">
-  {% for post in site.posts %}
-  <h2><span class="date">{{ post.date | date_to_string }}</span> <small><a href="{{ post.url }}">{{ post.title }}</a></small></h2>
-    <blockquote class="pull-right">
-    {{ post.excerpt }}
-    <small><a href="{{ post.url }}">More…</a></small>
-    </blockquote>
+  {% for post in site.posts limit:10 %}
+    <article class="clearfix">
+      <h2><span class="date">{{ post.date | date_to_string }}</span> <small><a href="{{ post.url }}">{{ post.title }}</a></small></h2>
+      <blockquote class="pull-right">
+        {{ post.excerpt }}
+        <small><a href="{{ post.url }}">More…</a></small>
+      </blockquote>
+    </article>
   {% endfor %}
 </div>
