@@ -1,0 +1,107 @@
+---
+layout: post
+title:  "wsreload 2.0"
+categories: projects
+---
+
+Today I released wsreload 2.0 which is IMHO a neat tool to increase productivity.
+
+*NB: As it depends on inotify, it's only available on linux (if you are interested in making it work on other OS feel free to make a [pull request][code] :D)*
+
+*NB: As of now it is only compatible with google chrome / chromium. Nothing prevents it to work under other browsers though, except from the fact that someone has to port the [chrome extension code][] to his preferred browser again : [pull request][code] :)*
+
+### Reloading your tabs
+
+wsreload has one aim: making you forget about the `[F5]` key.
+
+#### file:// reloading
+
+Every local file opened in your browser with a 'file://' scheme will be automatically synchronize
+ed with the file.
+
+
+#### Selective tabs reloading
+
+But that's not all of it, wsreload comes with a handy executable: `wsreload` which can reload any tab matching a criteria when a file is modified.
+
+For example, I'm currently using it while writing the draft of this blog post.
+
+The following command:
+
+{% highlight bash %}
+$ wsreload --watch _site/ --url "http://localhost:4000/*"
+{% endhighlight %}
+
+ tells the browser to reload all tabs that match the following url pattern : `http://localhost:4000/*` whenever a file in the `_site/` directory is modified.
+(This is the directory in which jekyll generates this site.)
+With it my draft preview is automatically reloaded every time I save the markdown file
+(in conjunction with `jekill serve -w` which regenerates the site when a file change).
+
+The `wsreload` command comes with several matching criteria:
+
+{% highlight bash %}
+$  wsreload --help
+
+Reload all tabs matching query through websocket
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --active ACTIVE       Whether the tabs are active in their windows.
+  --pinned PINNED       Whether the tabs are pinned.
+  --highlighted HIGHLIGHTED
+                        Whether the tabs are highlighted.
+  --status {loading,complete}
+                        Whether the tabs have completed loading.
+  --title TITLE         Match page titles against a pattern.
+  --url URL             Match tabs against a URL pattern.
+  --windowId WINDOWID   The ID of the parent window, or
+                        chrome.windows.WINDOW_ID_CURRENT for the current
+                        window.
+  --windowType {normal,popup,panel,app}
+                        The type of window the tabs are in.
+  --index INDEX         The position of the tabs within their windows.
+  --delay DELAY         Delay to wait before refreshing.
+  -H HOST, --host HOST
+  -P PORT, --port PORT
+  -E ENDPOINT, --endpoint ENDPOINT
+  --watch WATCH [WATCH ...]
+                        Tell the server to watch files and reload according to
+                        the other options
+  --unwatch UNWATCH [UNWATCH ...]
+                        Tell the server to unwatch the following files
+{% endhighlight %}
+
+These rules follow the [chrome extension api tabs query criteria][]
+
+### Installing it
+
+To forget about the `F5` key you have to install the wsreload library like any other python package:
+
+{% highlight bash %}
+$ pip install wsreload
+{% endhighlight %}
+
+Then start the server using:
+{% highlight bash %}
+$ wsreload-server&
+{% endhighlight %}
+
+or if you are using systemd:
+{% highlight bash %}
+$ wget https://github.com/paradoxxxzero/wsreload/raw/master/wsreload.service
+$ sudo mv wsreload.service /etc/systemd/system
+$ sudo systemctl enable wsreload
+$ sudo systemctl start wsreload
+{% endhighlight %}
+
+And finally just install the [wsreload chrome extension][] like any other chrome extension.
+That's it !
+
+
+In a following post I will write about the technical details behind all of this.
+
+
+[code]:http://github.com/paradoxxxzero/wsreload
+[chrome extension code]:http://github.com/paradoxxxzero/wsreload/tree/master/chrome-wsreload
+[chrome extension api tabs query criteria]:http://developer.chrome.com/extensions/tabs.html#method-query
+[wsreload chrome extension]:http://chrome.google.com/webstore/detail/wsreload/knefplbckfcppebehbomeankfgjalmak

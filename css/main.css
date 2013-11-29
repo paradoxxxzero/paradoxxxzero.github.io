@@ -5,6 +5,10 @@ body {
   filter: grayscale(0.3);
 }
 
+nav.navbar {
+  background: white;
+}
+
 * {
   font-family: "Andika", sans-serif;
 }
