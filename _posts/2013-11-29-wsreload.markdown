@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "wsreload 2.0"
-categories: projects
+categories: [projects, wsreload, coffeescript, python]
 ---
 
 Today I released wsreload 2.0 which is IMHO a neat tool to increase productivity.
@@ -16,8 +16,7 @@ wsreload has one aim: making you forget about the `[F5]` key.
 
 #### file:// reloading
 
-Every local file opened in your browser with a 'file://' scheme will be automatically synchronize
-ed with the file.
+Every local file opened in your browser with a `file://` scheme will be automatically synchronized with the file.
 
 
 #### Selective tabs reloading

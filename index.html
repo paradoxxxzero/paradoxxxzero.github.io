@@ -10,7 +10,7 @@ title: paradoxxx zero
       <h2><span class="date">{{ post.date | date_to_string }}</span> <small><a href="{{ post.url }}">{{ post.title }}</a></small></h2>
       <blockquote class="pull-right">
         {{ post.excerpt }}
-        <small><a href="{{ post.url }}">More…</a></small>
+        <small>{{ post.categories | join: ' - '}} -- <a href="{{ post.url }}">More…</a></small>
       </blockquote>
     </article>
   {% endfor %}
