@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "wsreload 2.0"
-categories: [projects, wsreload, coffeescript, python]
+tags: [projects, wsreload, coffeescript, python]
 ---
 
 Today I released wsreload 2.0 which is IMHO a neat tool to increase productivity.

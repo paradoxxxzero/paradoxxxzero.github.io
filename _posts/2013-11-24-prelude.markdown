@@ -2,7 +2,7 @@
 layout: post
 title:  "Prelude"
 date:   2013-11-24 15:24:42
-categories: self
+tags: [self]
 ---
 
 Hello there and welcome to my brand new site [paradoxxxzero.github.io][site].
