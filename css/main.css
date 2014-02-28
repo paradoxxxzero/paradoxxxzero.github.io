@@ -18,3 +18,13 @@ nav.navbar {
 #home > article {
   margin-top: 2em;
 }
+
+.post h1, .post h2, .post h3 , .post h4 , .post h5 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+/* Custom style for pages */
+.post.butterfly img {
+  width: 60%;
+}
