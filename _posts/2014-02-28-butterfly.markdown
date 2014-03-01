@@ -48,7 +48,7 @@ butterfly is made to work as the terminal user and as root. When running as root
 #### Access from a remote machine
 
 You can set the bind host with `butterfly.server.py --host="0.0.0.0"` which will allow other users to connect to your terminal.
-A password will be asked but IT IS NOT SECURE! So it's recommended as of know to run this only on local network for testing purposes.
+A password will be asked but IT IS NOT SECURE! So it's recommended as of now to run this only on local network for testing purposes.
 
 
 #### Run a specific shell
