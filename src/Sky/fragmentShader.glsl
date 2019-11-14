@@ -1,3 +1,7 @@
+// This shader comes from three.js sky example by zz85 / https://github.com/zz85
+// See https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/Sky.js
+// For original source and credits
+
 varying vec3 vWorldPosition;
 varying vec3 vSunDirection;
 varying float vSunfade;
