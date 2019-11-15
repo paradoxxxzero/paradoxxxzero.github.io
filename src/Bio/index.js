@@ -57,6 +57,7 @@ export default function Bio() {
           url="https://kozea.github.io/formol/"
           lang={['ECMAScript']}
           lib={['React']}
+          major
         >
           Full featured object edition form framework for React.
         </Project>
@@ -65,6 +66,7 @@ export default function Bio() {
           url="https://kozea.github.io/unrest/"
           lang={['Python']}
           lib={['SqlAlchemy', 'Flask', 'Tornado', 'Sanic']}
+          major
         >
           Simple sqlalchemy REST API generation.
         </Project>
@@ -73,6 +75,7 @@ export default function Bio() {
           url="https://github.com/paradoxxxzero/butterfly"
           lang={['Python', 'ECMAScript']}
           lib={['Tornado']}
+          major
         >
           Xterm compatible terminal that runs in your browser.
         </Project>
@@ -81,6 +84,7 @@ export default function Bio() {
           url="http://www.pygal.org/"
           lang={['Python']}
           lib={['lxml']}
+          major
         >
           Python charting library with a clean and simple API.
         </Project>
@@ -89,34 +93,89 @@ export default function Bio() {
           url="https://github.com/Kozea/wdb"
           lang={['Python', 'ECMAScript']}
           lib={['tornado']}
+          major
         >
           Full featured web debugger for python based on a client-server
           architecture.
         </Project>
         <Project
           name="Umlaut"
-          url="http://kozea.github.io/umlaut/"
+          url="https://kozea.github.io/umlaut/"
           lang={['ECMAScript']}
           lib={['d3.js', 'jquery']}
+          major
         >
-          A simple SVG diagram modeler with dot support.
+          Simple SVG diagram modeler with dot support.
         </Project>
         <Project
           name="System Monitor"
           url="https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet"
           lang={['ECMAScript']}
           lib={['GLib']}
+          major
         >
           Display system informations in gnome shell status bar, such as memory
           usage, cpu usage, network rates…
         </Project>
         <Project
           name="Anakata"
-          url="http://paradoxxxzero.github.io/anakata/"
+          url="https://paradoxxxzero.github.io/anakata/"
           lang={['ECMAScript']}
-          lib={['scripty2']}
+          lib={['canvas']}
+          major
         >
-          A 4 dimension mesh renderer implemented in 2d canvas.
+          4 dimension mesh renderer implemented in 2d canvas.
+        </Project>
+        <Project
+          name="Hanabi"
+          url="https://paradoxxxzero.github.io/hanabi/"
+          lang={['ECMAScript']}
+          lib={['canvas']}
+        >
+          Fireworks in canvas.
+        </Project>
+        <Project
+          name="Bemboo"
+          url="https://github.com/paradoxxxzero/bemboo"
+          lang={['ECMAScript']}
+          lib={['React']}
+        >
+          BEM generator based on objects for React 16+.
+        </Project>
+        <Project
+          name="atom-undo-tree"
+          url="https://github.com/paradoxxxzero/atom-undo-tree"
+          lang={['ECMAScript']}
+          lib={['Atom']}
+        >
+          Atom extension to transform undo/redo in an undo tree similar to emacs
+          default implementation.
+        </Project>
+        <Project
+          name="atom-undo-tree"
+          url="https://github.com/paradoxxxzero/atom-undo-tree"
+          lang={['ECMAScript']}
+          lib={['Atom']}
+        >
+          Atom extension to transform undo/redo in an undo tree similar to emacs
+          default implementation.
+        </Project>
+        <Project
+          name="atom-one-theme-color-by-project"
+          url="https://github.com/paradoxxxzero/atom-one-theme-color-by-project"
+          lang={['ECMAScript']}
+          lib={['Atom']}
+        >
+          Atom extension to colorize Atom One themes according to the current
+          open project.
+        </Project>
+        <Project
+          name="jinja2-mode"
+          url="https://github.com/paradoxxxzero/jinja2-mode"
+          lang={['Elisp']}
+          lib={['Emacs', 'Jinja2']}
+        >
+          Jinja2 mode for Emacs.
         </Project>
       </Projects>
     </Main>
