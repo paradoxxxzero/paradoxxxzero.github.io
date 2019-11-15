@@ -148,9 +148,7 @@ export default function Sky() {
 
     sunSpherical.theta = (Math.PI / 2 - Math.PI * progression) / 3
     sunSpherical.phi =
-      -Math.PI / 2 +
-      (Math.PI / 4) * (1 - Math.pow(progression * 2 - 1, 2)) -
-      0.05
+      -Math.PI / 2 + (Math.PI / 4) * (1 - Math.pow(progression * 2 - 1, 2))
 
     const {
       uniforms: { sunPosition },
