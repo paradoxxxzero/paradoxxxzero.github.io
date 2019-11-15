@@ -12,12 +12,13 @@ import {
   Vector3,
   TextureLoader,
   AdditiveBlending,
+  Spherical,
 } from 'three'
 import { useSelector } from 'react-redux'
 import React, { useRef, useEffect, useLayoutEffect } from 'react'
 import styled from 'styled-components'
-import Star from './star.png'
 
+import Star from './star.png'
 import vertexShader from './vertexShader.glsl'
 import fragmentShader from './fragmentShader.glsl'
 
@@ -43,8 +44,7 @@ export default function Sky() {
       1000
     )
     camera.position.set(0, 0, 0)
-    camera.rotation.reorder('YXZ')
-    camera.rotation.set(0.5, 0, 0)
+    camera.lookAt(new Vector3(0, 1, -2))
 
     const renderer = new WebGLRenderer({ canvas, antialias: true })
     renderer.setPixelRatio(window.devicePixelRatio)
@@ -71,20 +71,17 @@ export default function Sky() {
     const scene = new Scene()
     scene.add(sky)
 
+    const starsSpherical = new Spherical()
     const starsGeometry = new Geometry()
-    starsGeometry.vertices = new Array(1000).fill().map(() => {
-      const radius = 250 + Math.random() * 750
-      const phi = Math.random() * 2 * Math.PI
-      const theta = Math.random() * 2 * Math.PI
-      return new Vector3(
-        radius * Math.cos(phi),
-        radius * Math.sin(phi) * Math.sin(theta),
-        radius * Math.sin(phi) * Math.cos(theta)
-      )
+    starsGeometry.vertices = new Array(2000).fill().map(() => {
+      starsSpherical.radius = 250 + Math.random() * 750
+      starsSpherical.theta = -Math.PI / 2 + Math.random() * Math.PI
+      starsSpherical.phi = Math.random() * 2 * Math.PI
+      return new Vector3().setFromSpherical(starsSpherical)
     })
 
     const starsMaterial = new PointsMaterial({
-      size: 10,
+      size: 8,
       map: new TextureLoader().load(Star),
       blending: AdditiveBlending,
       depthTest: false,
@@ -92,13 +89,18 @@ export default function Sky() {
       opacity: 1,
     })
     const stars = new Points(starsGeometry, starsMaterial)
+    stars.rotation.reorder('ZXY')
     scene.add(stars)
+
+    const sunSpherical = new Spherical()
+
     window.sky = threeRef.current = {
       scene,
       camera,
       renderer,
       sky,
       stars,
+      sunSpherical,
     }
 
     renderer.render(scene, camera)
@@ -117,22 +119,21 @@ export default function Sky() {
 
   useEffect(() => {
     const { current: three } = threeRef
-    const { renderer, scene, camera, sky, stars } = three
+    const { renderer, scene, camera, sky, stars, sunSpherical } = three
 
-    const inclination = 0.51 - 1.02 * progression
-    const azimuth = 0.25
+    sunSpherical.theta = (Math.PI / 2 - Math.PI * progression) / 3
+    sunSpherical.phi =
+      -Math.PI / 2 +
+      (Math.PI / 4) * (1 - Math.pow(progression * 2 - 1, 2)) -
+      0.05
 
-    const theta = Math.PI * (inclination - 0.5)
-    const phi = 2 * Math.PI * (azimuth - 0.5)
-
-    const { uniforms } = sky.material
-    uniforms.sunPosition.value.x = Math.cos(phi)
-    uniforms.sunPosition.value.y = Math.sin(phi) * Math.sin(theta)
-    uniforms.sunPosition.value.z = Math.sin(phi) * Math.cos(theta)
-
-    camera.rotation.set(0.5, Math.PI * progression, 0)
+    const {
+      uniforms: { sunPosition },
+    } = sky.material
+    sunPosition.value.setFromSpherical(sunSpherical)
 
     stars.material.opacity = Math.pow(Math.cos(progression * Math.PI), 50)
+    stars.rotation.set(-Math.PI / 4, progression, Math.PI / 8)
     renderer.render(scene, camera)
   }, [progression])
 

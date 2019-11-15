@@ -3,24 +3,24 @@ import styled from 'styled-components'
 
 import { prettyUrl } from '../utils'
 
-export default styled(Project)`
+const Article = styled.article`
+  background: rgba(0, 0, 0, 0.2);
   font-size: 1.5em;
   text-align: center;
-  color: palevioletred;
 `
 const Name = styled.h2`
-  color: orangered;
+  color: rgba(255, 255, 255, 0.9);
 `
 
 const Link = styled.a`
   color: forestgreen;
 `
 
-function Project({ name, url }) {
+export default function Project({ name, url, odd }) {
   return (
-    <article>
+    <Article odd={odd}>
       <Name>{name}</Name>
       <Link href={url}>{prettyUrl(url)}</Link>
-    </article>
+    </Article>
   )
 }
