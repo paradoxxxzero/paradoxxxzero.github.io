@@ -13,6 +13,8 @@ import {
   TextureLoader,
   AdditiveBlending,
   Spherical,
+  Color,
+  VertexColors,
 } from 'three'
 import { useSelector } from 'react-redux'
 import React, { useRef, useEffect, useLayoutEffect } from 'react'
@@ -29,6 +31,8 @@ const Canvas = styled.canvas`
   width: 100%;
   height: 100%;
 `
+
+const STARS = 2000
 
 export default function Sky() {
   const threeRef = useRef()
@@ -73,16 +77,37 @@ export default function Sky() {
 
     const starsSpherical = new Spherical()
     const starsGeometry = new Geometry()
-    starsGeometry.vertices = new Array(2000).fill().map(() => {
+    starsGeometry.vertices = new Array(STARS).fill().map(() => {
       starsSpherical.radius = 250 + Math.random() * 750
       starsSpherical.theta = -Math.PI / 2 + Math.random() * Math.PI
       starsSpherical.phi = Math.random() * 2 * Math.PI
       return new Vector3().setFromSpherical(starsSpherical)
     })
+    const colors = STARS / 10
+    const colorStep = colors / 3
+    const luminance = v => (v + 2) / 3
+    starsGeometry.colors = new Array(STARS).fill().map(() => {
+      // Computing a random color in the star spectrum:
+      // Red -> (orange ->) yellow -> white -> blue
+      const c = Math.random() * (colors + 1)
+
+      // red: 1 -> 1 -> 1 -> 0
+      const r = c > 2 * colorStep ? 1 - (c - 2 * colorStep) / colorStep : 1
+      // green: 0 -> 1 -> 1 -> 0
+      const g = c < colorStep ? c / colorStep : r
+      // blue: 0 -> 0 -> 1 -> 1
+      const b =
+        c < colorStep ? 0 : c > 2 * colorStep ? 1 : (c - colorStep) / colorStep
+      // And finally, raises the luminance
+      return new Color(...[r, g, b].map(luminance))
+    })
 
     const starsMaterial = new PointsMaterial({
       size: 8,
-      map: new TextureLoader().load(Star),
+      map: new TextureLoader().load(Star, () => {
+        renderer.render(scene, camera)
+      }),
+      vertexColors: VertexColors,
       blending: AdditiveBlending,
       depthTest: false,
       transparent: true,
