@@ -5,6 +5,7 @@ import { GoLinkExternal } from 'react-icons/go'
 const MutedExternal = styled(GoLinkExternal)`
   font-size: 0.7em;
   color: #999999;
+  margin-right: 1em;
 `
 
 export default function ExternalLink({ url, className, children }) {
@@ -13,7 +14,8 @@ export default function ExternalLink({ url, className, children }) {
       <a rel="noreferrer noopener" href={url} target="_blank">
         {children}
       </a>
-      <MutedExternal className="i" />
+      &nbsp;
+      <MutedExternal />
     </span>
   )
 }

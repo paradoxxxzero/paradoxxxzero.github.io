@@ -27,7 +27,7 @@ const Hero = styled.header`
 `
 
 const Title = styled.h1`
-  font-size: 1.5em;
+  font-size: 5em;
   text-align: center;
 `
 

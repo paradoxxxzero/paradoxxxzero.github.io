@@ -10,10 +10,12 @@ const fetchJson = async url => {
   if (response.status > 300 || response.status < 200) {
     if (contentType !== 'application/json') {
       const text = await response.text()
-      throw Error(response.status, text)
+      console.error(response.status, text)
+      return { data: [], response }
     }
     const json = await response.json()
-    throw Error(response.status, json.message || json.description, json)
+    console.error(response.status, json.message || json.description, json)
+    return { data: [], response }
   }
 
   return { data: await response.json(), response }
@@ -25,6 +27,9 @@ const paginateRepos = async user => {
 
   const { data, response } = await fetchJson(url(1))
   const link = response.headers.get('Link')
+  if (!link) {
+    return []
+  }
   const lastPage = +link.match(/<.+page=(\d+)>;\srel="last"/)[1]
   if (lastPage !== 1) {
     ;(

@@ -7,9 +7,13 @@ export default styled(Stars)`
 `
 
 function Stars({ url, stars, className }) {
+  if (stars === null || stars === undefined) {
+    return null
+  }
+
   return (
     <a href={url} className={className}>
-      {stars} <FaStar />
+      {stars ? stars : ''} <FaStar />
     </a>
   )
 }

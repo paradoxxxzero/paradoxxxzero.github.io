@@ -5,9 +5,12 @@ import styled from 'styled-components'
 import { fetchStars } from '../store/thunks'
 import Project from './Project'
 
-const Section = styled.article`
+const ProjectList = styled.ul`
   max-width: 1000px;
-  margin: 2em;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
 `
 
 export default function Projects() {
@@ -15,10 +18,10 @@ export default function Projects() {
   const projects = useSelector(state => state.projects)
   useEffect(() => dispatch(fetchStars()), [])
   return (
-    <Section>
+    <ProjectList>
       {projects.map(project => (
         <Project key={project.id} {...project} />
       ))}
-    </Section>
+    </ProjectList>
   )
 }
