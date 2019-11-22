@@ -12,7 +12,32 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', ['@babel/preset-react']],
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  targets: {
+                    browsers:
+                      process.env.NODE_ENV === 'development'
+                        ? ['last 1 Chrome version']
+                        : ['> .5% in FR'],
+                  },
+                },
+              ],
+              '@babel/preset-react',
+            ],
+            plugins: [
+              [
+                '@babel/plugin-transform-runtime',
+                {
+                  absoluteRuntime: false,
+                  corejs: false,
+                  helpers: true,
+                  regenerator: true,
+                  useESModules: false,
+                },
+              ],
+            ],
           },
         },
       },

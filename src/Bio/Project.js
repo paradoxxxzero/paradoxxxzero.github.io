@@ -1,8 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { prettyUrl } from '../utils'
 import ExternalLink from './ExternalLink'
+import Stars from './Stars'
 
 const Article = styled.article`
   background: rgba(0, 0, 0, 0.2);
@@ -25,13 +27,25 @@ const ProjectLink = styled(ExternalLink)`
   color: forestgreen;
 `
 
-export default function Project({ name, url, children }) {
-  // if url like github fetch star count
+export default function Project({
+  id,
+  name,
+  url,
+  demoUrl,
+  description,
+  languages,
+  libraries,
+  major,
+}) {
+  const allStars = useSelector(state => state.stars)
+  const stars = allStars[id]
+
   return (
     <Article>
       <Name>{name}</Name>
-      <Content>{children}</Content>
-      <ProjectLink url={url}>{prettyUrl(url)}</ProjectLink>
+      <Content>{description}</Content>
+      <ProjectLink url={demoUrl || url}>{prettyUrl(url)}</ProjectLink>
+      {stars && <Stars url={url} stars={stars} />}
     </Article>
   )
 }
