@@ -4,6 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 
 import { setPageProgression } from '../store/actions'
 import Projects from './Projects'
+import About from './About'
 
 const FontFace = createGlobalStyle`
   body {
@@ -47,6 +48,7 @@ export default function Bio() {
         <Title>Florian Mounier</Title>
       </Hero>
       <Projects />
+      <About />
     </Main>
   )
 }

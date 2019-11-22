@@ -145,18 +145,29 @@ export default function Sky() {
   useEffect(() => {
     const { current: three } = threeRef
     const { renderer, scene, camera, sky, stars, sunSpherical } = three
+    const threshold = 0.8
+    const sunProgression = Math.min(progression, threshold) / threshold
+    const travellingProgression =
+      (Math.max(threshold, progression) - threshold) / (1 - threshold)
+    const starsProgression =
+      (Math.max(threshold / 2, progression) - threshold / 2) /
+      (1 - threshold / 2)
 
-    sunSpherical.theta = (Math.PI / 2 - Math.PI * progression) / 3
+    sunSpherical.theta = (Math.PI / 2 - Math.PI * sunProgression) / 3
     sunSpherical.phi =
-      -Math.PI / 2 + (Math.PI / 4) * (1 - Math.pow(progression * 2 - 1, 2))
+      -Math.PI / 2 +
+      (Math.PI / 4) * (1 - Math.pow((sunProgression + 0.3) * 2 - 1, 2))
 
     const {
       uniforms: { sunPosition },
     } = sky.material
     sunPosition.value.setFromSpherical(sunSpherical)
 
-    stars.material.opacity = Math.pow(Math.cos(progression * Math.PI), 50)
-    stars.rotation.set(-Math.PI / 4, progression, Math.PI / 8)
+    // stars.material.opacity = Math.pow(Math.cos(sunProgression * Math.PI), 50)
+    stars.material.opacity = starsProgression
+    stars.rotation.set(-Math.PI / 4, sunProgression, Math.PI / 8)
+
+    camera.position.z = -1000 * travellingProgression
     renderer.render(scene, camera)
   }, [progression])
 

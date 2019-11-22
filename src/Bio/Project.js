@@ -37,6 +37,7 @@ const Library = styled.li`
   padding: 0.2em;
   margin: 0.1em;
   color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75em;
 `
 const Content = styled.div`
   margin: 1em 0;
