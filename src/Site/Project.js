@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { prettyUrl } from '../utils'
-import ExternalLink from './ExternalLink'
+import ExternalLink from './utils/ExternalLink'
 import Stars from './Stars'
 import defaultPreview from '../static/previews/default.png'
 

@@ -165,9 +165,20 @@ export default function Sky() {
 
     // stars.material.opacity = Math.pow(Math.cos(sunProgression * Math.PI), 50)
     stars.material.opacity = starsProgression
-    stars.rotation.set(-Math.PI / 4, sunProgression, Math.PI / 8)
+    stars.rotation.set(-Math.PI / 4, progression, Math.PI / 8)
 
+    // camera.position.y = -500 * travellingProgression * travellingProgression
     camera.position.z = -1000 * travellingProgression
+    // camera.lookAt(
+    //   new Vector3(
+    //     0,
+    //     -500 *
+    //       (travellingProgression + 0.0001) *
+    //       (travellingProgression + 0.0001) +
+    //       1,
+    //     -1000 * (travellingProgression + 0.0001) - 2
+    //   )
+    // )
     renderer.render(scene, camera)
   }, [progression])
 

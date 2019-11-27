@@ -8,12 +8,16 @@ const MutedExternal = styled(GoLinkExternal)`
   margin-right: 1em;
 `
 
+const Link = styled.a`
+  color: #aaaaaa;
+`
+
 export default function ExternalLink({ url, className, children }) {
   return (
     <span className={className}>
-      <a rel="noreferrer noopener" href={url} target="_blank">
+      <Link rel="noreferrer noopener" href={url} target="_blank">
         {children}
-      </a>
+      </Link>
       &nbsp;
       <MutedExternal />
     </span>

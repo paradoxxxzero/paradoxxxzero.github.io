@@ -9,7 +9,7 @@ import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
 
-import Bio from './Bio'
+import Site from './Site'
 import Sky from './Sky'
 import reducer from './store/reducer'
 
@@ -19,7 +19,7 @@ const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
 render(
   <Provider store={store}>
     <Sky />
-    <Bio />
+    <Site />
   </Provider>,
   document.getElementById('root')
 )

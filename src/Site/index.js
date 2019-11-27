@@ -4,7 +4,8 @@ import styled, { createGlobalStyle } from 'styled-components'
 
 import { setPageProgression } from '../store/actions'
 import Projects from './Projects'
-import About from './About'
+import About from './Bio'
+import Home from './Home'
 
 const FontFace = createGlobalStyle`
   body {
@@ -17,19 +18,6 @@ const Main = styled.main`
   position: relative;
   height: 100%;
   overflow: auto;
-`
-const Hero = styled.header`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: middle;
-  color: white;
-`
-
-const Title = styled.h1`
-  font-size: 5em;
-  text-align: center;
 `
 
 export default function Bio() {
@@ -44,9 +32,7 @@ export default function Bio() {
   return (
     <Main onScroll={handleScroll}>
       <FontFace />
-      <Hero>
-        <Title>Florian Mounier</Title>
-      </Hero>
+      <Home />
       <Projects />
       <About />
     </Main>

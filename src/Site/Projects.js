@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { fetchStars } from '../store/thunks'
 import Project from './Project'
+import Title from './utils/Title'
 
 const ProjectList = styled.ul`
   max-width: 1000px;
@@ -13,15 +14,23 @@ const ProjectList = styled.ul`
   list-style: none;
 `
 
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+`
+
 export default function Projects() {
   const dispatch = useDispatch()
   const projects = useSelector(state => state.projects)
   useEffect(() => dispatch(fetchStars()), [])
   return (
-    <ProjectList>
-      {projects.map(project => (
-        <Project key={project.id} {...project} />
-      ))}
-    </ProjectList>
+    <Section>
+      <Title>Projects</Title>
+      <ProjectList>
+        {projects.map(project => (
+          <Project key={project.id} {...project} />
+        ))}
+      </ProjectList>
+    </Section>
   )
 }
