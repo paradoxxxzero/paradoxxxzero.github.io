@@ -26,6 +26,7 @@ const SubTitle = styled.div`
 export default function Title({ level, children }) {
   level = level || 2
   const left = level === 1
+
   return (
     <Header left={left}>
       {React.Children.map(children, (child, i) =>
@@ -38,5 +39,3 @@ export default function Title({ level, children }) {
     </Header>
   )
 }
-
-Title.SubTitle = () => {}

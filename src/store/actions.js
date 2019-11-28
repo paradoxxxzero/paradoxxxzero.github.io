@@ -9,3 +9,10 @@ export const setStars = stars => ({
   type: SET_STARS,
   stars,
 })
+
+export const SET_ANCHOR = 'SET_ANCHOR'
+export const setAnchor = (name, anchor) => ({
+  type: SET_ANCHOR,
+  name,
+  anchor,
+})

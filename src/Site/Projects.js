@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { fetchStars } from '../store/thunks'
 import Project from './Project'
 import Title from './utils/Title'
+import AnchoredSection from './utils/AnchoredSection'
 
 const ProjectList = styled.ul`
   max-width: 1000px;
@@ -14,7 +15,7 @@ const ProjectList = styled.ul`
   list-style: none;
 `
 
-const Section = styled.section`
+const Section = styled(AnchoredSection)`
   display: flex;
   flex-direction: column;
 `
@@ -24,7 +25,7 @@ export default function Projects() {
   const projects = useSelector(state => state.projects)
   useEffect(() => dispatch(fetchStars()), [])
   return (
-    <Section>
+    <Section anchor="projects">
       <Title>Projects</Title>
       <ProjectList>
         {projects.map(project => (

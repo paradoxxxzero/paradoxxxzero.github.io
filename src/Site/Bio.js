@@ -5,8 +5,9 @@ import ExternalLink from './utils/ExternalLink'
 import TimeRange from './utils/TimeRange'
 import bio from '../static/bio'
 import Title from './utils/Title'
+import AnchoredSection from './utils/AnchoredSection'
 
-const Section = styled.section`
+const Section = styled(AnchoredSection)`
   display: flex;
   flex-direction: column;
   min-height: 100%;
@@ -33,7 +34,7 @@ export default function Bio() {
   )
 
   return (
-    <Section>
+    <Section anchor="bio">
       <Title>
         Bio
         <>{age} years old</>

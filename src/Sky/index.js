@@ -35,7 +35,7 @@ const Canvas = styled.canvas`
 const STARS = 5000
 const cameraTravelling = progression => [
   -1000 * Math.pow(progression, 8 - progression * 6),
-  1000 * Math.pow(progression, 4 - progression * 2),
+  1000 * Math.pow(progression, 4 - progression),
   -2000 * Math.pow(progression, 4),
 ]
 const EPSILON = 0.0001
@@ -173,7 +173,6 @@ export default function Sky() {
     stars.rotation.set(-Math.PI / 4, progression, Math.PI / 8)
 
     camera.position.set(...cameraTravelling(travellingProgression))
-    console.log(cameraTravelling(travellingProgression + EPSILON))
     camera.lookAt(...cameraTravelling(travellingProgression + EPSILON))
     renderer.render(scene, camera)
   }, [progression])

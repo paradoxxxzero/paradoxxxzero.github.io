@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Title from './utils/Title'
+import AnchoredSection from './utils/AnchoredSection'
 
-const Section = styled.section`
+const Section = styled(AnchoredSection)`
   display: flex;
   flex-direction: column;
   min-height: 1200%;
@@ -11,7 +12,7 @@ const Section = styled.section`
 
 export default function Extra() {
   return (
-    <Section>
+    <Section anchor="extra">
       <Title />
     </Section>
   )
