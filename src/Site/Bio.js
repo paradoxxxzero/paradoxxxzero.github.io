@@ -1,7 +1,5 @@
 import React from 'react'
-import styled, {
-  __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS,
-} from 'styled-components'
+import styled from 'styled-components'
 
 import ExternalLink from './utils/ExternalLink'
 import TimeRange from './utils/TimeRange'

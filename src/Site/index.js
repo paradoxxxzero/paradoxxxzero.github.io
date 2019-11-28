@@ -4,8 +4,9 @@ import styled, { createGlobalStyle } from 'styled-components'
 
 import { setPageProgression } from '../store/actions'
 import Projects from './Projects'
-import About from './Bio'
+import Bio from './Bio'
 import Home from './Home'
+import Extra from './Extra'
 
 const FontFace = createGlobalStyle`
   body {
@@ -20,7 +21,7 @@ const Main = styled.main`
   overflow: auto;
 `
 
-export default function Bio() {
+export default function Site() {
   const dispatch = useDispatch()
   const handleScroll = event => {
     const { target } = event
@@ -30,11 +31,14 @@ export default function Bio() {
   }
 
   return (
-    <Main onScroll={handleScroll}>
+    <>
       <FontFace />
-      <Home />
-      <Projects />
-      <About />
-    </Main>
+      <Main onScroll={handleScroll}>
+        <Home />
+        <Projects />
+        <Bio />
+        <Extra />
+      </Main>
+    </>
   )
 }

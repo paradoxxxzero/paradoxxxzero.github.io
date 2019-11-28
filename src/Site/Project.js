@@ -82,7 +82,7 @@ export default function Project({
   description,
   languages,
   libraries,
-  major,
+  // major,
   preview,
 }) {
   const allStars = useSelector(state => state.stars)

@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { GoLinkExternal } from 'react-icons/go'
 
 const Range = styled.div`
   color: #dddddd;
