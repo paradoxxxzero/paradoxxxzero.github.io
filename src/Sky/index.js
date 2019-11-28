@@ -32,7 +32,13 @@ const Canvas = styled.canvas`
   height: 100%;
 `
 
-const STARS = 2000
+const STARS = 5000
+const cameraTravelling = progression => [
+  -1000 * Math.pow(progression, 8 - progression * 6),
+  1000 * Math.pow(progression, 4 - progression * 2),
+  -2000 * Math.pow(progression, 4),
+]
+const EPSILON = 0.0001
 
 export default function Sky() {
   const threeRef = useRef()
@@ -48,7 +54,6 @@ export default function Sky() {
       1000
     )
     camera.position.set(0, 0, 0)
-    camera.lookAt(new Vector3(0, 1, -2))
 
     const renderer = new WebGLRenderer({ canvas, antialias: true })
     renderer.setPixelRatio(window.devicePixelRatio)
@@ -167,18 +172,9 @@ export default function Sky() {
     stars.material.opacity = starsProgression
     stars.rotation.set(-Math.PI / 4, progression, Math.PI / 8)
 
-    // camera.position.y = -500 * travellingProgression * travellingProgression
-    camera.position.z = -1000 * travellingProgression
-    // camera.lookAt(
-    //   new Vector3(
-    //     0,
-    //     -500 *
-    //       (travellingProgression + 0.0001) *
-    //       (travellingProgression + 0.0001) +
-    //       1,
-    //     -1000 * (travellingProgression + 0.0001) - 2
-    //   )
-    // )
+    camera.position.set(...cameraTravelling(travellingProgression))
+    console.log(cameraTravelling(travellingProgression + EPSILON))
+    camera.lookAt(...cameraTravelling(travellingProgression + EPSILON))
     renderer.render(scene, camera)
   }, [progression])
 
