@@ -43,21 +43,21 @@ const EPSILON = 0.0001
 export default function Sky() {
   const threeRef = useRef()
   const canvasRef = useRef()
-  const progression = useSelector(state => state.progression)
+  const { relative: progression } = useSelector(state => state.progression)
+  const {
+    width: pageWidth,
+    height: pageHeight,
+    devicePixelRatio,
+  } = useSelector(state => state.page)
 
   useLayoutEffect(() => {
     const { current: canvas } = canvasRef
-    const camera = new PerspectiveCamera(
-      60,
-      window.innerWidth / window.innerHeight,
-      1,
-      1000
-    )
+    const camera = new PerspectiveCamera(60, pageWidth / pageHeight, 1, 1000)
     camera.position.set(0, 0, 0)
 
     const renderer = new WebGLRenderer({ canvas, antialias: true })
-    renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.setSize(window.innerWidth, window.innerHeight)
+    renderer.setPixelRatio(devicePixelRatio)
+    renderer.setSize(pageWidth, pageHeight)
 
     const uniforms = {
       luminance: { value: 1 },
@@ -134,18 +134,16 @@ export default function Sky() {
     }
 
     renderer.render(scene, camera)
-
-    const onWindowResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight
-      camera.updateProjectionMatrix()
-      renderer.setSize(window.innerWidth, window.innerHeight)
-      renderer.render(scene, camera)
-    }
-    window.addEventListener('resize', onWindowResize, false)
-    return () => {
-      window.removeEventListener('resize', onWindowResize)
-    }
   }, [canvasRef])
+
+  useEffect(() => {
+    const { current: three } = threeRef
+    const { renderer, scene, camera } = three
+    camera.aspect = pageWidth / pageHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(pageWidth, pageHeight)
+    renderer.render(scene, camera)
+  }, [pageWidth, pageHeight])
 
   useEffect(() => {
     const { current: three } = threeRef

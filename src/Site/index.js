@@ -1,8 +1,8 @@
-import React, { useRef, useCallback } from 'react'
+import React, { useRef, useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import styled, { createGlobalStyle } from 'styled-components'
 
-import { setPageProgression } from '../store/actions'
+import { setPageProgression, setPageSize } from '../store/actions'
 import Projects from './Projects'
 import Bio from './Bio'
 import Home from './Home'
@@ -28,9 +28,9 @@ export default function Site() {
   const dispatch = useDispatch()
   const handleScroll = event => {
     const { target } = event
-    const { clientHeight, scrollTop, scrollHeight } = target
-    const progression = scrollTop / (scrollHeight - clientHeight)
-    dispatch(setPageProgression(progression))
+    const { clientHeight, scrollTop: absolute, scrollHeight } = target
+    const relative = absolute / (scrollHeight - clientHeight)
+    dispatch(setPageProgression(relative, absolute))
   }
 
   const onScrollRequested = useCallback(
@@ -39,17 +39,31 @@ export default function Site() {
     },
     [mainRef]
   )
-
+  useEffect(() => {
+    const onWindowResize = () => {
+      dispatch(
+        setPageSize(
+          window.innerWidth,
+          window.innerHeight,
+          window.devicePixelRatio
+        )
+      )
+    }
+    window.addEventListener('resize', onWindowResize, false)
+    return () => {
+      window.removeEventListener('resize', onWindowResize)
+    }
+  })
   return (
     <>
       <FontFace />
       <Main onScroll={handleScroll} ref={mainRef}>
+        <Menu onScrollRequested={onScrollRequested} />
         <Home />
         <Projects />
         <Bio />
         <Extra />
       </Main>
-      <Menu onScrollRequested={onScrollRequested} />
     </>
   )
 }

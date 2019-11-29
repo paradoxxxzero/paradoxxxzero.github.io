@@ -1,13 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
+import { FaArrowUp } from 'react-icons/fa'
 
 const Nav = styled.nav`
   position: fixed;
-  bottom: 1em;
   right: 0;
-  border-bottom: 2px solid white;
+  position: sticky;
+  margin: 0 0 0 auto;
+  top: 2em;
+  border-top: 2px solid white;
   min-width: 33%;
+  max-width: max-content;
 `
 
 const Refs = styled.ul`
@@ -30,13 +34,25 @@ const Ref = styled.li`
 
 export default function Menu({ onScrollRequested }) {
   const anchors = useSelector(state => state.anchors)
+  const { width: pageWidth } = useSelector(state => state.page)
+  const { absolute: absoluteProgression } = useSelector(
+    state => state.progression
+  )
+  const active = Object.entries(anchors)
+    .sort((a, b) => a[1] - b[1]) // Sort on anchors
+    .reduce(
+      (current, [name, anchor]) =>
+        absoluteProgression >= anchor ? name : current,
+      null
+    )
+
   const goTo = anchor => () => onScrollRequested(anchors[anchor])
 
   return (
     <Nav anchor="extra">
       <Refs>
         <Ref anchor="home" onClick={goTo('home')}>
-          Home
+          <FaArrowUp />
         </Ref>
         <Ref anchor="projects" onClick={goTo('projects')}>
           Projects

@@ -1,8 +1,22 @@
-import { SET_PAGE_PROGRESSION, SET_STARS, SET_ANCHOR } from './actions'
+import {
+  SET_PAGE_PROGRESSION,
+  SET_STARS,
+  SET_ANCHOR,
+  SET_PAGE_SIZE,
+} from './actions'
 import projects from '../static/projects'
 
 const initial = {
-  progression: 0,
+  progression: {
+    relative: 0,
+    absolute: 0,
+    direction: 'up',
+  },
+  page: {
+    width: window.innerWidth,
+    height: window.innerHeight,
+    devicePixelRatio: window.devicePixelRatio,
+  },
   projects,
   stars: {},
   anchors: {},
@@ -11,7 +25,25 @@ const initial = {
 export default (state = initial, action) => {
   switch (action.type) {
     case SET_PAGE_PROGRESSION:
-      return { ...state, progression: action.progression }
+      return {
+        ...state,
+        progression: {
+          relative: action.relative,
+          absolute: action.absolute,
+          direction:
+            action.absolute - state.progression.absolute > 0 ? 'down' : 'up',
+        },
+      }
+    case SET_PAGE_SIZE:
+      return {
+        ...state,
+        page: {
+          ...state.page,
+          width: action.width,
+          height: action.height,
+          devicePixelRatio: action.devicePixelRatio,
+        },
+      }
     case SET_STARS:
       return { ...state, stars: action.stars }
     case SET_ANCHOR:
