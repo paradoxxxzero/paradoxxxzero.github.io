@@ -90,6 +90,7 @@ export default function Menu({ onScrollRequested }) {
   const hIndicatorRef = useRef()
   const vIndicatorRef = useRef()
   const anchorsRefs = useRef({})
+  const timeoutRef = useRef()
 
   const { absolute: absoluteProgression } = useSelector(
     state => state.progression
@@ -114,6 +115,10 @@ export default function Menu({ onScrollRequested }) {
     if (!active) {
       return
     }
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
     const anchor = anchorsRefs.current[active]
     const setPosition = () => {
       if (expanded) {
@@ -133,14 +138,20 @@ export default function Menu({ onScrollRequested }) {
       setPosition()
     } else {
       // Wait for css animation
-      setTimeout(setPosition, ANIMATION_TIME)
+      timeoutRef.current = setTimeout(setPosition, ANIMATION_TIME)
     }
     if (expanded) {
       vIndicator.style.opacity = 0
     } else {
       hIndicator.style.opacity = 0
     }
-  }, [hIndicatorRef, vIndicatorRef, anchorsRefs, active, expanded])
+    return () => {
+      if (timeoutRef.current !== null) {
+        clearTimeout(timeoutRef.current)
+        timeoutRef.current = null
+      }
+    }
+  }, [hIndicatorRef, vIndicatorRef, timeoutRef, anchorsRefs, active, expanded])
 
   return (
     <Nav anchor="extra" expanded={expanded}>
