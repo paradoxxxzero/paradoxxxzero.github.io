@@ -19,26 +19,14 @@ const FontFace = createGlobalStyle`
 const Main = styled.main`
   position: relative;
   height: 100%;
-  overflow: auto;
-  scroll-behavior: smooth;
 `
 
 export default function Site() {
-  const mainRef = useRef()
   const dispatch = useDispatch()
-  const handleScroll = event => {
-    const { target } = event
-    const { clientHeight, scrollTop: absolute, scrollHeight } = target
-    const relative = absolute / (scrollHeight - clientHeight)
-    dispatch(setPageProgression(relative, absolute))
-  }
 
-  const onScrollRequested = useCallback(
-    scroll => {
-      mainRef.current.scrollTo(0, scroll)
-    },
-    [mainRef]
-  )
+  const onScrollRequested = useCallback(scroll => {
+    document.scrollingElement.scrollTo(0, scroll)
+  }, [])
   useEffect(() => {
     const onWindowResize = () => {
       dispatch(
@@ -49,15 +37,28 @@ export default function Site() {
         )
       )
     }
+    const onPageScroll = event => {
+      const { scrollingElement } = event.target
+      const {
+        clientHeight,
+        scrollTop: absolute,
+        scrollHeight,
+      } = scrollingElement
+      const relative = absolute / (scrollHeight - clientHeight)
+      dispatch(setPageProgression(relative, absolute))
+    }
     window.addEventListener('resize', onWindowResize, false)
+    window.addEventListener('scroll', onPageScroll, false)
     return () => {
       window.removeEventListener('resize', onWindowResize)
+      window.removeEventListener('scroll', onPageScroll)
     }
-  })
+  }, [])
   return (
     <>
       <FontFace />
-      <Main onScroll={handleScroll} ref={mainRef}>
+      USECONTEXT
+      <Main>
         <Menu onScrollRequested={onScrollRequested} />
         <Home />
         <Projects />
