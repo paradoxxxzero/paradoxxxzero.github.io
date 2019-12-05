@@ -57,11 +57,11 @@ export default function Sky() {
     () => ({
       day: {
         start: 0,
-        end: anchors.extra / (totalHeight - winHeight),
+        end: anchors.contact / (totalHeight - winHeight),
       },
       stars: {
         start: (anchors.bio - winHeight) / (totalHeight - winHeight),
-        end: anchors.extra / (totalHeight - winHeight),
+        end: anchors.contact / (totalHeight - winHeight),
       },
       travelling: {
         start: anchors.extra / (totalHeight - winHeight),

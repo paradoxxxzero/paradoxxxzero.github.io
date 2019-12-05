@@ -12,14 +12,18 @@ const Link = styled.a`
   color: #aaaaaa;
 `
 
-export default function ExternalLink({ url, className, children }) {
+export default function ExternalLink({ url, className, noIcon, children }) {
   return (
     <span className={className}>
       <Link rel="noreferrer noopener" href={url} target="_blank">
         {children}
       </Link>
-      &nbsp;
-      <MutedExternal />
+      {!noIcon && (
+        <>
+          &nbsp;
+          <MutedExternal />
+        </>
+      )}
     </span>
   )
 }

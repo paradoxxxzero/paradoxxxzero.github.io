@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import styled, { createGlobalStyle } from 'styled-components'
 
@@ -8,6 +8,8 @@ import Bio from './Bio'
 import Home from './Home'
 import Extra from './Extra'
 import Menu from './Menu'
+import Contact from './Contact'
+import Meta from './Meta'
 
 const FontFace = createGlobalStyle`
   body {
@@ -50,9 +52,11 @@ export default function Site() {
     }
     window.addEventListener('resize', onWindowResize, false)
     window.addEventListener('scroll', onPageScroll, false)
+    window.addEventListener('load', onPageScroll, false)
     return () => {
       window.removeEventListener('resize', onWindowResize)
       window.removeEventListener('scroll', onPageScroll)
+      window.removeEventListener('load', onPageScroll)
     }
   }, [dispatch])
 
@@ -64,6 +68,8 @@ export default function Site() {
         <Home />
         <Projects />
         <Bio />
+        <Contact />
+        <Meta />
         <Extra />
       </Main>
     </>

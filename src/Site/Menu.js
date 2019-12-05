@@ -80,6 +80,14 @@ const MENU_ITEMS = [
     content: 'Bio',
   },
   {
+    name: 'contact',
+    content: 'Contact',
+  },
+  {
+    name: 'meta',
+    content: 'Meta',
+  },
+  {
     name: 'extra',
     content: <FaSpaceShuttle />,
   },

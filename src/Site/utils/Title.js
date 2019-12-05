@@ -20,7 +20,7 @@ const UnderlinedTitle = styled.div`
   font-size: 2em;
   align-self: flex-end;
   margin-left: ${props => (props.left ? '1em' : 0)};
-  margin-right: ${props => (props.left ? 0 : '1em')};
+  /* margin-right: ${props => (props.left ? 0 : '1em')}; */
 `
 
 const SubTitle = styled.div`
@@ -30,12 +30,12 @@ const SubTitle = styled.div`
   margin-right: ${props => (props.left ? 0 : '1em')};
 `
 
-export default function Title({ level, children }) {
+export default function Title({ level, children, className }) {
   level = level || 2
-  const left = level === 1
+  const left = level % 2
 
   return (
-    <Header left={left}>
+    <Header left={left} className={className}>
       {React.Children.map(children, (child, i) =>
         i === 0 ? (
           <UnderlinedTitle as={`h${level}`} left={left}>

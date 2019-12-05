@@ -8,7 +8,6 @@ const Section = styled(AnchoredSection)`
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: middle;
   justify-content: center;
 `
 
