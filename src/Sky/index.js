@@ -17,12 +17,13 @@ import {
   VertexColors,
 } from 'three'
 import { useSelector } from 'react-redux'
-import React, { useRef, useEffect, useLayoutEffect } from 'react'
+import React, { useRef, useEffect, useLayoutEffect, useMemo } from 'react'
 import styled from 'styled-components'
 
 import Star from './star.png'
 import vertexShader from './vertexShader.glsl'
 import fragmentShader from './fragmentShader.glsl'
+import { linearClamp } from '../utils'
 
 const Canvas = styled.canvas`
   position: fixed;
@@ -43,21 +44,41 @@ const EPSILON = 0.0001
 export default function Sky() {
   const threeRef = useRef()
   const canvasRef = useRef()
-  const { relative: progression } = useSelector(state => state.progression)
-  const {
-    width: pageWidth,
-    height: pageHeight,
-    devicePixelRatio,
-  } = useSelector(state => state.page)
+  const { relative: progression, total: totalHeight } = useSelector(
+    state => state.progression
+  )
+  const { width: winWidth, height: winHeight, devicePixelRatio } = useSelector(
+    state => state.page
+  )
+
+  const anchors = useSelector(state => state.anchors)
+
+  const boundaries = useMemo(
+    () => ({
+      day: {
+        start: 0,
+        end: anchors.extra / (totalHeight - winHeight),
+      },
+      stars: {
+        start: (anchors.bio - winHeight) / (totalHeight - winHeight),
+        end: anchors.extra / (totalHeight - winHeight),
+      },
+      travelling: {
+        start: anchors.extra / (totalHeight - winHeight),
+        end: 1,
+      },
+    }),
+    [anchors, winHeight, totalHeight]
+  )
 
   useLayoutEffect(() => {
     const { current: canvas } = canvasRef
-    const camera = new PerspectiveCamera(60, pageWidth / pageHeight, 1, 1000)
+    const camera = new PerspectiveCamera(60, winWidth / winHeight, 1, 1000)
     camera.position.set(0, 0, 0)
 
     const renderer = new WebGLRenderer({ canvas, antialias: true })
     renderer.setPixelRatio(devicePixelRatio)
-    renderer.setSize(pageWidth, pageHeight)
+    renderer.setSize(winWidth, winHeight)
 
     const uniforms = {
       luminance: { value: 1 },
@@ -134,46 +155,45 @@ export default function Sky() {
     }
 
     renderer.render(scene, camera)
-  }, [canvasRef])
+    // We voluntarly remove width height devicePixelRatio since it's handled separately
+  }, [canvasRef]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const { current: three } = threeRef
     const { renderer, scene, camera } = three
-    camera.aspect = pageWidth / pageHeight
+    camera.aspect = winWidth / winHeight
     camera.updateProjectionMatrix()
-    renderer.setSize(pageWidth, pageHeight)
+    renderer.setSize(winWidth, winHeight)
     renderer.render(scene, camera)
-  }, [pageWidth, pageHeight])
+  }, [winWidth, winHeight])
 
   useEffect(() => {
     const { current: three } = threeRef
     const { renderer, scene, camera, sky, stars, sunSpherical } = three
-    const threshold = 0.8
-    const sunProgression = Math.min(progression, threshold) / threshold
-    const travellingProgression =
-      (Math.max(threshold, progression) - threshold) / (1 - threshold)
-    const starsProgression =
-      (Math.max(threshold / 2, progression) - threshold / 2) /
-      (1 - threshold / 2)
 
+    const sunProgression = linearClamp(progression, boundaries.day)
     sunSpherical.theta = (Math.PI / 2 - Math.PI * sunProgression) / 3
     sunSpherical.phi =
       -Math.PI / 2 +
-      (Math.PI / 4) * (1 - Math.pow((sunProgression + 0.3) * 2 - 1, 2))
+      (Math.PI / 4) * (1 - Math.pow(1.5 * sunProgression - 0.41, 2))
 
     const {
       uniforms: { sunPosition },
     } = sky.material
     sunPosition.value.setFromSpherical(sunSpherical)
 
-    // stars.material.opacity = Math.pow(Math.cos(sunProgression * Math.PI), 50)
-    stars.material.opacity = starsProgression
+    const starsProgression = linearClamp(progression, boundaries.stars)
+    stars.material.opacity = Math.pow(starsProgression, 3)
     stars.rotation.set(-Math.PI / 4, progression, Math.PI / 8)
 
+    const travellingProgression = linearClamp(
+      progression,
+      boundaries.travelling
+    )
     camera.position.set(...cameraTravelling(travellingProgression))
     camera.lookAt(...cameraTravelling(travellingProgression + EPSILON))
     renderer.render(scene, camera)
-  }, [progression])
+  }, [progression, boundaries])
 
   return (
     <aside>

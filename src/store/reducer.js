@@ -30,6 +30,7 @@ export default (state = initial, action) => {
         progression: {
           relative: action.relative,
           absolute: action.absolute,
+          total: action.total,
           direction:
             action.absolute - state.progression.absolute > 0 ? 'down' : 'up',
         },

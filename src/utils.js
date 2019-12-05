@@ -8,3 +8,8 @@ export const extractStars = projects =>
     },
     {}
   )
+
+export const clamp = (x, min, max) => Math.min(max, Math.max(min, x))
+
+export const linearClamp = (x, { start, end }) =>
+  clamp((x - start) / (end - start), 0, 1)

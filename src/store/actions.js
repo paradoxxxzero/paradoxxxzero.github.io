@@ -1,8 +1,9 @@
 export const SET_PAGE_PROGRESSION = 'SET_PAGE_PROGRESSION'
-export const setPageProgression = (relative, absolute) => ({
+export const setPageProgression = (relative, absolute, total) => ({
   type: SET_PAGE_PROGRESSION,
   relative,
   absolute,
+  total,
 })
 
 export const SET_STARS = 'SET_STARS'

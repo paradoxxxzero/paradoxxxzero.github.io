@@ -43,10 +43,10 @@ export default function Site() {
       const {
         clientHeight,
         scrollTop: absolute,
-        scrollHeight,
+        scrollHeight: total,
       } = scrollingElement
-      const relative = absolute / (scrollHeight - clientHeight)
-      dispatch(setPageProgression(relative, absolute))
+      const relative = absolute / (total - clientHeight)
+      dispatch(setPageProgression(relative, absolute, total))
     }
     window.addEventListener('resize', onWindowResize, false)
     window.addEventListener('scroll', onPageScroll, false)
