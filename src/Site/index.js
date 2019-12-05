@@ -27,6 +27,7 @@ export default function Site() {
   const onScrollRequested = useCallback(scroll => {
     document.scrollingElement.scrollTo(0, scroll)
   }, [])
+
   useEffect(() => {
     const onWindowResize = () => {
       dispatch(
@@ -53,11 +54,11 @@ export default function Site() {
       window.removeEventListener('resize', onWindowResize)
       window.removeEventListener('scroll', onPageScroll)
     }
-  }, [])
+  }, [dispatch])
+
   return (
     <>
       <FontFace />
-      USECONTEXT
       <Main>
         <Menu onScrollRequested={onScrollRequested} />
         <Home />

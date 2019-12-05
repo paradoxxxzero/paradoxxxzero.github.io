@@ -226,7 +226,7 @@
     "lines-around-comment": "off",
     "lines-around-directive": "off",
     "max-depth": "warn",
-    "max-len": "warn",
+    "max-len": "off",
     "max-lines": "off",
     "max-nested-callbacks": "warn",
     "max-params": "off",
@@ -403,9 +403,11 @@
     "import/max-dependencies": "off",
     "import/no-unassigned-import": "off",
     "import/no-named-default": "warn",
-    "import/no-anonymous-default-export": "off"
+    "import/no-anonymous-default-export": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
-  "plugins": ["react", "import"],
+  "plugins": ["react", "import", "react-hooks"],
   "settings": {
     "import/resolver": {
       "node": {

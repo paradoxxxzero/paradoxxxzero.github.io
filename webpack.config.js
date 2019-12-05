@@ -79,6 +79,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     disableHostCheck: true,
+    host: '0.0.0.0',
     port: 36015,
   },
   resolve: {
