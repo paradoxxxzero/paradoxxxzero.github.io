@@ -179,7 +179,7 @@ export default function Sky() {
     const water = new Water(waterGeometry, {
       color: '#ffffff',
       scale: 5,
-      flowDirection: new Vector2(1, 1),
+      flowDirection: new Vector2(0.1, 0.1),
       textureWidth: 1024,
       textureHeight: 1024,
       normalMap0: textureLoader.load(Water0),
