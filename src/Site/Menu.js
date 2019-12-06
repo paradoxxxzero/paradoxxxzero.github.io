@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { useSelector } from 'react-redux'
 import { FaArrowUp, FaSpaceShuttle } from 'react-icons/fa'
@@ -54,6 +54,7 @@ const VIndicator = styled.div`
 `
 
 const Nav = styled.nav`
+  backdrop-filter: blur(2px);
   position: fixed;
   right: 0;
   top: 2em;

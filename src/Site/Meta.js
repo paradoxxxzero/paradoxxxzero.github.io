@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import { FaHeart } from 'react-icons/fa'
 
 import AnchoredSection from './utils/AnchoredSection'
 import ExternalLink from './utils/ExternalLink'
 import Title from './utils/Title'
-import { FaHeart, FaReact } from 'react-icons/fa'
 
 const Section = styled(AnchoredSection)`
   display: flex;

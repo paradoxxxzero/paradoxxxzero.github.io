@@ -15,12 +15,18 @@ import {
   Spherical,
   Color,
   VertexColors,
+  PlaneBufferGeometry,
+  PointLight,
+  Vector2,
 } from 'three'
+import { Water } from 'three/examples/jsm/objects/Water2'
 import { useSelector } from 'react-redux'
 import React, { useRef, useEffect, useLayoutEffect, useMemo } from 'react'
 import styled from 'styled-components'
 
 import Star from './star.png'
+import Water0 from './Water0.jpg'
+import Water1 from './Water1.jpg'
 import vertexShader from './vertexShader.glsl'
 import fragmentShader from './fragmentShader.glsl'
 import { linearClamp } from '../utils'
@@ -36,8 +42,8 @@ const Canvas = styled.canvas`
 const STARS = 5000
 const cameraTravelling = progression => [
   -1000 * Math.pow(progression, 8 - progression * 6),
-  1000 * Math.pow(progression, 4 - progression),
-  -2000 * Math.pow(progression, 4),
+  100 * Math.pow(progression, 4 - progression),
+  2000 * Math.pow(progression, 4),
 ]
 const EPSILON = 0.0001
 
@@ -74,7 +80,8 @@ export default function Sky() {
   useLayoutEffect(() => {
     const { current: canvas } = canvasRef
     const camera = new PerspectiveCamera(60, winWidth / winHeight, 1, 1000)
-    camera.position.set(0, 0, 0)
+    camera.position.set(0, 1, 2)
+    camera.lookAt(0, 2, 0)
 
     const renderer = new WebGLRenderer({ canvas, antialias: true })
     renderer.setPixelRatio(devicePixelRatio)
@@ -98,8 +105,12 @@ export default function Sky() {
 
     const sky = new Mesh(new BoxBufferGeometry(1, 1, 1), skyMaterial)
     sky.scale.setScalar(9000)
+
     const scene = new Scene()
     scene.add(sky)
+
+    const sunLight = new PointLight(0xffffdd, 1, 0, 2)
+    scene.add(sunLight)
 
     const starsSpherical = new Spherical()
     const starsGeometry = new Geometry()
@@ -135,7 +146,6 @@ export default function Sky() {
       }),
       vertexColors: VertexColors,
       blending: AdditiveBlending,
-      depthTest: false,
       transparent: true,
       opacity: 1,
     })
@@ -144,6 +154,30 @@ export default function Sky() {
     scene.add(stars)
 
     const sunSpherical = new Spherical()
+    // const groundGeometry = new PlaneBufferGeometry(500, 500)
+    // const groundMaterial = new MeshStandardMaterial({
+    //   color: 0xffffff,
+    //   metalness: 0.5,
+    //   roughness: 1,
+    // })
+    // const ground = new Mesh(groundGeometry, groundMaterial)
+    // ground.rotation.x = -Math.PI / 2
+    // scene.add(ground)
+
+    const textureLoader = new TextureLoader()
+    const waterGeometry = new PlaneBufferGeometry(500, 500)
+    const water = new Water(waterGeometry, {
+      color: '#ffffff',
+      scale: 1,
+      flowDirection: new Vector2(1, 1),
+      textureWidth: 1024,
+      textureHeight: 1024,
+      normalMap0: textureLoader.load(Water0),
+      normalMap1: textureLoader.load(Water1),
+    })
+
+    water.rotation.x = -Math.PI / 2
+    scene.add(water)
 
     window.sky = threeRef.current = {
       scene,
@@ -152,6 +186,7 @@ export default function Sky() {
       sky,
       stars,
       sunSpherical,
+      sunLight,
     }
 
     renderer.render(scene, camera)
@@ -167,11 +202,30 @@ export default function Sky() {
     renderer.render(scene, camera)
   }, [winWidth, winHeight])
 
+  // useEffect(() => {
+  //   const { current: three } = threeRef
+  //   const { renderer, scene, camera } = three
+  //   const render = () => {
+  //     renderer.render(scene, camera)
+  //     requestAnimationFrame(render)
+  //   }
+  //   requestAnimationFrame(render)
+  // }, [])
+
   useEffect(() => {
     const { current: three } = threeRef
-    const { renderer, scene, camera, sky, stars, sunSpherical } = three
+    const {
+      renderer,
+      scene,
+      camera,
+      sky,
+      stars,
+      sunSpherical,
+      sunLight,
+    } = three
 
     const sunProgression = linearClamp(progression, boundaries.day)
+    sunSpherical.radius = 1000
     sunSpherical.theta = (Math.PI / 2 - Math.PI * sunProgression) / 3
     sunSpherical.phi =
       -Math.PI / 2 +
@@ -181,17 +235,18 @@ export default function Sky() {
       uniforms: { sunPosition },
     } = sky.material
     sunPosition.value.setFromSpherical(sunSpherical)
+    sunLight.position.setFromSpherical(sunSpherical)
 
     const starsProgression = linearClamp(progression, boundaries.stars)
     stars.material.opacity = Math.pow(starsProgression, 3)
     stars.rotation.set(-Math.PI / 4, progression, Math.PI / 8)
 
-    const travellingProgression = linearClamp(
-      progression,
-      boundaries.travelling
-    )
-    camera.position.set(...cameraTravelling(travellingProgression))
-    camera.lookAt(...cameraTravelling(travellingProgression + EPSILON))
+    // const travellingProgression = linearClamp(
+    //   progression,
+    //   boundaries.travelling
+    // )
+    // camera.position.set(...cameraTravelling(travellingProgression))
+    // camera.lookAt(...cameraTravelling(travellingProgression + EPSILON))
     renderer.render(scene, camera)
   }, [progression, boundaries])
 
