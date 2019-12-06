@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { useSelector } from 'react-redux'
 import { FaArrowUp, FaSpaceShuttle } from 'react-icons/fa'
+import { MOBILE_MAX_WIDTH } from '../static/consts'
 
 const ANIMATION_TIME = 250
 
@@ -96,6 +97,7 @@ const MENU_ITEMS = [
 
 export default function Menu({ onScrollRequested }) {
   const anchors = useSelector(state => state.anchors)
+  const { width: winWidth } = useSelector(state => state.page)
   const hIndicatorRef = useRef()
   const vIndicatorRef = useRef()
   const anchorsRefs = useRef({})
@@ -112,7 +114,8 @@ export default function Menu({ onScrollRequested }) {
       null
     )
 
-  const expanded = active === Object.keys(anchors)[0]
+  const expanded =
+    winWidth > MOBILE_MAX_WIDTH && active === Object.keys(anchors)[0]
   const goTo = anchor => () => onScrollRequested(anchors[anchor])
   const setAnchorRef = anchor => ref => {
     anchorsRefs.current[anchor] = ref

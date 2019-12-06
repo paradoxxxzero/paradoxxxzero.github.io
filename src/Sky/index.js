@@ -18,6 +18,7 @@ import {
   PlaneBufferGeometry,
   PointLight,
   Vector2,
+  CatmullRomCurve3,
 } from 'three'
 import { Water } from 'three/examples/jsm/objects/Water2'
 import { useSelector } from 'react-redux'
@@ -40,12 +41,13 @@ const Canvas = styled.canvas`
 `
 
 const STARS = 5000
-const cameraTravelling = progression => [
-  -1000 * Math.pow(progression, 8 - progression * 6),
-  100 * Math.pow(progression, 4 - progression),
-  2000 * Math.pow(progression, 4),
-]
-const EPSILON = 0.0001
+
+const cameraCurve = new CatmullRomCurve3([
+  new Vector3(0, 1, 2),
+  new Vector3(0, 2, 0),
+  new Vector3(-10, 20, -20),
+  new Vector3(-500, 1000, -1000),
+])
 
 export default function Sky() {
   const threeRef = useRef()
@@ -80,8 +82,6 @@ export default function Sky() {
   useLayoutEffect(() => {
     const { current: canvas } = canvasRef
     const camera = new PerspectiveCamera(60, winWidth / winHeight, 1, 1000)
-    camera.position.set(0, 1, 2)
-    camera.lookAt(0, 2, 0)
 
     const renderer = new WebGLRenderer({ canvas, antialias: true })
     renderer.setPixelRatio(devicePixelRatio)
@@ -148,6 +148,7 @@ export default function Sky() {
       blending: AdditiveBlending,
       transparent: true,
       opacity: 1,
+      depthTest: false,
     })
     const stars = new Points(starsGeometry, starsMaterial)
     stars.rotation.reorder('ZXY')
@@ -241,12 +242,18 @@ export default function Sky() {
     stars.material.opacity = Math.pow(starsProgression, 3)
     stars.rotation.set(-Math.PI / 4, progression, Math.PI / 8)
 
-    // const travellingProgression = linearClamp(
-    //   progression,
-    //   boundaries.travelling
-    // )
-    // camera.position.set(...cameraTravelling(travellingProgression))
-    // camera.lookAt(...cameraTravelling(travellingProgression + EPSILON))
+    const travellingProgression = linearClamp(
+      progression,
+      boundaries.travelling
+    )
+
+    camera.position.copy(cameraCurve.getPoint(travellingProgression))
+    camera.lookAt(
+      cameraCurve
+        .getPoint(travellingProgression)
+        .add(cameraCurve.getTangent(travellingProgression))
+    )
+    camera.updateProjectionMatrix()
     renderer.render(scene, camera)
   }, [progression, boundaries])
 
