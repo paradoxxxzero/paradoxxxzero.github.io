@@ -1,3 +1,14 @@
+import anakata from './previews/anakata.png'
+import frustals from './previews/frustals.png'
+import kalong from './previews/kalong.png'
+import inversion from './previews/inversion.png'
+import formol from './previews/formol.png'
+import unrest from './previews/unrest.png'
+import pygal from './previews/pygal.png'
+import wdb from './previews/wdb.png'
+import umlaut from './previews/umlaut.png'
+import butterfly from './previews/butterfly.png'
+
 export default [
   {
     id: 'paradoxxxzero/kalong',
@@ -7,25 +18,30 @@ export default [
     libraries: ['React', 'Redux', 'Material-UI', 'aiohttp'],
     major: true,
     description: 'Standalone Python debugger with a web interface.',
+    preview: kalong,
   },
   {
     id: 'paradoxxxzero/frustals',
     name: 'Frustals',
     url: 'https://github.com/paradoxxxzero/frustals',
+    demoUrl: 'https://paradoxxxzero.github.com/frustals',
     languages: ['ECMAScript', 'Rust'],
     libraries: ['wasm-bindgen'],
     major: true,
     description:
       'Fractal plotter written in Rust with a web interface base on WASM.',
+    preview: frustals,
   },
   {
     id: 'paradoxxxzero/anakataGL',
     name: 'AnakataGL',
     url: 'https://github.com/paradoxxxzero/anakataGL',
+    demoUrl: 'https://paradoxxxzero.github.com/anakataGL',
     languages: ['ECMAScript'],
     libraries: ['three.js'],
     major: true,
     description: '4 dimensions mesh renderer in WebGL.',
+    preview: anakata,
   },
   {
     id: 'paradoxxxzero/inversion',
@@ -35,24 +51,29 @@ export default [
     libraries: ['three.js', 'React', 'Redux'],
     major: true,
     description: 'Puzzle game in WebGL.',
+    preview: inversion,
   },
   {
     id: 'Kozea/formol',
     name: 'Formol',
-    url: 'https://kozea.github.io/formol/',
+    url: 'https://github.com/Kozea/formol/',
+    demoUrl: 'https://kozea.github.io/formol/',
     languages: ['ECMAScript'],
     libraries: ['React'],
     major: true,
     description: 'Full featured object edition form framework for React.',
+    preview: formol,
   },
   {
     id: 'Kozea/unrest',
     name: 'Unrest',
     url: 'https://kozea.github.io/unrest/',
+    demoUrl: 'https://github.com/Kozea/unrest/',
     languages: ['Python'],
     libraries: ['SqlAlchemy', 'Flask', 'Tornado', 'Sanic'],
     major: true,
     description: 'Simple sqlalchemy REST API generation.',
+    preview: unrest,
   },
   {
     id: 'paradoxxxzero/butterfly',
@@ -62,15 +83,18 @@ export default [
     libraries: ['Tornado'],
     major: true,
     description: 'Xterm compatible terminal that runs in your browser.',
+    preview: butterfly,
   },
   {
     id: 'Kozea/pygal',
     name: 'Pygal',
-    url: 'http://www.pygal.org/',
+    url: 'https://kozea.github.io/pygal/',
+    demoUrl: 'http://www.pygal.org/',
     languages: ['Python'],
     libraries: ['lxml'],
     major: true,
     description: 'Python charting library with a clean and simple API.',
+    preview: pygal,
   },
   {
     id: 'Kozea/wdb',
@@ -81,6 +105,7 @@ export default [
     major: true,
     description:
       'Full featured web debugger for python based on a client-server',
+    preview: wdb,
   },
   {
     id: 'Kozea/umlaut',
@@ -90,6 +115,7 @@ export default [
     libraries: ['d3.js', 'jQuery'],
     major: true,
     description: 'Simple SVG diagram modeler with dot support.',
+    preview: umlaut,
   },
   {
     id: 'paradoxxxzero/gnome-shell-system-monitor-applet',
@@ -109,7 +135,7 @@ export default [
     libraries: ['canvas'],
     major: true,
     description:
-      '4 dimensions mesh renderer implemented in 2d canvas. Ancestor of',
+      '4 dimensions mesh renderer implemented in 2d canvas. Ancestor of anakataGL',
   },
   {
     id: 'paradoxxxzero/hanabi',

@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import { FaStar } from 'react-icons/fa'
 
 export default styled(Stars)`
-  display: 'block';
+  display: block;
+  text-decoration: none;
+  color: gold;
 `
 
 function Stars({ url, stars, className }) {
