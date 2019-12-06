@@ -27,6 +27,7 @@ import { AfterimagePass } from 'three/examples/jsm/postprocessing/AfterimagePass
 import { useSelector } from 'react-redux'
 import React, { useRef, useEffect, useLayoutEffect, useMemo } from 'react'
 import styled from 'styled-components'
+import { HyperRenderer, HyperMesh } from 'anakata'
 
 import Star from './star.png'
 import Water0 from './Water0.jpg'
@@ -49,7 +50,8 @@ const cameraCurve = new CatmullRomCurve3([
   new Vector3(0, 1, 2),
   new Vector3(0, 2, 0),
   new Vector3(-10, 20, -20),
-  new Vector3(-500, 1000, -1000),
+  new Vector3(-380, 760, -760),
+  new Vector3(-400, 800, -800),
 ])
 
 export default function Sky() {
@@ -76,6 +78,10 @@ export default function Sky() {
       },
       travelling: {
         start: anchors.extra / (totalHeight - winHeight),
+        end: 1,
+      },
+      tesseract: {
+        start: 0.9,
         end: 1,
       },
     }),
@@ -183,6 +189,15 @@ export default function Sky() {
     water.rotation.x = -Math.PI / 2
     scene.add(water)
 
+    const hyperRenderer = new HyperRenderer(1.5, 5)
+    const hyperMesh = new HyperMesh(hyperRenderer)
+    hyperMesh.cellOpacity = 0.25
+
+    hyperMesh.group.position.copy(
+      cameraCurve.getPointAt(1).multiplyScalar(1.005)
+    )
+    scene.add(hyperMesh.group)
+
     const composer = new EffectComposer(renderer)
     composer.addPass(new RenderPass(scene, camera))
     const afterimagePass = new AfterimagePass()
@@ -198,6 +213,8 @@ export default function Sky() {
       stars,
       sunSpherical,
       sunLight,
+      hyperRenderer,
+      hyperMesh,
     }
 
     composer.render(scene)
@@ -216,8 +233,19 @@ export default function Sky() {
 
   useEffect(() => {
     const { current: three } = threeRef
-    const { composer, scene } = three
+    const { composer, scene, hyperMesh, hyperRenderer } = three
     const render = () => {
+      if (hyperMesh.group.visible) {
+        hyperRenderer.rotate({
+          xy: 0,
+          xz: 0,
+          xw: 10,
+          yz: 0,
+          yw: 10,
+          zw: 10,
+        })
+        hyperMesh.update()
+      }
       composer.render(scene)
       requestAnimationFrame(render)
     }
@@ -234,6 +262,7 @@ export default function Sky() {
       stars,
       sunSpherical,
       sunLight,
+      hyperMesh,
     } = three
 
     const sunProgression = linearClamp(progression, boundaries.day)
@@ -265,6 +294,10 @@ export default function Sky() {
         .add(cameraCurve.getTangent(travellingProgression))
     )
     camera.updateProjectionMatrix()
+
+    const tesseractProgression = linearClamp(progression, boundaries.tesseract)
+    hyperMesh.group.visible = !!tesseractProgression
+    hyperMesh.cellSize = tesseractProgression * 100
     composer.render(scene)
   }, [progression, boundaries])
 
