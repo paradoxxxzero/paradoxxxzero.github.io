@@ -21,6 +21,9 @@ import {
   CatmullRomCurve3,
 } from 'three'
 import { Water } from 'three/examples/jsm/objects/Water2'
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
+import { AfterimagePass } from 'three/examples/jsm/postprocessing/AfterimagePass'
 import { useSelector } from 'react-redux'
 import React, { useRef, useEffect, useLayoutEffect, useMemo } from 'react'
 import styled from 'styled-components'
@@ -169,7 +172,7 @@ export default function Sky() {
     const waterGeometry = new PlaneBufferGeometry(500, 500)
     const water = new Water(waterGeometry, {
       color: '#ffffff',
-      scale: 1,
+      scale: 5,
       flowDirection: new Vector2(1, 1),
       textureWidth: 1024,
       textureHeight: 1024,
@@ -180,43 +183,51 @@ export default function Sky() {
     water.rotation.x = -Math.PI / 2
     scene.add(water)
 
+    const composer = new EffectComposer(renderer)
+    composer.addPass(new RenderPass(scene, camera))
+    const afterimagePass = new AfterimagePass()
+    afterimagePass.uniforms.damp.value = 0.7
+    composer.addPass(afterimagePass)
+
     window.sky = threeRef.current = {
       scene,
       camera,
       renderer,
+      composer,
       sky,
       stars,
       sunSpherical,
       sunLight,
     }
 
-    renderer.render(scene, camera)
+    composer.render(scene)
     // We voluntarly remove width height devicePixelRatio since it's handled separately
   }, [canvasRef]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const { current: three } = threeRef
-    const { renderer, scene, camera } = three
+    const { renderer, composer, scene, camera } = three
     camera.aspect = winWidth / winHeight
     camera.updateProjectionMatrix()
     renderer.setSize(winWidth, winHeight)
-    renderer.render(scene, camera)
+    composer.setSize(winWidth, winHeight)
+    composer.render(scene)
   }, [winWidth, winHeight])
 
-  // useEffect(() => {
-  //   const { current: three } = threeRef
-  //   const { renderer, scene, camera } = three
-  //   const render = () => {
-  //     renderer.render(scene, camera)
-  //     requestAnimationFrame(render)
-  //   }
-  //   requestAnimationFrame(render)
-  // }, [])
+  useEffect(() => {
+    const { current: three } = threeRef
+    const { composer, scene } = three
+    const render = () => {
+      composer.render(scene)
+      requestAnimationFrame(render)
+    }
+    requestAnimationFrame(render)
+  }, [])
 
   useEffect(() => {
     const { current: three } = threeRef
     const {
-      renderer,
+      composer,
       scene,
       camera,
       sky,
@@ -254,7 +265,7 @@ export default function Sky() {
         .add(cameraCurve.getTangent(travellingProgression))
     )
     camera.updateProjectionMatrix()
-    renderer.render(scene, camera)
+    composer.render(scene)
   }, [progression, boundaries])
 
   return (
