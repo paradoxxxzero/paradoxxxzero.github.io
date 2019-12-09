@@ -10,7 +10,7 @@ export default [
     start: '2009',
     end: '2011',
     name: 'Viseo',
-    role: 'Java /ECMAScript Developper',
+    role: 'Java / ECMAScript Developper',
     url: 'https://www.viseo.com/',
   },
   {

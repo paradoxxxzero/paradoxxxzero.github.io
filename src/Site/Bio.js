@@ -1,32 +1,13 @@
 import React from 'react'
-import styled from 'styled-components'
 
 import ExternalLink from './utils/ExternalLink'
 import TimeRange from './utils/TimeRange'
 import bio from '../static/bio'
 import Title from './utils/Title'
 import AnchoredSection from './utils/AnchoredSection'
-
-const Section = styled(AnchoredSection)`
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-`
-
-const StepList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  margin-top: 10em;
-  padding: 0;
-`
-
-const Step = styled.li`
-  text-align: center;
-  font-size: 1.5em;
-  color: #dddddd;
-  margin: 0.75em;
-`
+import Content from './utils/Content'
+import List from './utils/List'
+import ListItem from './utils/ListItem'
 
 export default function Bio() {
   const age = Math.floor(
@@ -35,7 +16,7 @@ export default function Bio() {
   )
 
   return (
-    <Section anchor="bio">
+    <AnchoredSection anchor="bio">
       <Title>
         Bio
         <>{age} years old</>
@@ -46,15 +27,16 @@ export default function Bio() {
           </ExternalLink>
         </>
       </Title>
-
-      <StepList>
-        {bio.map(({ start, end, name, role, url }) => (
-          <Step key={name}>
-            <TimeRange start={start} end={end} /> {role} at{' '}
-            <ExternalLink url={url}>{name}</ExternalLink>
-          </Step>
-        ))}
-      </StepList>
-    </Section>
+      <Content>
+        <List>
+          {bio.map(({ start, end, name, role, url }) => (
+            <ListItem key={name}>
+              <TimeRange start={start} end={end} /> {role} at{' '}
+              <ExternalLink url={url}>{name}</ExternalLink>
+            </ListItem>
+          ))}
+        </List>
+      </Content>
+    </AnchoredSection>
   )
 }

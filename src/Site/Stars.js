@@ -12,7 +12,7 @@ export const Star = styled.a`
 `
 
 const Number = styled.span`
-  color: white;
+  color: ${props => props.theme.fg.normal};
 `
 
 export default function Stars({ url, stars, className }) {

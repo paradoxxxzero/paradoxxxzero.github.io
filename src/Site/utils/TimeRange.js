@@ -2,16 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Range = styled.div`
-  color: #dddddd;
+  color: ${props => props.theme.fg.mute};
 `
 
 const BigTime = styled.time`
-  color: white;
+  color: ${props => props.theme.fg.normal};
   font-size: 1.5em;
 `
 
 const Time = styled.time`
-  color: #bbbbbb;
+  color: ${props => props.theme.fg.mute};
   font-size: 0.75em;
 `
 

@@ -1,44 +1,63 @@
 import React from 'react'
-import styled from 'styled-components'
-import { FaGithub } from 'react-icons/fa'
+import {
+  FaGithub,
+  FaEnvelope,
+  FaRedditAlien,
+  FaEnvelopeOpen,
+  FaGitlab,
+} from 'react-icons/fa'
 
 import AnchoredSection from './utils/AnchoredSection'
 import ExternalLink from './utils/ExternalLink'
 import Title from './utils/Title'
-
-const Section = styled(AnchoredSection)`
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
-`
-
-const CenteredTitle = styled(Title)`
-  flex: 1;
-  justify-content: center;
-`
-
-const MailLink = styled.a`
-  color: inherit;
-  text-decoration: none;
-  word-break: break-all;
-`
+import Content from './utils/Content'
+import ListItem from './utils/ListItem'
+import List from './utils/List'
 
 export default function Contact() {
   return (
-    <Section anchor="contact">
+    <AnchoredSection anchor="contact">
       <Title>Contact</Title>
-      <CenteredTitle level={3}>
-        <MailLink href="mailto:mounier.florian+dev@gmail.com">
-          mounier.florian@gmail.com
-        </MailLink>
-        <>
-          <FaGithub />
-          &nbsp;
-          <ExternalLink url="https://github.com/paradoxxxzero">
-            paradoxxxzero
-          </ExternalLink>
-        </>
-      </CenteredTitle>
-    </Section>
+      <Content>
+        <List>
+          <ListItem>
+            <FaEnvelope />
+            &nbsp;
+            <ExternalLink url="mailto:mounier.florian+dev@gmail.com">
+              mounier.florian@gmail.com
+            </ExternalLink>
+            &nbsp;(Pro)
+          </ListItem>
+          <ListItem>
+            <FaEnvelopeOpen />
+            &nbsp;
+            <ExternalLink url="mailto:paradoxxx.zero+dev@gmail.com">
+              paradoxxx.zero@gmail.com
+            </ExternalLink>
+          </ListItem>
+          <ListItem>
+            <FaGithub />
+            &nbsp;
+            <ExternalLink url="https://github.com/paradoxxxzero">
+              paradoxxxzero
+            </ExternalLink>
+          </ListItem>
+          <ListItem>
+            <FaGitlab />
+            &nbsp;
+            <ExternalLink url="https://gitlab.com/paradoxxxzero">
+              paradoxxxzero
+            </ExternalLink>
+          </ListItem>
+          <ListItem>
+            <FaRedditAlien />
+            &nbsp;
+            <ExternalLink url="https://www.reddit.com/user/paradoxxx_zero">
+              paradoxxx_zero
+            </ExternalLink>
+          </ListItem>
+        </List>
+      </Content>
+    </AnchoredSection>
   )
 }

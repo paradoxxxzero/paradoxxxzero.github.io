@@ -15,16 +15,16 @@ const Header = styled.header`
 
 const UnderlinedTitle = styled.div`
   width: 100%;
-  color: white;
-  border-bottom: 2px solid white;
+  color: ${props => props.theme.fg.normal};
+  border-bottom: 2px solid ${props => props.theme.fg.normal};
   font-size: 2em;
   align-self: flex-end;
   margin-left: ${props => (props.left ? '1em' : 0)};
-  /* margin-right: ${props => (props.left ? 0 : '1em')}; */
+  margin-bottom: 0.5em;
 `
 
 const SubTitle = styled.div`
-  color: #eeeeee;
+  color: ${props => props.theme.fg.mute};
   font-size: 1.25em;
   margin-left: ${props => (props.left ? '1em' : 0)};
   margin-right: ${props => (props.left ? 0 : '1em')};

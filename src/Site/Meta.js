@@ -1,64 +1,55 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FaHeart } from 'react-icons/fa'
 
 import AnchoredSection from './utils/AnchoredSection'
 import ExternalLink from './utils/ExternalLink'
 import Title from './utils/Title'
+import Content from './utils/Content'
+import List from './utils/List'
+import ListItem from './utils/ListItem'
 
-const Section = styled(AnchoredSection)`
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
+const ListTitle = styled.p`
+  margin-top: 0.5em;
 `
 
 const BottomTitle = styled(Title)`
   justify-content: flex-end;
 `
 
-const Credits = styled.article`
-  font-size: 2em;
-  color: white;
-  align-self: center;
-  flex: 1;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-`
-
-const CreditList = styled.ul`
-  list-style: none;
-  padding: 0;
-`
-
-const CreditItem = styled.li``
-
 export default function Meta() {
   return (
-    <Section anchor="meta">
+    <AnchoredSection anchor="meta">
       <Title>Meta</Title>
-      <Credits>
-        <div>
-          This site has been crafted with <FaHeart /> and also:
-          <CreditList>
-            <CreditItem>
-              <ExternalLink url="https://preactjs.com/">preact</ExternalLink>
-            </CreditItem>
-            <CreditItem>
-              <ExternalLink url="https://redux.js.org/">redux</ExternalLink>
-            </CreditItem>
-            <CreditItem>
-              <ExternalLink url="https://threejs.org/">three.js</ExternalLink>
-            </CreditItem>
-          </CreditList>
-        </div>
-      </Credits>
+      <Content>
+        <ListTitle>
+          This site has been hand-crafted with the help of these wonderful
+          libraries:
+        </ListTitle>
+        <List>
+          <ListItem>
+            <ExternalLink url="https://preactjs.com/">preact</ExternalLink>{' '}
+            &mdash; the lightweight implementation of React.
+          </ListItem>
+          <ListItem>
+            <ExternalLink url="https://redux.js.org/">redux</ExternalLink>{' '}
+            &mdash; for containing this application state.
+          </ListItem>
+          <ListItem>
+            <ExternalLink url="https://threejs.org/">three.js</ExternalLink>{' '}
+            &mdash; for a simple and powerful API on top of WebGL.
+          </ListItem>
+          <ListItem>
+            <ExternalLink url="https://webpack.js.org/">webpack</ExternalLink>{' '}
+            &mdash; to put everything together.
+          </ListItem>
+        </List>
+      </Content>
       <BottomTitle level={3}>
         Browse this site source code at
         <ExternalLink url="https://github.com/paradoxxxzero/bio">
           github.com/paradoxxxzero/bio
         </ExternalLink>
       </BottomTitle>
-    </Section>
+    </AnchoredSection>
   )
 }

@@ -5,8 +5,6 @@ import Title from './utils/Title'
 import AnchoredSection from './utils/AnchoredSection'
 
 const Section = styled(AnchoredSection)`
-  display: flex;
-  flex-direction: column;
   min-height: 1200%;
 `
 

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 import { setPageProgression, setPageSize } from '../store/actions'
 import Projects from './Projects'
@@ -10,6 +10,7 @@ import Extra from './Extra'
 import Menu from './Menu'
 import Contact from './Contact'
 import Meta from './Meta'
+import theme from '../static/theme'
 
 const FontFace = createGlobalStyle`
   body {
@@ -61,7 +62,7 @@ export default function Site() {
   }, [dispatch])
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <FontFace />
       <Main>
         <Menu onScrollRequested={onScrollRequested} />
@@ -73,6 +74,6 @@ export default function Site() {
         <Meta />
         <Extra />
       </Main>
-    </>
+    </ThemeProvider>
   )
 }

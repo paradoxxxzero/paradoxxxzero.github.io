@@ -7,7 +7,7 @@ import ExternalLink from './utils/ExternalLink'
 import Stars, { Star } from './Stars'
 import defaultPreview from '../static/previews/default.png'
 
-const Section = styled.section`
+const Article = styled.article`
   flex: 2;
   margin: 1em;
 `
@@ -16,7 +16,7 @@ const Name = styled.h2`
   display: flex;
   justify-content: space-between;
   flex: 1;
-  color: rgba(255, 255, 255, 0.9);
+  color: ${props => props.theme.fg.normal};
   margin: 0.5em 0;
 `
 const Pills = styled.ul`
@@ -26,30 +26,23 @@ const Pills = styled.ul`
   flex-wrap: wrap;
   align-items: flex-end;
 `
-const Language = styled.li`
-  background: rgba(0, 0, 0, 0.4);
-  padding: 0.2em;
-  margin: 0.1em;
-  color: rgba(255, 255, 255, 0.7);
+const Pill = styled.li`
+  background: ${props => props.theme.bg.normal};
+  padding: 0.3em;
+  margin: 0.2em;
+  color: ${props => props.theme.fg.mute};
+`
+const Language = styled(Pill)`
   font-size: 0.75em;
 `
-const Library = styled.li`
-  background: rgba(0, 0, 0, 0.4);
-  padding: 0.2em;
-  margin: 0.1em;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.5em;
+const Library = styled(Pill)`
+  font-size: 0.66em;
 `
 const Content = styled.div`
   margin: 1em 0;
-  color: rgba(255, 255, 255, 0.5);
+  color: ${props => props.theme.fg.mute};
 `
-const ProjectLink = styled(ExternalLink)`
-  font-size: 0.75em;
-  a {
-    color: rgba(255, 255, 255, 0.9);
-  }
-`
+
 const Aside = styled.aside`
   flex: 1;
   display: flex;
@@ -61,9 +54,9 @@ const Preview = styled.img`
   min-width: 256px;
 `
 const ProjectItem = styled.li`
-  background: rgba(0, 0, 0, 0.4);
+  background: ${props => props.theme.bg.normal};
   margin: 1em;
-  font-size: ${props => (props.major ? '1.5em' : '1em')};
+  font-size: ${props => (props.major ? '1.5em' : '1.15em')};
   text-align: left;
   flex-direction: row-reverse;
   display: flex;
@@ -99,7 +92,7 @@ export default function Project({
 
   return (
     <ProjectItem major={major}>
-      <Section>
+      <Article>
         <Name>
           {name}
           <Stars url={url} stars={stars} />
@@ -113,8 +106,8 @@ export default function Project({
           ))}
         </Pills>
         <Content>{description}</Content>
-        <ProjectLink url={demoUrl || url}>{prettyUrl(url)}</ProjectLink>
-      </Section>
+        <ExternalLink url={demoUrl || url}>{prettyUrl(url)}</ExternalLink>
+      </Article>
       <Aside>
         <Preview
           src={preview || defaultPreview}

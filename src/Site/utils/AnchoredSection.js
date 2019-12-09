@@ -1,7 +1,15 @@
 import React, { useEffect, useRef, useCallback } from 'react'
+import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { setAnchor } from '../../store/actions'
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  justify-content: center;
+`
 
 export default function AnchoredSection({ anchor, className, children }) {
   const sectionRef = useRef()
@@ -19,8 +27,8 @@ export default function AnchoredSection({ anchor, className, children }) {
   }, [updateAnchor])
 
   return (
-    <section className={className} ref={sectionRef}>
+    <Section className={className} ref={sectionRef}>
       {children}
-    </section>
+    </Section>
   )
 }

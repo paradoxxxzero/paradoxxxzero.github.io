@@ -21,11 +21,6 @@ const ProjectList = styled.ul`
   list-style: none;
 `
 
-const Section = styled(AnchoredSection)`
-  display: flex;
-  flex-direction: column;
-`
-
 export default function Projects({ type }) {
   const dispatch = useDispatch()
   const projects = useSelector(state => state.projects)
@@ -33,13 +28,13 @@ export default function Projects({ type }) {
     .sort((a, b) => b.major - a.major)
   useEffect(() => dispatch(fetchStars()), [dispatch])
   return (
-    <Section anchor={type}>
+    <AnchoredSection anchor={type}>
       <Title>{TYPES[type]}</Title>
       <ProjectList>
         {projects.map(project => (
           <Project key={project.id} {...project} />
         ))}
       </ProjectList>
-    </Section>
+    </AnchoredSection>
   )
 }

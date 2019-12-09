@@ -2,9 +2,8 @@ import React, { useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { useSelector } from 'react-redux'
 import { FaArrowUp, FaSpaceShuttle } from 'react-icons/fa'
-import { MOBILE_MAX_WIDTH } from '../static/consts'
 
-const ANIMATION_TIME = 250
+import { MOBILE_MAX_WIDTH } from '../static/consts'
 
 const Refs = styled.ul`
   position: relative;
@@ -17,16 +16,16 @@ const Refs = styled.ul`
 `
 
 const Ref = styled.li`
-  color: white;
+  color: ${props => props.theme.fg.normal};
   cursor: pointer;
   font-weight: ${props => (props.active ? 'bold' : 'normal')};
   &:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: ${props => props.theme.bg.normal};
   }
 
   padding: 1rem ${props => (props.expanded ? '2rem' : '1rem')};
   font-size: ${props => (props.expanded ? '1rem' : '0')};
-  transition: ${`${ANIMATION_TIME}ms`} all;
+  transition: ${props => props.theme.animationDuration} all;
   ${props =>
     !props.expanded &&
     css`
@@ -39,19 +38,19 @@ const Ref = styled.li`
 
 const HIndicator = styled.div`
   position: absolute;
-  background-color: white;
+  background-color: ${props => props.theme.fg.normal};
   height: 5px;
   left: 0;
   top: -3px;
-  transition: ${`${ANIMATION_TIME}ms`} all;
+  transition: ${props => props.theme.animationDuration} all;
 `
 const VIndicator = styled.div`
   position: absolute;
-  background-color: white;
+  background-color: ${props => props.theme.fg.normal};
   width: 5px;
   right: 0;
   top: 0;
-  transition: ${`${ANIMATION_TIME}ms`} all;
+  transition: ${props => props.theme.animationDuration} all;
 `
 
 const Nav = styled.nav`
@@ -59,10 +58,12 @@ const Nav = styled.nav`
   position: fixed;
   right: 0;
   top: 2em;
+  z-index: 42;
+
   ${props =>
     props.expanded &&
     css`
-      border-top: 2px solid white;
+      border-top: 2px solid ${props => props.theme.fg.normal};
       min-width: 33%;
       max-width: max-content;
     `}
@@ -154,7 +155,8 @@ export default function Menu({ onScrollRequested }) {
       setPosition()
     } else {
       // Wait for css animation
-      timeoutRef.current = setTimeout(setPosition, ANIMATION_TIME)
+      // TODO: Retrieve from theme
+      timeoutRef.current = setTimeout(setPosition, 250)
     }
     if (expanded) {
       vIndicator.style.opacity = 0

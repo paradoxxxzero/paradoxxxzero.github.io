@@ -2,29 +2,38 @@ import React from 'react'
 import styled from 'styled-components'
 import { GoLinkExternal } from 'react-icons/go'
 
-const MutedExternal = styled(GoLinkExternal)`
-  font-size: 0.7em;
-  color: #999999;
-  margin-right: 1em;
+const Icon = styled.span`
+  position: absolute;
+  transform: scale(0);
+  transition: ease-in-out ${props => props.theme.animationDuration} transform;
+  bottom: 0;
+  left: 0.25em;
+`
+const Rel = styled.span`
+  position: relative;
+`
+const Wrapper = styled.span`
+  &:hover ${Icon} {
+    transform: scale(1);
+  }
 `
 
 const Link = styled.a`
+  color: ${props => props.theme.fg.clickable};
   word-break: break-all;
-  color: #aaaaaa;
 `
 
-export default function ExternalLink({ url, className, noIcon, children }) {
+export default function ExternalLink({ url, className, children }) {
   return (
-    <span className={className}>
+    <Wrapper className={className}>
       <Link rel="noreferrer noopener" href={url} target="_blank">
         {children}
       </Link>
-      {!noIcon && (
-        <>
-          &nbsp;
-          <MutedExternal />
-        </>
-      )}
-    </span>
+      <Rel>
+        <Icon>
+          <GoLinkExternal />
+        </Icon>
+      </Rel>
+    </Wrapper>
   )
 }
