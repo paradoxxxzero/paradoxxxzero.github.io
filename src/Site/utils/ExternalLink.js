@@ -9,6 +9,7 @@ const MutedExternal = styled(GoLinkExternal)`
 `
 
 const Link = styled.a`
+  word-break: break-all;
   color: #aaaaaa;
 `
 

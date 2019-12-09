@@ -28,6 +28,7 @@ const Credits = styled.article`
 
 const CreditList = styled.ul`
   list-style: none;
+  padding: 0;
 `
 
 const CreditItem = styled.li``

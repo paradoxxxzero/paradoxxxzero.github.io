@@ -2,20 +2,29 @@ import React from 'react'
 import styled from 'styled-components'
 import { FaStar } from 'react-icons/fa'
 
-export default styled(Stars)`
-  display: block;
-  text-decoration: none;
+export const Star = styled.a`
+  display: flex;
   color: gold;
+  text-decoration: none;
+  :hover {
+    text-decoration: underline;
+  }
 `
 
-function Stars({ url, stars, className }) {
+const Number = styled.span`
+  color: white;
+`
+
+export default function Stars({ url, stars, className }) {
   if (stars === null || stars === undefined) {
-    return null
+    stars = null
   }
 
   return (
-    <a href={url} className={className}>
-      {stars ? stars : ''} <FaStar />
-    </a>
+    <Star href={url} className={className}>
+      <Number>{stars ? stars : ''}</Number>
+      <span>&nbsp;</span>
+      <FaStar />
+    </Star>
   )
 }

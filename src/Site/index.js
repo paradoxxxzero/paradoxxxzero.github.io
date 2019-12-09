@@ -66,7 +66,8 @@ export default function Site() {
       <Main>
         <Menu onScrollRequested={onScrollRequested} />
         <Home />
-        <Projects />
+        <Projects type="experiments" />
+        <Projects type="projects" />
         <Bio />
         <Contact />
         <Meta />

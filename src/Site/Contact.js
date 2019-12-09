@@ -20,6 +20,7 @@ const CenteredTitle = styled(Title)`
 const MailLink = styled.a`
   color: inherit;
   text-decoration: none;
+  word-break: break-all;
 `
 
 export default function Contact() {

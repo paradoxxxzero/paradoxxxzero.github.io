@@ -74,6 +74,10 @@ const MENU_ITEMS = [
     content: <FaArrowUp />,
   },
   {
+    name: 'experiments',
+    content: 'Experiments',
+  },
+  {
     name: 'projects',
     content: 'Projects',
   },

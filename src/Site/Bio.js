@@ -18,6 +18,7 @@ const StepList = styled.ul`
   flex-direction: column;
   list-style: none;
   margin-top: 10em;
+  padding: 0;
 `
 
 const Step = styled.li`

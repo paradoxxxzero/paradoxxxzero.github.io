@@ -17,6 +17,7 @@ export default [
     languages: ['ECMAScript', 'Python'],
     libraries: ['React', 'Redux', 'Material-UI', 'aiohttp'],
     major: true,
+    type: 'projects',
     description: 'Standalone Python debugger with a web interface.',
     preview: kalong,
   },
@@ -28,6 +29,7 @@ export default [
     languages: ['ECMAScript', 'Rust'],
     libraries: ['wasm-bindgen'],
     major: true,
+    type: 'experiments',
     description:
       'Fractal plotter written in Rust with a web interface base on WASM.',
     preview: frustals,
@@ -40,6 +42,7 @@ export default [
     languages: ['ECMAScript'],
     libraries: ['three.js'],
     major: true,
+    type: 'experiments',
     description: '4 dimensions mesh renderer in WebGL.',
     preview: anakata,
   },
@@ -50,6 +53,7 @@ export default [
     languages: ['ECMAScript'],
     libraries: ['three.js', 'React', 'Redux'],
     major: true,
+    type: 'experiments',
     description: 'Puzzle game in WebGL.',
     preview: inversion,
   },
@@ -61,6 +65,7 @@ export default [
     languages: ['ECMAScript'],
     libraries: ['React'],
     major: true,
+    type: 'projects',
     description: 'Full featured object edition form framework for React.',
     preview: formol,
   },
@@ -72,6 +77,7 @@ export default [
     languages: ['Python'],
     libraries: ['SqlAlchemy', 'Flask', 'Tornado', 'Sanic'],
     major: true,
+    type: 'projects',
     description: 'Simple sqlalchemy REST API generation.',
     preview: unrest,
   },
@@ -82,6 +88,7 @@ export default [
     languages: ['Python', 'ECMAScript'],
     libraries: ['Tornado'],
     major: true,
+    type: 'projects',
     description: 'Xterm compatible terminal that runs in your browser.',
     preview: butterfly,
   },
@@ -93,6 +100,7 @@ export default [
     languages: ['Python'],
     libraries: ['lxml'],
     major: true,
+    type: 'projects',
     description: 'Python charting library with a clean and simple API.',
     preview: pygal,
   },
@@ -103,6 +111,7 @@ export default [
     languages: ['Python', 'ECMAScript'],
     libraries: ['tornado'],
     major: true,
+    type: 'projects',
     description:
       'Full featured web debugger for python based on a client-server',
     preview: wdb,
@@ -114,6 +123,7 @@ export default [
     languages: ['ECMAScript'],
     libraries: ['d3.js', 'jQuery'],
     major: true,
+    type: 'projects',
     description: 'Simple SVG diagram modeler with dot support.',
     preview: umlaut,
   },
@@ -124,6 +134,7 @@ export default [
     languages: ['ECMAScript'],
     libraries: ['GLib'],
     major: true,
+    type: 'projects',
     description:
       'Gnome extension that displays system informations in gnome shell',
   },
@@ -133,7 +144,8 @@ export default [
     url: 'https://paradoxxxzero.github.io/anakata/',
     languages: ['ECMAScript'],
     libraries: ['canvas'],
-    major: true,
+    major: false,
+    type: 'experiments',
     description:
       '4 dimensions mesh renderer implemented in 2d canvas. Ancestor of anakataGL',
   },
@@ -143,6 +155,8 @@ export default [
     url: 'https://paradoxxxzero.github.io/hanabi/',
     languages: ['ECMAScript'],
     libraries: ['canvas'],
+    major: false,
+    type: 'experiments',
     description: 'Fireworks in canvas.',
   },
   {
@@ -151,6 +165,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/bemboo',
     languages: ['ECMAScript'],
     libraries: ['React'],
+    major: false,
+    type: 'projects',
     description: 'BEM generator based on objects for React 16+.',
   },
   {
@@ -159,6 +175,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/atom-python-import-magic',
     languages: ['ECMAScript', 'Python'],
     libraries: ['Atom'],
+    major: false,
+    type: 'projects',
     description: 'Atom extension to automatically import python modules using',
   },
   {
@@ -167,6 +185,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/atom-undo-tree',
     languages: ['ECMAScript'],
     libraries: ['Atom'],
+    major: false,
+    type: 'projects',
     description:
       'Atom extension to transform undo/redo in an undo tree similar to emacs',
   },
@@ -176,6 +196,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/atom-rainbow-delimiters',
     languages: ['ECMAScript'],
     libraries: ['Atom'],
+    major: false,
+    type: 'projects',
     description: 'Atom extension to highlight delimiters around the cursor.',
   },
   {
@@ -184,6 +206,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/atom-one-theme-color-by-project',
     languages: ['ECMAScript'],
     libraries: ['Atom'],
+    major: false,
+    type: 'projects',
     description:
       'Atom extension to colorize Atom One themes according to the current',
   },
@@ -193,6 +217,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/jinja2-mode',
     languages: ['Elisp'],
     libraries: ['Emacs', 'Jinja2'],
+    major: false,
+    type: 'projects',
     description: 'Jinja2 mode for Emacs.',
   },
   {
@@ -201,6 +227,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/tornado-template-mode',
     languages: ['Elisp'],
     libraries: ['Emacs', 'Jinja2'],
+    major: false,
+    type: 'projects',
     description: 'Tornado template mode for Emacs.',
   },
   {
@@ -210,6 +238,7 @@ export default [
     languages: ['ECMAScript'],
     libraries: ['canvas'],
     major: true,
+    type: 'experiments',
     description: 'Simple y = f(x) function plotter.',
   },
   {
@@ -218,6 +247,8 @@ export default [
     url: 'https://paradoxxxzero.github.io/graph.it',
     languages: ['ECMAScript'],
     libraries: ['three.js'],
+    type: 'experiments',
+    major: false,
     description: 'z = f(x, y) function plotter demo.',
   },
   {
@@ -226,6 +257,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/nocolon',
     languages: ['Python'],
     libraries: [],
+    type: 'experiments',
+    major: false,
     description:
       'UTF-8 compatible toy encoding that removes the need of colons in',
   },
@@ -235,6 +268,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/gnome-shell-shader-extension',
     languages: ['ECMAScript', 'glsl'],
     libraries: ['GLib'],
+    type: 'experiments',
+    major: false,
     description:
       'Gnome extension that allows to add glsl shaders on specific windows.',
   },
@@ -244,6 +279,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/gnome-shell-focus-effects-extension',
     languages: ['ECMAScript'],
     libraries: ['GLib'],
+    type: 'experiments',
+    major: false,
     description: 'Gnome extension that allows to add custom effects on window',
   },
   {
@@ -252,6 +289,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/clutterm',
     languages: ['Python'],
     libraries: ['clutter'],
+    type: 'experiments',
+    major: false,
     description:
       'Attempt to create a clutter based terminal written in pure python.',
   },
@@ -261,7 +300,8 @@ export default [
     url: 'https://paradoxxxzero.github.io/jsfractals',
     languages: ['ECMAScript'],
     libraries: ['canvas', 'jQuery'],
-    major: true,
+    type: 'experiments',
+    major: false,
     description: 'Pure js fractal drawer.',
   },
   {
@@ -270,6 +310,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/wsreload',
     languages: ['ECMAScript', 'Python'],
     libraries: ['tornado'],
+    type: 'projects',
+    major: false,
     description: 'Browser page reloader based on WebSocket.',
   },
   {
@@ -278,7 +320,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/fawn',
     languages: ['Python'],
     libraries: ['Flask', 'uWSGI'],
-    major: true,
+    type: 'projects',
+    major: false,
     description:
       'Flask extension allowing WebSocket uWSGI broadcasting from PostgreSQL',
   },
@@ -288,7 +331,8 @@ export default [
     url: 'https://github.com/paradoxxxzero/scudd',
     languages: ['ECMAScript'],
     libraries: ['React'],
-    major: true,
+    type: 'projects',
+    major: false,
     description:
       'Small lib for inspecting React PureComponent render triggers.',
   },

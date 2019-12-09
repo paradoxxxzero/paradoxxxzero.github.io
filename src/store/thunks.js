@@ -1,4 +1,4 @@
-import { extractStars } from '../utils'
+import { extractStars, currentTime } from '../utils'
 import { setStars } from './actions'
 
 const GITHUB_PAGINATION_SIZE = 50
@@ -42,6 +42,19 @@ const paginateRepos = async user => {
 }
 
 export const fetchStars = () => async dispatch => {
+  try {
+    const cachedStars = JSON.parse(localStorage.getItem('stars') || '{}')
+    if (Object.keys(cachedStars).length) {
+      // Always restore cached stars
+      dispatch(setStars(cachedStars.stars))
+      if (currentTime() - cachedStars.time < 1000 * 60 * 60) {
+        // Refresh cache if last request is old enough
+        return
+      }
+    }
+  } catch (e) {
+    console.error(e)
+  }
   const [paradoxxxzeroJson, KozeaJson] = await Promise.all(
     ['users/paradoxxxzero', 'orgs/Kozea'].map(user => paginateRepos(user))
   )
@@ -49,6 +62,17 @@ export const fetchStars = () => async dispatch => {
   const stars = {
     ...extractStars(paradoxxxzeroJson),
     ...extractStars(KozeaJson),
+  }
+  try {
+    localStorage.setItem(
+      'stars',
+      JSON.stringify({
+        time: currentTime(),
+        stars,
+      })
+    )
+  } catch (e) {
+    console.error(e)
   }
   return dispatch(setStars(stars))
 }

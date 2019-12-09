@@ -14,3 +14,5 @@ export const clamp = (x, min, max) =>
 
 export const linearClamp = (x, { start, end }) =>
   clamp((x - start) / (end - start), 0, 1)
+
+export const currentTime = () => new Date().getTime()
