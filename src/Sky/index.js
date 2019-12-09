@@ -70,7 +70,7 @@ export default function Sky() {
     () => ({
       day: {
         start: 0,
-        end: (anchors.contact - winHeight / 3) / (totalHeight - winHeight),
+        end: (1.075 * anchors.bio) / (totalHeight - winHeight),
       },
       stars: {
         start: (anchors.bio - winHeight) / (totalHeight - winHeight),
@@ -91,6 +91,7 @@ export default function Sky() {
   useLayoutEffect(() => {
     const { current: canvas } = canvasRef
     const camera = new PerspectiveCamera(60, winWidth / winHeight, 1, 1000)
+    camera.zoom = Math.min(1, winWidth / winHeight)
 
     const renderer = new WebGLRenderer({ canvas, antialias: true })
     renderer.setPixelRatio(devicePixelRatio)
@@ -225,6 +226,7 @@ export default function Sky() {
     const { current: three } = threeRef
     const { renderer, composer, scene, camera } = three
     camera.aspect = winWidth / winHeight
+    camera.zoom = Math.min(1, winWidth / winHeight)
     camera.updateProjectionMatrix()
     renderer.setSize(winWidth, winHeight)
     composer.setSize(winWidth, winHeight)
@@ -266,8 +268,9 @@ export default function Sky() {
     } = three
 
     const sunProgression = linearClamp(progression, boundaries.day)
+    console.log(sunProgression, progression, boundaries.day.end)
     sunSpherical.radius = 1000
-    sunSpherical.theta = (Math.PI / 2 - Math.PI * sunProgression) / 3
+    sunSpherical.theta = (Math.PI / 2 - Math.PI * sunProgression) / Math.PI
     sunSpherical.phi =
       -Math.PI / 2 +
       (Math.PI / 4) * (1 - Math.pow(1.5 * sunProgression - 0.41, 2))
