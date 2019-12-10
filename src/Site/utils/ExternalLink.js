@@ -23,10 +23,10 @@ const Link = styled.a`
   word-break: break-all;
 `
 
-export default function ExternalLink({ url, className, children }) {
+export default function ExternalLink({ url, className, children, ...props }) {
   return (
     <Wrapper className={className}>
-      <Link rel="noreferrer noopener" href={url} target="_blank">
+      <Link rel="noreferrer noopener" href={url} target="_blank" {...props}>
         {children}
       </Link>
       <Rel>

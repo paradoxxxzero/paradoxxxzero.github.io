@@ -46,13 +46,19 @@ const Canvas = styled.canvas`
 
 const STARS = 5000
 
-const cameraCurve = new CatmullRomCurve3([
-  new Vector3(0, 1, 2),
-  new Vector3(0, 2, 0),
-  new Vector3(-10, 20, -20),
-  new Vector3(-380, 760, -760),
-  new Vector3(-400, 800, -800),
-])
+const cameraCurve = new CatmullRomCurve3(
+  [
+    new Vector3(0, 1, 2),
+    new Vector3(0, 2, 0),
+    // new Vector3(0, 0.5, -100),
+    // new Vector3(0, 4, -200),
+    new Vector3(-200, 400, -400),
+    // new Vector3(-360, 720, -720),
+    new Vector3(-350, 700, -700),
+  ],
+  false,
+  'chordal'
+)
 
 export default function Sky() {
   const threeRef = useRef()
@@ -77,11 +83,11 @@ export default function Sky() {
         end: anchors.contact / (totalHeight - winHeight),
       },
       travelling: {
-        start: anchors.extra / (totalHeight - winHeight),
+        start: anchors.contact / (totalHeight - winHeight),
         end: 1,
       },
       tesseract: {
-        start: 0.9,
+        start: 1 - (2 * winHeight) / (totalHeight - winHeight),
         end: 1,
       },
     }),
@@ -268,7 +274,6 @@ export default function Sky() {
     } = three
 
     const sunProgression = linearClamp(progression, boundaries.day)
-    console.log(sunProgression, progression, boundaries.day.end)
     sunSpherical.radius = 1000
     sunSpherical.theta = (Math.PI / 2 - Math.PI * sunProgression) / Math.PI
     sunSpherical.phi =
@@ -300,7 +305,7 @@ export default function Sky() {
 
     const tesseractProgression = linearClamp(progression, boundaries.tesseract)
     hyperMesh.group.visible = !!tesseractProgression
-    hyperMesh.cellSize = tesseractProgression * 100
+    hyperMesh.cellSize = tesseractProgression * tesseractProgression * 100
     composer.render(scene)
   }, [progression, boundaries])
 

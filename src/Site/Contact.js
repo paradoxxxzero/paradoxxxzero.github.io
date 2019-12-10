@@ -3,8 +3,8 @@ import {
   FaGithub,
   FaEnvelope,
   FaRedditAlien,
-  FaEnvelopeOpen,
   FaGitlab,
+  FaRegEnvelope,
 } from 'react-icons/fa'
 
 import AnchoredSection from './utils/AnchoredSection'
@@ -23,36 +23,45 @@ export default function Contact() {
           <ListItem>
             <FaEnvelope />
             &nbsp;
-            <ExternalLink url="mailto:mounier.florian+dev@gmail.com">
+            <ExternalLink
+              url="mailto:mounier.florian+dev@gmail.com"
+              title="Professional"
+            >
               mounier.florian@gmail.com
             </ExternalLink>
-            &nbsp;(Pro)
+            &nbsp;
           </ListItem>
           <ListItem>
-            <FaEnvelopeOpen />
+            <FaRegEnvelope />
             &nbsp;
-            <ExternalLink url="mailto:paradoxxx.zero+dev@gmail.com">
+            <ExternalLink
+              url="mailto:paradoxxx.zero+dev@gmail.com"
+              title="Personal"
+            >
               paradoxxx.zero@gmail.com
             </ExternalLink>
           </ListItem>
           <ListItem>
             <FaGithub />
             &nbsp;
-            <ExternalLink url="https://github.com/paradoxxxzero">
+            <ExternalLink url="https://github.com/paradoxxxzero" title="github">
               paradoxxxzero
             </ExternalLink>
           </ListItem>
           <ListItem>
             <FaGitlab />
             &nbsp;
-            <ExternalLink url="https://gitlab.com/paradoxxxzero">
+            <ExternalLink url="https://gitlab.com/paradoxxxzero" title="gitlab">
               paradoxxxzero
             </ExternalLink>
           </ListItem>
           <ListItem>
             <FaRedditAlien />
             &nbsp;
-            <ExternalLink url="https://www.reddit.com/user/paradoxxx_zero">
+            <ExternalLink
+              url="https://www.reddit.com/user/paradoxxx_zero"
+              title="reddit"
+            >
               paradoxxx_zero
             </ExternalLink>
           </ListItem>
