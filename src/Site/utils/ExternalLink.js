@@ -6,8 +6,10 @@ const Icon = styled.span`
   position: absolute;
   transform: scale(0);
   transition: ease-in-out ${props => props.theme.animationDuration} transform;
-  bottom: 0;
+  top: 0;
   left: 0.25em;
+  color: ${props => props.theme.fg.mute};
+  font-size: 0.75em;
 `
 const Rel = styled.span`
   position: relative;

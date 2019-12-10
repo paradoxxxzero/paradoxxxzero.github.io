@@ -47,6 +47,11 @@ const Aside = styled.aside`
   flex: 1;
   display: flex;
 `
+const WrappingExternalLink = styled(ExternalLink)`
+  flex: 1;
+  display: flex;
+`
+
 const Preview = styled.img`
   width: 100%;
   overflow: hidden;
@@ -109,10 +114,12 @@ export default function Project({
         <ExternalLink url={demoUrl || url}>{prettyUrl(url)}</ExternalLink>
       </Article>
       <Aside>
-        <Preview
-          src={preview || defaultPreview}
-          alt={`Image preview of ${name}`}
-        />
+        <WrappingExternalLink url={demoUrl || url}>
+          <Preview
+            src={preview || defaultPreview}
+            alt={`Image preview of ${name}`}
+          />
+        </WrappingExternalLink>
       </Aside>
     </ProjectItem>
   )
