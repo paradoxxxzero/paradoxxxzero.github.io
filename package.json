@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server",
-    "build": "rm -fr dist/; NODE_ENV=production webpack"
+    "build": "rm -fr docs/; NODE_ENV=production webpack"
   },
   "dependencies": {
     "@babel/runtime": "^7.7.5",

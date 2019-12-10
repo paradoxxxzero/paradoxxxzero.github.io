@@ -29,4 +29,6 @@ window.__ = {
   store,
 }
 
-export default () => render(App, document.getElementById('root'))
+export default () => {
+  render(App, document.getElementById('root'))
+}
