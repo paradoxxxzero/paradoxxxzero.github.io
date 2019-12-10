@@ -84,11 +84,11 @@ export default function Sky() {
       },
       travelling: {
         start: anchors.contact / (totalHeight - winHeight),
-        end: 1,
+        end: 0.99,
       },
       tesseract: {
         start: 1 - (2 * winHeight) / (totalHeight - winHeight),
-        end: 1,
+        end: 0.99,
       },
     }),
     [anchors, winHeight, totalHeight]
