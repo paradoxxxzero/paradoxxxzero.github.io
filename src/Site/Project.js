@@ -53,6 +53,20 @@ const Aside = styled.aside`
 const WrappingExternalLink = styled(ExternalLink)`
   flex: 1;
   display: flex;
+  position: relative;
+  &::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      hsla(0, 0%, 0%, 0) 0,
+      hsla(0, 0%, 0%, 0) 40%,
+      hsla(0, 0%, 0%, 0.1) 80%,
+      hsla(0, 0%, 0%, 0.1) 85%,
+      hsla(0, 0%, 0%, 0.05) 100%
+    );
+  }
 `
 const TitleLink = styled(ExternalLink)`
   color: inherit;

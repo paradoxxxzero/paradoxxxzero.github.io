@@ -6,7 +6,7 @@ export default {
   },
   bg: {
     normal: 'hsla(0, 0%, 0%, 0.4)',
-    mute: 'hsla(0, 0%, 0%, 0.4)',
+    mute: 'hsla(0, 0%, 0%, 0.2)',
   },
   animationDuration: '250ms',
 }

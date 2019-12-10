@@ -59,7 +59,16 @@ module.exports = {
           },
         ],
       },
-    ],
+    ].concat(
+      process.env.NODE_ENV === 'development'
+        ? []
+        : [
+            {
+              test: path.resolve(__dirname, 'src/index.html'),
+              loader: 'prerender-loader?string',
+            },
+          ]
+    ),
   },
   entry: {
     main: './src/index.js',
@@ -71,7 +80,6 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Florian Mounier',
-      chunks: ['main'],
       template: path.resolve(__dirname, 'src', 'index.html'),
     }),
   ],

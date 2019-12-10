@@ -9,6 +9,22 @@ import wdb from './previews/wdb.png'
 import umlaut from './previews/umlaut.png'
 import butterfly from './previews/butterfly.png'
 import anakataGL from './previews/anakataGL.png'
+import graphit from './previews/graphit.png'
+import graphitGL from './previews/graphitGL.png'
+import hanabi from './previews/hanabi.png'
+import nocolon from './previews/nocolon.png'
+import clutterm from './previews/clutterm.png'
+import gnomeShellShaderEffect from './previews/gnome-shell-shader-effect.png'
+import gnomeShellFocusEffectsExtension from './previews/gnome-shell-focus-effects-extension.png'
+import jsfractals from './previews/jsfractals.png'
+import gnomeShellSystemMonitor from './previews/gnome-shell-system-monitor.png'
+import bemboo from './previews/bemboo.png'
+import atomPythonImportMagic from './previews/atom-python-import-magic.png'
+import atomUndoTree from './previews/atom-undo-tree.png'
+import atomRainbowDelimiters from './previews/atom-rainbow-delimiters.png'
+import atomOneColorByProject from './previews/atom-one-color-by-project.png'
+import fawn from './previews/fawn.png'
+import scudd from './previews/scudd.png'
 
 export default [
   {
@@ -140,6 +156,7 @@ export default [
     type: 'projects',
     description:
       'Gnome extension that displays system informations in gnome shell',
+    preview: gnomeShellSystemMonitor,
   },
   {
     id: 'paradoxxxzero/anakata',
@@ -162,6 +179,7 @@ export default [
     major: false,
     type: 'experiments',
     description: 'Fireworks in canvas.',
+    preview: hanabi,
   },
   {
     id: 'paradoxxxzero/bemboo',
@@ -172,6 +190,7 @@ export default [
     major: false,
     type: 'projects',
     description: 'BEM generator based on objects for React 16+.',
+    preview: bemboo,
   },
   {
     id: 'paradoxxxzero/atom-python-import-magic',
@@ -182,6 +201,7 @@ export default [
     major: false,
     type: 'projects',
     description: 'Atom extension to automatically import python modules using',
+    preview: atomPythonImportMagic,
   },
   {
     id: 'paradoxxxzero/atom-undo-tree',
@@ -193,6 +213,7 @@ export default [
     type: 'projects',
     description:
       'Atom extension to transform undo/redo in an undo tree similar to emacs',
+    preview: atomUndoTree,
   },
   {
     id: 'paradoxxxzero/atom-rainbow-delimiters',
@@ -203,6 +224,7 @@ export default [
     major: false,
     type: 'projects',
     description: 'Atom extension to highlight delimiters around the cursor.',
+    preview: atomRainbowDelimiters,
   },
   {
     id: 'paradoxxxzero/atom-one-theme-color-by-project',
@@ -214,6 +236,7 @@ export default [
     type: 'projects',
     description:
       'Atom extension to colorize Atom One themes according to the current',
+    preview: atomOneColorByProject,
   },
   {
     id: 'paradoxxxzero/jinja2-mode',
@@ -238,22 +261,26 @@ export default [
   {
     id: 'paradoxxxzero/graphit',
     name: 'Graphit',
-    url: 'https://paradoxxxzero.github.io/graphit',
+    url: 'https://github.com/paradoxxxzero/graphit',
+    demoUrl: 'http://paradoxxxzero.github.io/graphit',
     languages: ['ECMAScript'],
     libraries: ['canvas'],
     major: true,
     type: 'experiments',
     description: 'Simple y = f(x) function plotter.',
+    preview: graphit,
   },
   {
-    id: 'paradoxxxzero/graph.it',
-    name: 'Graph.it',
-    url: 'https://paradoxxxzero.github.io/graph.it',
+    id: 'paradoxxxzero/graphitGL',
+    name: 'GraphitGL',
+    url: 'https://github.com/paradoxxxzero/graphitGL',
+    demoUrl: 'https://paradoxxxzero.github.io/graphitGL',
     languages: ['ECMAScript'],
     libraries: ['three.js'],
     type: 'experiments',
     major: false,
     description: 'z = f(x, y) function plotter demo.',
+    preview: graphitGL,
   },
   {
     id: 'paradoxxxzero/nocolon',
@@ -265,6 +292,7 @@ export default [
     major: false,
     description:
       'UTF-8 compatible toy encoding that removes the need of colons in',
+    preview: nocolon,
   },
   {
     id: 'paradoxxxzero/gnome-shell-shader-extension',
@@ -276,6 +304,7 @@ export default [
     major: false,
     description:
       'Gnome extension that allows to add glsl shaders on specific windows.',
+    preview: gnomeShellShaderEffect,
   },
   {
     id: 'paradoxxxzero/gnome-shell-focus-effects-extension',
@@ -286,6 +315,7 @@ export default [
     type: 'experiments',
     major: false,
     description: 'Gnome extension that allows to add custom effects on window',
+    preview: gnomeShellFocusEffectsExtension,
   },
   {
     id: 'paradoxxxzero/clutterm',
@@ -297,16 +327,19 @@ export default [
     major: false,
     description:
       'Attempt to create a clutter based terminal written in pure python.',
+    preview: clutterm,
   },
   {
     id: 'paradoxxxzero/jsfractals',
     name: 'Jsfsactals',
-    url: 'https://paradoxxxzero.github.io/jsfractals',
+    url: 'https://github.com/paradoxxxzero/jsfractals',
+    demoUrl: 'https://paradoxxxzero.github.io/jsfractals',
     languages: ['ECMAScript'],
     libraries: ['canvas', 'jQuery'],
     type: 'experiments',
     major: false,
     description: 'Pure js fractal drawer.',
+    preview: jsfractals,
   },
   {
     id: 'paradoxxxzero/wsreload',
@@ -328,6 +361,7 @@ export default [
     major: false,
     description:
       'Flask extension allowing WebSocket uWSGI broadcasting from PostgreSQL',
+    preview: fawn,
   },
   {
     id: 'paradoxxxzero/scudd',
@@ -339,5 +373,6 @@ export default [
     major: false,
     description:
       'Small lib for inspecting React PureComponent render triggers.',
+    preview: scudd,
   },
 ]

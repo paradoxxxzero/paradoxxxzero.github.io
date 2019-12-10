@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
 import { setPageProgression, setPageSize } from '../store/actions'
 import Projects from './Projects'
@@ -11,13 +11,6 @@ import Menu from './Menu'
 import Contact from './Contact'
 import Meta from './Meta'
 import theme from '../static/theme'
-
-const FontFace = createGlobalStyle`
-  body {
-    @import url('https://fonts.googleapis.com/css?family=Asap&display=swap');
-    font-family: 'Asap', sans-serif;
-  }
-`
 
 const Main = styled.main`
   position: relative;
@@ -63,7 +56,6 @@ export default function Site() {
 
   return (
     <ThemeProvider theme={theme}>
-      <FontFace />
       <Main>
         <Menu onScrollRequested={onScrollRequested} />
         <Home />

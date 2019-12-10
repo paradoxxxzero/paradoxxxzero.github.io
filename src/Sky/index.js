@@ -96,12 +96,18 @@ export default function Sky() {
 
   useLayoutEffect(() => {
     const { current: canvas } = canvasRef
+    let renderer = null
+
+    try {
+      renderer = new WebGLRenderer({ canvas, antialias: true })
+      renderer.setPixelRatio(devicePixelRatio)
+      renderer.setSize(winWidth, winHeight)
+    } catch (e) {
+      return
+    }
+
     const camera = new PerspectiveCamera(60, winWidth / winHeight, 1, 1000)
     camera.zoom = Math.min(1, winWidth / winHeight)
-
-    const renderer = new WebGLRenderer({ canvas, antialias: true })
-    renderer.setPixelRatio(devicePixelRatio)
-    renderer.setSize(winWidth, winHeight)
 
     const uniforms = {
       luminance: { value: 1 },
@@ -230,6 +236,9 @@ export default function Sky() {
 
   useEffect(() => {
     const { current: three } = threeRef
+    if (!three) {
+      return
+    }
     const { renderer, composer, scene, camera } = three
     camera.aspect = winWidth / winHeight
     camera.zoom = Math.min(1, winWidth / winHeight)
@@ -241,6 +250,9 @@ export default function Sky() {
 
   useEffect(() => {
     const { current: three } = threeRef
+    if (!three) {
+      return
+    }
     const { composer, scene, hyperMesh, hyperRenderer } = three
     const render = () => {
       if (hyperMesh.group.visible) {
@@ -262,6 +274,9 @@ export default function Sky() {
 
   useEffect(() => {
     const { current: three } = threeRef
+    if (!three) {
+      return
+    }
     const {
       composer,
       scene,

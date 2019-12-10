@@ -3,7 +3,7 @@ if (process.env.NODE_ENV === 'development') {
   require('preact/debug')
 }
 
-import React from 'react'
+import React, { hydrate } from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
@@ -16,14 +16,17 @@ import reducer from './store/reducer'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
 
-render(
+const App = (
   <Provider store={store}>
     <Sky />
     <Site />
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 )
+const renderMode = process.env.NODE_ENV === 'development' ? render : hydrate
+renderMode(App, document.getElementById('root'))
 
 window.__ = {
   store,
 }
+
+export default () => render(App, document.getElementById('root'))
