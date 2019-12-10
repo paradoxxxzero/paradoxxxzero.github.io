@@ -8,6 +8,7 @@ import pygal from './previews/pygal.png'
 import wdb from './previews/wdb.png'
 import umlaut from './previews/umlaut.png'
 import butterfly from './previews/butterfly.png'
+import anakataGL from './previews/anakataGL.png'
 
 export default [
   {
@@ -20,6 +21,7 @@ export default [
     type: 'projects',
     description: 'Standalone Python debugger with a web interface.',
     preview: kalong,
+    unreleased: true,
   },
   {
     id: 'paradoxxxzero/frustals',
@@ -44,7 +46,7 @@ export default [
     major: true,
     type: 'experiments',
     description: '4 dimensions mesh renderer in WebGL.',
-    preview: anakata,
+    preview: anakataGL,
   },
   {
     id: 'paradoxxxzero/inversion',
@@ -56,6 +58,7 @@ export default [
     type: 'experiments',
     description: 'Puzzle game in WebGL.',
     preview: inversion,
+    unreleased: true,
   },
   {
     id: 'Kozea/formol',
@@ -72,8 +75,8 @@ export default [
   {
     id: 'Kozea/unrest',
     name: 'Unrest',
-    url: 'https://kozea.github.io/unrest/',
-    demoUrl: 'https://github.com/Kozea/unrest/',
+    url: 'https://github.com/Kozea/unrest/',
+    demoUrl: 'https://kozea.github.io/unrest/',
     languages: ['Python'],
     libraries: ['SqlAlchemy', 'Flask', 'Tornado', 'Sanic'],
     major: true,
@@ -148,6 +151,7 @@ export default [
     type: 'experiments',
     description:
       '4 dimensions mesh renderer implemented in 2d canvas. Ancestor of anakataGL',
+    preview: anakata,
   },
   {
     id: 'paradoxxxzero/hanabi',

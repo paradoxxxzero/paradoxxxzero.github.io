@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { prettyUrl } from '../utils'
 import ExternalLink from './utils/ExternalLink'
@@ -18,6 +18,10 @@ const Name = styled.h2`
   flex: 1;
   color: ${props => props.theme.fg.normal};
   margin: 0.5em 0;
+`
+const Subtle = styled.span`
+  font-size: 0.5em;
+  color: ${props => props.theme.fg.mute};
 `
 const Pills = styled.ul`
   list-style: none;
@@ -42,7 +46,6 @@ const Content = styled.div`
   margin: 1em 0;
   color: ${props => props.theme.fg.mute};
 `
-
 const Aside = styled.aside`
   flex: 1;
   display: flex;
@@ -51,7 +54,10 @@ const WrappingExternalLink = styled(ExternalLink)`
   flex: 1;
   display: flex;
 `
-
+const TitleLink = styled(ExternalLink)`
+  color: inherit;
+  text-decoration: none;
+`
 const Preview = styled.img`
   width: 100%;
   overflow: hidden;
@@ -60,6 +66,13 @@ const Preview = styled.img`
 `
 const ProjectItem = styled.li`
   background: ${props => props.theme.bg.normal};
+  ${props =>
+    props.unreleased &&
+    css`
+      filter: grayscale(1);
+      pointer-events: none;
+    `};
+
   margin: 1em;
   font-size: ${props => (props.major ? '1.5em' : '1.15em')};
   text-align: left;
@@ -91,15 +104,19 @@ export default function Project({
   libraries,
   major,
   preview,
+  unreleased,
 }) {
   const allStars = useSelector(state => state.stars)
   const stars = allStars[id]
+  const projectUrl = demoUrl || url
 
   return (
-    <ProjectItem major={major}>
+    <ProjectItem major={major} unreleased={unreleased}>
       <Article>
         <Name>
-          {name}
+          <TitleLink url={projectUrl}>
+            {name} {unreleased && <Subtle>Unreleased</Subtle>}
+          </TitleLink>
           <Stars url={url} stars={stars} />
         </Name>
         <Pills>
@@ -111,10 +128,10 @@ export default function Project({
           ))}
         </Pills>
         <Content>{description}</Content>
-        <ExternalLink url={demoUrl || url}>{prettyUrl(url)}</ExternalLink>
+        <ExternalLink url={projectUrl}>{prettyUrl(projectUrl)}</ExternalLink>
       </Article>
       <Aside>
-        <WrappingExternalLink url={demoUrl || url}>
+        <WrappingExternalLink url={projectUrl}>
           <Preview
             src={preview || defaultPreview}
             alt={`Image preview of ${name}`}
