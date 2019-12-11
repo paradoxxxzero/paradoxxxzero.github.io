@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { useSelector } from 'react-redux'
-import { FaArrowUp, FaSpaceShuttle } from 'react-icons/fa'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowUp, faSpaceShuttle } from '@fortawesome/free-solid-svg-icons'
 
 import { MOBILE_MAX_WIDTH } from '../static/consts'
 
@@ -72,7 +73,7 @@ const Nav = styled.nav`
 const MENU_ITEMS = [
   {
     name: 'home',
-    content: <FaArrowUp />,
+    content: <FontAwesomeIcon icon={faArrowUp} />,
   },
   {
     name: 'experiments',
@@ -96,7 +97,7 @@ const MENU_ITEMS = [
   },
   {
     name: 'extra',
-    content: <FaSpaceShuttle />,
+    content: <FontAwesomeIcon icon={faSpaceShuttle} />,
   },
 ]
 

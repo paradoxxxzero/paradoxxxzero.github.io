@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { GoLinkExternal } from 'react-icons/go'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 
 const Icon = styled.span`
   position: absolute;
@@ -33,7 +34,7 @@ export default function ExternalLink({ url, className, children, ...props }) {
       </Link>
       <Rel>
         <Icon>
-          <GoLinkExternal />
+          <FontAwesomeIcon icon={faExternalLinkAlt} />
         </Icon>
       </Rel>
     </Wrapper>

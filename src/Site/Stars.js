@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FaStar } from 'react-icons/fa'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 export const Star = styled.a`
   display: flex;
@@ -24,7 +25,7 @@ export default function Stars({ url, stars, className }) {
     <Star href={url} className={className}>
       <Number>{stars ? stars : ''}</Number>
       <span>&nbsp;</span>
-      <FaStar />
+      <FontAwesomeIcon icon={faStar} />
     </Star>
   )
 }

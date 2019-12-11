@@ -1,11 +1,12 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope as faRegEnvelope } from '@fortawesome/free-regular-svg-icons'
 import {
-  FaGithub,
-  FaEnvelope,
-  FaRedditAlien,
-  FaGitlab,
-  FaRegEnvelope,
-} from 'react-icons/fa'
+  faGithub,
+  faGitlab,
+  faRedditAlien,
+} from '@fortawesome/free-brands-svg-icons'
 
 import AnchoredSection from './utils/AnchoredSection'
 import ExternalLink from './utils/ExternalLink'
@@ -21,7 +22,7 @@ export default function Contact() {
       <Content>
         <List>
           <ListItem>
-            <FaEnvelope />
+            <FontAwesomeIcon icon={faEnvelope} />
             &nbsp;
             <ExternalLink
               url="mailto:mounier.florian+dev@gmail.com"
@@ -32,7 +33,7 @@ export default function Contact() {
             &nbsp;
           </ListItem>
           <ListItem>
-            <FaRegEnvelope />
+            <FontAwesomeIcon icon={faRegEnvelope} />
             &nbsp;
             <ExternalLink
               url="mailto:paradoxxx.zero+dev@gmail.com"
@@ -42,21 +43,21 @@ export default function Contact() {
             </ExternalLink>
           </ListItem>
           <ListItem>
-            <FaGithub />
+            <FontAwesomeIcon icon={faGithub} />
             &nbsp;
             <ExternalLink url="https://github.com/paradoxxxzero" title="github">
               paradoxxxzero
             </ExternalLink>
           </ListItem>
           <ListItem>
-            <FaGitlab />
+            <FontAwesomeIcon icon={faGitlab} />
             &nbsp;
             <ExternalLink url="https://gitlab.com/paradoxxxzero" title="gitlab">
               paradoxxxzero
             </ExternalLink>
           </ListItem>
           <ListItem>
-            <FaRedditAlien />
+            <FontAwesomeIcon icon={faRedditAlien} />
             &nbsp;
             <ExternalLink
               url="https://www.reddit.com/user/paradoxxx_zero"
