@@ -46,8 +46,8 @@ export default function Meta() {
       </Content>
       <BottomTitle level={3}>
         Browse this site source code at
-        <ExternalLink url="https://github.com/paradoxxxzero/bio">
-          github.com/paradoxxxzero/bio
+        <ExternalLink url="https://github.com/paradoxxxzero/paradoxxxzero.github.io/tree/src">
+          github.com/paradoxxxzero/paradoxxxzero.github.io
         </ExternalLink>
       </BottomTitle>
     </AnchoredSection>

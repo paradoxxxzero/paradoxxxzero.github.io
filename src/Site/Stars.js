@@ -7,9 +7,6 @@ export const Star = styled.a`
   display: flex;
   color: gold;
   text-decoration: none;
-  :hover {
-    text-decoration: underline;
-  }
 `
 
 const Number = styled.span`

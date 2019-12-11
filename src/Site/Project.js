@@ -54,6 +54,9 @@ const WrappingExternalLink = styled(ExternalLink)`
   flex: 1;
   display: flex;
   position: relative;
+  a {
+    display: flex;
+  }
   &::before {
     position: absolute;
     content: '';
@@ -69,8 +72,10 @@ const WrappingExternalLink = styled(ExternalLink)`
   }
 `
 const TitleLink = styled(ExternalLink)`
-  color: inherit;
-  text-decoration: none;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `
 const Preview = styled.img`
   width: 100%;
@@ -129,7 +134,8 @@ export default function Project({
       <Article>
         <Name>
           <TitleLink url={projectUrl}>
-            {name} {unreleased && <Subtle>Unreleased</Subtle>}
+            {name}
+            {unreleased && <Subtle> Unreleased</Subtle>}
           </TitleLink>
           <Stars url={url} stars={stars} />
         </Name>

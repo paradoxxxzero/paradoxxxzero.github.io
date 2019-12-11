@@ -3,7 +3,8 @@ if (process.env.NODE_ENV === 'development') {
   require('preact/debug')
 }
 
-import React, { hydrate, render } from 'react'
+import React from 'react'
+import { hydrate, render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
@@ -28,7 +29,6 @@ const App = (
 )
 
 const renderMode = process.env.NODE_ENV === 'development' ? render : hydrate
-console.log(renderMode)
 renderMode(App, document.getElementById('root'))
 
 window.__ = {

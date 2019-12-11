@@ -26,7 +26,9 @@ export default function Projects({ type }) {
   const projects = useSelector(state => state.projects)
     .filter(project => project.type === type)
     .sort((a, b) => b.major - a.major)
-  useEffect(() => dispatch(fetchStars()), [dispatch])
+  useEffect(() => {
+    dispatch(fetchStars())
+  }, [dispatch])
   return (
     <AnchoredSection anchor={type}>
       <Title>{TYPES[type]}</Title>
