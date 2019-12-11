@@ -113,6 +113,14 @@ const ProjectItem = styled.li`
     }
   }
 `
+const Ellipsize = styled.div`
+  display: inline-block;
+  max-width: 72vw;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  color: ${props => props.theme.fg.clickable};
+`
 export default function Project({
   id,
   name,
@@ -148,7 +156,9 @@ export default function Project({
           ))}
         </Pills>
         <Content>{description}</Content>
-        <ExternalLink url={projectUrl}>{prettyUrl(projectUrl)}</ExternalLink>
+        <Ellipsize>
+          <ExternalLink url={projectUrl}>{prettyUrl(projectUrl)}</ExternalLink>
+        </Ellipsize>
       </Article>
       <Aside>
         <WrappingExternalLink url={projectUrl}>

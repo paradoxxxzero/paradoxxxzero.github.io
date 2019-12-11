@@ -23,7 +23,6 @@ const Wrapper = styled.span`
 
 const Link = styled.a`
   color: ${props => props.theme.fg.clickable};
-  word-break: break-all;
 `
 
 export default function ExternalLink({ url, className, children, ...props }) {
