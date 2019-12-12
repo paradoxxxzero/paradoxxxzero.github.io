@@ -15,7 +15,9 @@ const Icon = styled.span`
 const Rel = styled.span`
   position: relative;
 `
-const Wrapper = styled.span`
+const Wrapper = styled.div`
+  display: inline-block;
+
   &:hover ${Icon} {
     transform: scale(1);
   }

@@ -6,6 +6,7 @@ import { prettyUrl } from '../utils'
 import ExternalLink from './utils/ExternalLink'
 import Stars, { Star } from './Stars'
 import defaultPreview from '../static/previews/default.png'
+import { MOBILE_MAX_WIDTH } from '../static/consts'
 
 const Article = styled.article`
   flex: 2;
@@ -54,9 +55,7 @@ const WrappingExternalLink = styled(ExternalLink)`
   flex: 1;
   display: flex;
   position: relative;
-  a {
-    display: flex;
-  }
+
   &::before {
     position: absolute;
     content: '';
@@ -77,6 +76,12 @@ const TitleLink = styled(ExternalLink)`
     text-decoration: none;
   }
 `
+const ProjectLink = styled(ExternalLink)`
+  @media (max-width: ${`${MOBILE_MAX_WIDTH}px`}) {
+    word-break: break-all;
+  }
+`
+
 const Preview = styled.img`
   width: 100%;
   overflow: hidden;
@@ -95,12 +100,17 @@ const ProjectItem = styled.li`
   margin: 1em;
   font-size: ${props => (props.major ? '1.5em' : '1.15em')};
   text-align: left;
-  flex-direction: row-reverse;
   display: flex;
-  flex-wrap: wrap-reverse;
+  flex-direction: row-reverse;
+  @media (max-width: ${`${MOBILE_MAX_WIDTH}px`}) {
+    flex-direction: column-reverse;
+  }
 
   &:nth-child(2n) {
     flex-direction: row;
+    @media (max-width: ${`${MOBILE_MAX_WIDTH}px`}) {
+      flex-direction: column-reverse;
+    }
     text-align: right;
     ${Name} {
       flex-direction: row-reverse;
@@ -113,14 +123,7 @@ const ProjectItem = styled.li`
     }
   }
 `
-const Ellipsize = styled.div`
-  display: inline-block;
-  max-width: 72vw;
-  white-space: nowrap;
-  overflow: hidden !important;
-  text-overflow: ellipsis;
-  color: ${props => props.theme.fg.clickable};
-`
+
 export default function Project({
   id,
   name,
@@ -156,9 +159,7 @@ export default function Project({
           ))}
         </Pills>
         <Content>{description}</Content>
-        <Ellipsize>
-          <ExternalLink url={projectUrl}>{prettyUrl(projectUrl)}</ExternalLink>
-        </Ellipsize>
+        <ProjectLink url={projectUrl}>{prettyUrl(projectUrl)}</ProjectLink>
       </Article>
       <Aside>
         <WrappingExternalLink url={projectUrl}>

@@ -13,7 +13,6 @@ const Refs = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  align-items: center;
 `
 
 const Ref = styled.li`
