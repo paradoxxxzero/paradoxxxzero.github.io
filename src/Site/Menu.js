@@ -13,6 +13,7 @@ const Refs = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: center;
 `
 
 const Ref = styled.li`
@@ -23,17 +24,8 @@ const Ref = styled.li`
     background: ${props => props.theme.bg.normal};
   }
 
-  padding: 1rem ${props => (props.expanded ? '2rem' : '1rem')};
-  font-size: ${props => (props.expanded ? '1rem' : '0')};
-  transition: ${props => props.theme.animationDuration} all;
-  ${props =>
-    !props.expanded &&
-    css`
-      & > *,
-      &:first-letter {
-        font-size: 1.5rem;
-      }
-    `}
+  padding: 1em ${props => (props.expanded ? '2em' : '1em')};
+  font-size: ${props => (props.expanded ? '1em' : '1.5em')};
 `
 
 const HIndicator = styled.div`
@@ -186,7 +178,7 @@ export default function Menu({ onScrollRequested }) {
             title={typeof content === 'string' ? content : null}
             expanded={expanded}
           >
-            {content}
+            {expanded || typeof content !== 'string' ? content : content[0]}
           </Ref>
         ))}
       </Refs>
