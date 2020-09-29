@@ -1,5 +1,12 @@
 export default [
   {
+    start: '2019',
+    end: new Date().getFullYear(),
+    name: 'EAP Expertise Art et Patrimoine',
+    role: 'CEO',
+    url: 'https://www.eap-expertise.fr/',
+  },
+  {
     start: '2011',
     end: '2019',
     name: 'Kozea',

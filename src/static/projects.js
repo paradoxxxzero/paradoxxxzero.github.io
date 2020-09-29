@@ -37,7 +37,6 @@ export default [
     type: 'projects',
     description: 'Standalone Python debugger with a web interface.',
     preview: kalong,
-    unreleased: true,
   },
   {
     id: 'paradoxxxzero/frustals',

@@ -8,10 +8,7 @@ import { hydrate, render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
-import {
-  ServerStyleSheet,
-  __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS,
-} from 'styled-components'
+import { ServerStyleSheet } from 'styled-components'
 import { renderToString } from 'preact-render-to-string'
 
 import Site from './Site'
@@ -37,12 +34,13 @@ window.__ = {
 
 export default () => {
   let rendered = ''
-  const { StyleSheet } = __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS
-  StyleSheet.reset(true)
   const sheet = new ServerStyleSheet()
-  rendered = renderToString(sheet.collectStyles(App))
-  const styleTags = sheet.getStyleTags() // or sheet.getStyleElement();
-  rendered += `!!CSSSTART!!${styleTags}!!CSSEND!!`
-  sheet.seal()
+  try {
+    rendered = renderToString(sheet.collectStyles(App))
+    const styleTags = sheet.getStyleTags() // or sheet.getStyleElement();
+    rendered += `!!CSSSTART!!${styleTags}!!CSSEND!!`
+  } finally {
+    sheet.seal()
+  }
   return rendered
 }
