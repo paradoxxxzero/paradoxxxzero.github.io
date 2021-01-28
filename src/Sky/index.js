@@ -1,40 +1,38 @@
+import React, { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
+import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 import {
-  PerspectiveCamera,
-  WebGLRenderer,
-  Scene,
+  AdditiveBlending,
   BackSide,
   BoxBufferGeometry,
-  Geometry,
-  Points,
-  PointsMaterial,
+  BufferGeometry,
+  CatmullRomCurve3,
+  Float32BufferAttribute,
   Mesh,
-  ShaderMaterial,
-  Vector3,
-  TextureLoader,
-  AdditiveBlending,
-  Spherical,
-  Color,
-  VertexColors,
+  PerspectiveCamera,
   PlaneBufferGeometry,
   PointLight,
+  Points,
+  PointsMaterial,
+  Scene,
+  ShaderMaterial,
+  Spherical,
+  TextureLoader,
   Vector2,
-  CatmullRomCurve3,
+  Vector3,
+  VertexColors,
+  WebGLRenderer,
 } from 'three'
 import { Water } from 'three/examples/jsm/objects/Water2'
+import { AfterimagePass } from 'three/examples/jsm/postprocessing/AfterimagePass'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
-import { AfterimagePass } from 'three/examples/jsm/postprocessing/AfterimagePass'
-import { useSelector } from 'react-redux'
-import React, { useRef, useEffect, useLayoutEffect, useMemo } from 'react'
-import styled from 'styled-components'
-import { HyperRenderer, HyperMesh } from 'anakata'
-
+import { linearClamp } from '../utils'
+import fragmentShader from './fragmentShader.glsl'
 import Star from './star.png'
+import vertexShader from './vertexShader.glsl'
 import Water0 from './Water0.jpg'
 import Water1 from './Water1.jpg'
-import vertexShader from './vertexShader.glsl'
-import fragmentShader from './fragmentShader.glsl'
-import { linearClamp } from '../utils'
 
 const Canvas = styled.canvas`
   position: fixed;
@@ -135,31 +133,53 @@ export default function Sky() {
     scene.add(sunLight)
 
     const starsSpherical = new Spherical()
-    const starsGeometry = new Geometry()
-    starsGeometry.vertices = new Array(STARS).fill().map(() => {
-      starsSpherical.radius = 250 + Math.random() * 750
-      starsSpherical.theta = -Math.PI / 2 + Math.random() * Math.PI
-      starsSpherical.phi = Math.random() * 2 * Math.PI
-      return new Vector3().setFromSpherical(starsSpherical)
-    })
+    const starsGeometry = new BufferGeometry()
+    const starVertices = new Array(STARS)
+      .fill()
+      .map(() => {
+        starsSpherical.radius = 250 + Math.random() * 750
+        starsSpherical.theta = -Math.PI / 2 + Math.random() * Math.PI
+        starsSpherical.phi = Math.random() * 2 * Math.PI
+        const starVector = new Vector3().setFromSpherical(starsSpherical)
+        return [starVector.x, starVector.y, starVector.z]
+      })
+      .flat()
+    starsGeometry.setAttribute(
+      'position',
+      new Float32BufferAttribute(starVertices, 3)
+    )
     const colors = STARS / 10
     const colorStep = colors / 3
     const luminance = v => (v + 2) / 3
-    starsGeometry.colors = new Array(STARS).fill().map(() => {
-      // Computing a random color in the star spectrum:
-      // Red -> (orange ->) yellow -> white -> blue
-      const c = Math.random() * (colors + 1)
+    starsGeometry.setAttribute(
+      'color',
+      new Float32BufferAttribute(
+        new Array(STARS)
+          .fill()
+          .map(() => {
+            // Computing a random color in the star spectrum:
+            // Red -> (orange ->) yellow -> white -> blue
+            const c = Math.random() * (colors + 1)
 
-      // red: 1 -> 1 -> 1 -> 0
-      const r = c > 2 * colorStep ? 1 - (c - 2 * colorStep) / colorStep : 1
-      // green: 0 -> 1 -> 1 -> 0
-      const g = c < colorStep ? c / colorStep : r
-      // blue: 0 -> 0 -> 1 -> 1
-      const b =
-        c < colorStep ? 0 : c > 2 * colorStep ? 1 : (c - colorStep) / colorStep
-      // And finally, raises the luminance
-      return new Color(...[r, g, b].map(luminance))
-    })
+            // red: 1 -> 1 -> 1 -> 0
+            const r =
+              c > 2 * colorStep ? 1 - (c - 2 * colorStep) / colorStep : 1
+            // green: 0 -> 1 -> 1 -> 0
+            const g = c < colorStep ? c / colorStep : r
+            // blue: 0 -> 0 -> 1 -> 1
+            const b =
+              c < colorStep
+                ? 0
+                : c > 2 * colorStep
+                ? 1
+                : (c - colorStep) / colorStep
+            // And finally, raises the luminance
+            return [r, g, b].map(luminance)
+          })
+          .flat(),
+        3
+      )
+    )
 
     const starsMaterial = new PointsMaterial({
       size: 8,
@@ -202,14 +222,14 @@ export default function Sky() {
     water.rotation.x = -Math.PI / 2
     scene.add(water)
 
-    const hyperRenderer = new HyperRenderer(1.5, 5)
-    const hyperMesh = new HyperMesh(hyperRenderer)
-    hyperMesh.cellOpacity = 0.25
+    // const hyperRenderer = new HyperRenderer(1.5, 5)
+    // const hyperMesh = new HyperMesh(hyperRenderer)
+    // hyperMesh.cellOpacity = 0.25
 
-    hyperMesh.group.position.copy(
-      cameraCurve.getPointAt(1).multiplyScalar(1.005)
-    )
-    scene.add(hyperMesh.group)
+    // hyperMesh.group.position.copy(
+    //   cameraCurve.getPointAt(1).multiplyScalar(1.005)
+    // )
+    // scene.add(hyperMesh.group)
 
     const composer = new EffectComposer(renderer)
     composer.addPass(new RenderPass(scene, camera))
@@ -226,8 +246,8 @@ export default function Sky() {
       stars,
       sunSpherical,
       sunLight,
-      hyperRenderer,
-      hyperMesh,
+      // hyperRenderer,
+      // hyperMesh,
     }
 
     composer.render(scene)
@@ -253,19 +273,19 @@ export default function Sky() {
     if (!three) {
       return
     }
-    const { composer, scene, hyperMesh, hyperRenderer } = three
+    const { composer, scene /* hyperMesh, hyperRenderer */ } = three
     const render = () => {
-      if (hyperMesh.group.visible) {
-        hyperRenderer.rotate({
-          xy: 0,
-          xz: 0,
-          xw: 10,
-          yz: 0,
-          yw: 10,
-          zw: 10,
-        })
-        hyperMesh.update()
-      }
+      // if (hyperMesh.group.visible) {
+      //   hyperRenderer.rotate({
+      //     xy: 0,
+      //     xz: 0,
+      //     xw: 10,
+      //     yz: 0,
+      //     yw: 10,
+      //     zw: 10,
+      //   })
+      //   hyperMesh.update()
+      // }
       composer.render(scene)
       requestAnimationFrame(render)
     }
@@ -285,7 +305,7 @@ export default function Sky() {
       stars,
       sunSpherical,
       sunLight,
-      hyperMesh,
+      // hyperMesh,
     } = three
 
     const sunProgression = linearClamp(progression, boundaries.day)
@@ -318,9 +338,9 @@ export default function Sky() {
     )
     camera.updateProjectionMatrix()
 
-    const tesseractProgression = linearClamp(progression, boundaries.tesseract)
-    hyperMesh.group.visible = !!tesseractProgression
-    hyperMesh.cellSize = tesseractProgression * tesseractProgression * 100
+    // const tesseractProgression = linearClamp(progression, boundaries.tesseract)
+    // hyperMesh.group.visible = !!tesseractProgression
+    // hyperMesh.cellSize = tesseractProgression * tesseractProgression * 100
     composer.render(scene)
   }, [progression, boundaries])
 
