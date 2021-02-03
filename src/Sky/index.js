@@ -1,3 +1,10 @@
+import {
+  HyperEdgeGeometry,
+  HyperGeometry,
+  HyperMesh,
+  HyperRenderer,
+  shapes,
+} from 'four-js'
 import React, { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
@@ -7,8 +14,13 @@ import {
   BoxBufferGeometry,
   BufferGeometry,
   CatmullRomCurve3,
+  Color,
+  DoubleSide,
   Float32BufferAttribute,
+  LineBasicMaterial,
+  LineSegments,
   Mesh,
+  MeshLambertMaterial,
   PerspectiveCamera,
   PlaneBufferGeometry,
   PointLight,
@@ -222,19 +234,75 @@ export default function Sky() {
     water.rotation.x = -Math.PI / 2
     scene.add(water)
 
-    // const hyperRenderer = new HyperRenderer(1.5, 5)
-    // const hyperMesh = new HyperMesh(hyperRenderer)
-    // hyperMesh.cellOpacity = 0.25
+    const { tesseract } = shapes
+    const hyperRenderer = new HyperRenderer(1.5, 5)
+    const hyperGeometry = new HyperGeometry(
+      tesseract.vertices,
+      tesseract.faces,
+      tesseract.cells,
+      hyperRenderer
+    )
+    const hyperEdgeGeometry = new HyperEdgeGeometry(
+      tesseract.vertices,
+      tesseract.faces,
+      tesseract.cells,
+      hyperRenderer
+    )
+    const materials = [
+      '#5c6370',
+      '#e06c75',
+      '#98c379',
+      '#d19a66',
+      '#61afef',
+      '#c678dd',
+      '#56b6c2',
+      '#403e41',
+    ].map(color => {
+      const material = new MeshLambertMaterial()
+      material.opacity = 0.25
+      material.transparent = true
+      material.blending = AdditiveBlending
+      material.side = DoubleSide
+      material.depthWrite = false
+      material.color = new Color(color)
+      return material
+    })
+    const edgeMaterials = [
+      '#5c6370',
+      '#e06c75',
+      '#98c379',
+      '#d19a66',
+      '#61afef',
+      '#c678dd',
+      '#56b6c2',
+      '#403e41',
+    ].map(color => {
+      const material = new LineBasicMaterial()
+      material.opacity = 0.1
+      material.transparent = true
+      material.blending = AdditiveBlending
+      material.side = DoubleSide
+      material.depthWrite = false
+      material.linewidth = 2
+      material.color = new Color(color)
+      return material
+    })
 
-    // hyperMesh.group.position.copy(
-    //   cameraCurve.getPointAt(1).multiplyScalar(1.005)
-    // )
-    // scene.add(hyperMesh.group)
+    const hyperMesh = new HyperMesh(hyperGeometry, materials)
+    const hyperEdges = new HyperMesh(
+      hyperEdgeGeometry,
+      edgeMaterials,
+      LineSegments
+    )
+    hyperMesh.position.copy(cameraCurve.getPointAt(1).multiplyScalar(1.005))
+    hyperEdges.position.copy(hyperMesh.position)
+    scene.add(hyperMesh)
+    scene.add(hyperEdges)
 
     const composer = new EffectComposer(renderer)
     composer.addPass(new RenderPass(scene, camera))
     const afterimagePass = new AfterimagePass()
-    afterimagePass.uniforms.damp.value = 0.7
+    afterimagePass.uniforms.damp.value = 0.85
     composer.addPass(afterimagePass)
 
     window.sky = threeRef.current = {
@@ -246,8 +314,9 @@ export default function Sky() {
       stars,
       sunSpherical,
       sunLight,
-      // hyperRenderer,
-      // hyperMesh,
+      hyperRenderer,
+      hyperMesh,
+      hyperEdges,
     }
 
     composer.render(scene)
@@ -273,21 +342,22 @@ export default function Sky() {
     if (!three) {
       return
     }
-    const { composer, scene /* hyperMesh, hyperRenderer */ } = three
+    const { composer, scene, hyperMesh, hyperEdges, hyperRenderer } = three
     const render = () => {
-      // if (hyperMesh.group.visible) {
-      //   hyperRenderer.rotate({
-      //     xy: 0,
-      //     xz: 0,
-      //     xw: 10,
-      //     yz: 0,
-      //     yw: 10,
-      //     zw: 10,
-      //   })
-      //   hyperMesh.update()
-      // }
-      composer.render(scene)
       requestAnimationFrame(render)
+      if (hyperMesh.visible) {
+        hyperRenderer.rotate({
+          xy: 0,
+          xz: 0,
+          xw: 10,
+          yz: 0,
+          yw: 10,
+          zw: 10,
+        })
+        hyperMesh.update()
+        hyperEdges.update()
+      }
+      composer.render(scene)
     }
     requestAnimationFrame(render)
   }, [])
@@ -305,7 +375,8 @@ export default function Sky() {
       stars,
       sunSpherical,
       sunLight,
-      // hyperMesh,
+      hyperMesh,
+      hyperEdges,
     } = three
 
     const sunProgression = linearClamp(progression, boundaries.day)
@@ -338,9 +409,14 @@ export default function Sky() {
     )
     camera.updateProjectionMatrix()
 
-    // const tesseractProgression = linearClamp(progression, boundaries.tesseract)
-    // hyperMesh.group.visible = !!tesseractProgression
-    // hyperMesh.cellSize = tesseractProgression * tesseractProgression * 100
+    const tesseractProgression = linearClamp(progression, boundaries.tesseract)
+    hyperEdges.visible = hyperMesh.visible = !!tesseractProgression
+    hyperEdges.cellSize = hyperMesh.cellSize =
+      tesseractProgression * tesseractProgression * tesseractProgression * 100
+    const scaleDownEffect = 50 - 49 * tesseractProgression
+    hyperEdges.scale.setScalar(scaleDownEffect)
+    hyperMesh.scale.setScalar(scaleDownEffect)
+
     composer.render(scene)
   }, [progression, boundaries])
 
