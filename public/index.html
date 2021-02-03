@@ -6,25 +6,12 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
+    <link rel="stylesheet" type="text/css" href="/index.css" />
     <meta name="theme-color" content="#5689b8" />
     <title>Florian Mounier</title>
-    <style>
-      @import url('https://fonts.googleapis.com/css?family=Asap&display=swap');
-      html,
-      body,
-      #root {
-        margin: 0;
-        scroll-behavior: smooth;
-        width: 100%;
-        height: 100%;
-      }
-      html {
-        overflow-x: hidden;
-      }
-      body {
-        font-family: 'Asap', sans-serif;
-      }
-    </style>
+  </head>
+  <body>
+    <script type="module" src="/dist/index.js"></script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=UA-154485454-1"
@@ -37,8 +24,6 @@
       gtag('js', new Date())
       gtag('config', 'UA-154485454-1')
     </script>
-  </head>
-  <body>
     <div id="root">{{prerender}}</div>
   </body>
 </html>

@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import AnchoredSection from './utils/AnchoredSection'
-import ExternalLink from './utils/ExternalLink'
-import Title from './utils/Title'
 import Content from './utils/Content'
+import ExternalLink from './utils/ExternalLink'
 import List from './utils/List'
 import ListItem from './utils/ListItem'
+import Title from './utils/Title'
+
 
 const ListTitle = styled.p`
   margin-top: 0.5em;
@@ -39,7 +39,9 @@ export default function Meta() {
             &mdash; for a simple and powerful API on top of WebGL.
           </ListItem>
           <ListItem>
-            <ExternalLink url="https://webpack.js.org/">webpack</ExternalLink>{' '}
+            <ExternalLink url="https://www.snowpack.dev/">
+              snowpack
+            </ExternalLink>{' '}
             &mdash; to put everything together.
           </ListItem>
         </List>

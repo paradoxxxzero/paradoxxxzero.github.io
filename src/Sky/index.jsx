@@ -3,7 +3,7 @@ import {
   HyperGeometry,
   HyperMesh,
   HyperRenderer,
-  shapes,
+  shapes
 } from 'four-js'
 import React, { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { useSelector } from 'react-redux'
@@ -33,7 +33,7 @@ import {
   Vector2,
   Vector3,
   VertexColors,
-  WebGLRenderer,
+  WebGLRenderer
 } from 'three'
 import { Water } from 'three/examples/jsm/objects/Water2'
 import { AfterimagePass } from 'three/examples/jsm/postprocessing/AfterimagePass'

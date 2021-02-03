@@ -3,8 +3,8 @@
   "author": "Florian Mounier",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development webpack serve",
-    "build": "rm -fr dist; NODE_ENV=production webpack; ./swap.sh",
+    "start": "snowpack dev",
+    "build": "snowpack build",
     "push": "echo 'florian.mounier.dev' > dist/CNAME && cd dist && git init && git add . && git commit -m'Static build' && git remote add origin git@github.com:paradoxxxzero/paradoxxxzero.github.io.git && git push --force origin master"
   },
   "dependencies": {
@@ -24,11 +24,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
+    "@babel/eslint-parser": "^7.12.13",
     "@babel/plugin-transform-runtime": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
+    "@prefresh/snowpack": "^3.1.0",
+    "@snowpack/plugin-dotenv": "^2.0.5",
     "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.2.2",
     "babel-plugin-styled-components": "^1.12.0",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.2.0",
@@ -40,16 +42,11 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "file-loader": "^6.2.0",
-    "html-webpack-plugin": "^5.0.0",
     "preact-render-to-string": "^5.1.12",
-    "prerender-loader": "^1.3.0",
     "prettier": "^2.2.1",
-    "raw-loader": "^4.0.2",
-    "styled-components": "^5.2.1",
-    "webpack": "^5.20.1",
-    "webpack-cli": "^4.5.0",
-    "webpack-dev-server": "^3.11.2"
+    "snowpack": "^3.0.11",
+    "snowpack-plugin-raw-file-loader": "^1.0.9",
+    "styled-components": "^5.2.1"
   },
   "version": "0.0.0"
 }

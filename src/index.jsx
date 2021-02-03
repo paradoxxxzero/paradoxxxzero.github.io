@@ -1,16 +1,11 @@
-/* eslint-disable import/first */
-if (process.env.NODE_ENV === 'development') {
-  require('preact/debug')
-}
-
+import { renderToString } from 'preact-render-to-string'
+// import 'preact/debug'
 import React from 'react'
 import { hydrate, render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import { ServerStyleSheet } from 'styled-components'
-import { renderToString } from 'preact-render-to-string'
-
 import Site from './Site'
 import Sky from './Sky'
 import reducer from './store/reducer'
@@ -25,7 +20,7 @@ const App = (
   </Provider>
 )
 
-const renderMode = process.env.NODE_ENV === 'development' ? render : hydrate
+const renderMode = import.meta.env.MODE === 'development' ? render : hydrate
 renderMode(App, document.getElementById('root'))
 
 window.__ = {
