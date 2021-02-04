@@ -1,16 +1,16 @@
-import React, { useCallback, useEffect } from 'react'
+import { h } from 'preact'
+import { useCallback, useEffect } from 'preact/hooks'
 import { useDispatch } from 'react-redux'
 import styled, { ThemeProvider } from 'styled-components'
-
-import { setPageProgression, setPageSize } from '../store/actions'
-import Projects from './Projects'
-import Bio from './Bio'
-import Home from './Home'
-import Extra from './Extra'
-import Menu from './Menu'
-import Contact from './Contact'
-import Meta from './Meta'
 import theme from '../static/theme'
+import { setPageProgression, setPageSize } from '../store/actions'
+import Bio from './Bio'
+import Contact from './Contact'
+import Extra from './Extra'
+import Home from './Home'
+import Menu from './Menu'
+import Meta from './Meta'
+import Projects from './Projects'
 
 const Main = styled.main`
   position: relative;

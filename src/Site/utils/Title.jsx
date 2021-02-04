@@ -1,4 +1,5 @@
-import React from 'react'
+import { h } from 'preact'
+import { toChildArray } from 'preact'
 import styled from 'styled-components'
 
 const Header = styled.header`
@@ -36,7 +37,7 @@ export default function Title({ level, children, className }) {
 
   return (
     <Header left={left} className={className}>
-      {React.Children.map(children, (child, i) =>
+      {toChildArray(children).map((child, i) =>
         i === 0 ? (
           <UnderlinedTitle as={`h${level}`} left={left}>
             {child}

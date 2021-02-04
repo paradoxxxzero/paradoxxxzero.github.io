@@ -19,7 +19,7 @@ module.exports = {
   ],
   optimize: {
     /* Example: Bundle your final build: */
-    bundle: true,
+    bundle: false,
   },
   packageOptions: {
     /* ... */

@@ -1,12 +1,11 @@
-import React from 'react'
+import { h } from 'preact'
 import { useSelector } from 'react-redux'
 import styled, { css } from 'styled-components'
-
-import { prettyUrl } from '../utils'
-import ExternalLink from './utils/ExternalLink'
-import Stars, { Star } from './Stars'
-import defaultPreview from '../static/previews/default.png'
 import { MOBILE_MAX_WIDTH } from '../static/consts'
+import defaultPreview from '../static/previews/default.png'
+import { prettyUrl } from '../utils'
+import Stars, { Star } from './Stars'
+import ExternalLink from './utils/ExternalLink'
 
 const Article = styled.article`
   flex: 2;

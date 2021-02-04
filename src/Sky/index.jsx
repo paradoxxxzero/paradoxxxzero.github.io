@@ -1,11 +1,12 @@
+import { h } from 'preact'
 import {
   HyperEdgeGeometry,
   HyperGeometry,
   HyperMesh,
   HyperRenderer,
-  shapes
+  shapes,
 } from 'four-js'
-import React, { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef } from 'preact/hooks'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import {
@@ -33,7 +34,7 @@ import {
   Vector2,
   Vector3,
   VertexColors,
-  WebGLRenderer
+  WebGLRenderer,
 } from 'three'
 import { Water } from 'three/examples/jsm/objects/Water2'
 import { AfterimagePass } from 'three/examples/jsm/postprocessing/AfterimagePass'

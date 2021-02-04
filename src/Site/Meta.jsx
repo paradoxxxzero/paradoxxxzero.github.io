@@ -1,4 +1,4 @@
-import React from 'react'
+import { h } from 'preact'
 import styled from 'styled-components'
 import AnchoredSection from './utils/AnchoredSection'
 import Content from './utils/Content'
@@ -6,7 +6,6 @@ import ExternalLink from './utils/ExternalLink'
 import List from './utils/List'
 import ListItem from './utils/ListItem'
 import Title from './utils/Title'
-
 
 const ListTitle = styled.p`
   margin-top: 0.5em;

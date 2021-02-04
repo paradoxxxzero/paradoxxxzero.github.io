@@ -12,4 +12,9 @@ html {
 }
 body {
   font-family: 'Asap', sans-serif;
+  background: #5285b5;
+}
+/* Fallback for noscript */
+.svg-inline--fa {
+  width: 1em;
 }

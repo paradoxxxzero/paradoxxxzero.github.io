@@ -1,8 +1,7 @@
-import React from 'react'
+import { h } from 'preact'
 import styled from 'styled-components'
-
-import Title from './utils/Title'
 import AnchoredSection from './utils/AnchoredSection'
+import Title from './utils/Title'
 
 const Section = styled(AnchoredSection)`
   min-height: 1200%;

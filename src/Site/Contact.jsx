@@ -1,19 +1,18 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { faEnvelope as faRegEnvelope } from '@fortawesome/free-regular-svg-icons'
+import { h } from 'preact'
 import {
   faGithub,
   faGitlab,
   faRedditAlien,
 } from '@fortawesome/free-brands-svg-icons'
-
+import { faEnvelope as faRegEnvelope } from '@fortawesome/free-regular-svg-icons'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AnchoredSection from './utils/AnchoredSection'
-import ExternalLink from './utils/ExternalLink'
-import Title from './utils/Title'
 import Content from './utils/Content'
-import ListItem from './utils/ListItem'
+import ExternalLink from './utils/ExternalLink'
 import List from './utils/List'
+import ListItem from './utils/ListItem'
+import Title from './utils/Title'
 
 export default function Contact() {
   return (

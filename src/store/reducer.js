@@ -12,11 +12,14 @@ const initial = {
     absolute: 0,
     direction: 'up',
   },
-  page: {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    devicePixelRatio: window.devicePixelRatio,
-  },
+  page:
+    typeof window !== 'undefined'
+      ? {
+          width: window.innerWidth,
+          height: window.innerHeight,
+          devicePixelRatio: window.devicePixelRatio,
+        }
+      : { width: 1920, height: 1080, devicePixelRatio: 1 },
   projects,
   stars: {},
   anchors: {},

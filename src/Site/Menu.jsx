@@ -1,9 +1,9 @@
-import React, { useRef, useEffect } from 'react'
-import styled, { css } from 'styled-components'
-import { useSelector } from 'react-redux'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { h } from 'preact'
 import { faArrowUp, faSpaceShuttle } from '@fortawesome/free-solid-svg-icons'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useEffect, useRef } from 'preact/hooks'
+import { useSelector } from 'react-redux'
+import styled, { css } from 'styled-components'
 import { MOBILE_MAX_WIDTH } from '../static/consts'
 
 const Refs = styled.ul`

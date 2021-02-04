@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "snowpack dev",
-    "build": "snowpack build",
-    "push": "echo 'florian.mounier.dev' > dist/CNAME && cd dist && git init && git add . && git commit -m'Static build' && git remote add origin git@github.com:paradoxxxzero/paradoxxxzero.github.io.git && git push --force origin master"
+    "build": "snowpack build && cp -f ssr.js build/ &&  echo '{\"type\":  \"module\"}' > build/package.json && node build/ssr.js && rm build/package.json build/ssr.js",
+    "push": "echo 'florian.mounier.dev' > build/CNAME && cd build && git init && git add . && git commit -m'Static build' && git remote add origin git@github.com:paradoxxxzero/paradoxxxzero.github.io.git && git push --force origin master"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.13",
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.13",
     "@babel/eslint-parser": "^7.12.13",
+    "@babel/node": "^7.12.13",
     "@babel/plugin-transform-runtime": "^7.12.13",
     "@babel/preset-env": "^7.12.13",
     "@babel/preset-react": "^7.12.13",

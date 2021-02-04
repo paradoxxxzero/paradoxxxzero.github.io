@@ -1,4 +1,4 @@
-import React from 'react'
+import { h } from 'preact'
 import styled from 'styled-components'
 
 const Article = styled.article`

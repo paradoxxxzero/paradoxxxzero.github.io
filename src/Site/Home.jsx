@@ -1,7 +1,6 @@
-import React from 'react'
-
-import Title from './utils/Title'
+import { h, Fragment } from 'preact'
 import AnchoredSection from './utils/AnchoredSection'
+import Title from './utils/Title'
 
 export default function Home() {
   return (

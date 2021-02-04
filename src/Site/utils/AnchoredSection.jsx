@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useCallback } from 'react'
-import styled from 'styled-components'
+import { h } from 'preact'
+import { useCallback, useEffect, useRef } from 'preact/hooks'
 import { useDispatch, useSelector } from 'react-redux'
-
+import styled from 'styled-components'
 import { setAnchor } from '../../store/actions'
 
 const Section = styled.section`

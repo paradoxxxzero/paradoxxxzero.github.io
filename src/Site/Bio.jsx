@@ -1,5 +1,4 @@
-import React from 'react'
-
+import { h, Fragment } from 'preact'
 import ExternalLink from './utils/ExternalLink'
 import TimeRange from './utils/TimeRange'
 import bio from '../static/bio'

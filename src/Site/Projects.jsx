@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import { h } from 'preact'
+import { useEffect } from 'preact/hooks'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-
 import { fetchStars } from '../store/thunks'
 import Project from './Project'
-import Title from './utils/Title'
 import AnchoredSection from './utils/AnchoredSection'
+import Title from './utils/Title'
 
 const TYPES = {
   projects: 'Projects',

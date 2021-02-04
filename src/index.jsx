@@ -1,7 +1,6 @@
-import { renderToString } from 'preact-render-to-string'
 // import 'preact/debug'
-import React from 'react'
-import { hydrate, render } from 'react-dom'
+import { h, hydrate, render } from 'preact'
+import { renderToString } from 'preact-render-to-string'
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
@@ -10,7 +9,10 @@ import Site from './Site'
 import Sky from './Sky'
 import reducer from './store/reducer'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers =
+  (typeof window !== 'undefined' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
 
 const App = (
@@ -20,22 +22,18 @@ const App = (
   </Provider>
 )
 
-const renderMode = import.meta.env.MODE === 'development' ? render : hydrate
-renderMode(App, document.getElementById('root'))
-
-window.__ = {
-  store,
+if (typeof window !== 'undefined') {
+  const renderMode = import.meta.env.MODE === 'development' ? render : hydrate
+  renderMode(App, document.getElementById('root'))
 }
 
 export default () => {
-  let rendered = ''
   const sheet = new ServerStyleSheet()
   try {
-    rendered = renderToString(sheet.collectStyles(App))
-    const styleTags = sheet.getStyleTags() // or sheet.getStyleElement();
-    rendered += `!!CSSSTART!!${styleTags}!!CSSEND!!`
+    const app = renderToString(sheet.collectStyles(App))
+    const style = sheet.getStyleTags() // or sheet.getStyleElement();
+    return { app, style }
   } finally {
     sheet.seal()
   }
-  return rendered
 }
