@@ -26,6 +26,7 @@ const Ref = styled.li`
 
   padding: 1em ${props => (props.expanded ? '2em' : '1em')};
   font-size: ${props => (props.expanded ? '1em' : '1.25em')};
+  user-select: none;
 `
 
 const HIndicator = styled.div`

@@ -25,6 +25,7 @@ export default function Site() {
   }, [])
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     const onWindowResize = () => {
       dispatch(
         setPageSize(
