@@ -25,7 +25,6 @@ export default function Site() {
   }, [])
 
   useEffect(() => {
-    window.scrollTo(0, 0)
     const onWindowResize = () => {
       dispatch(
         setPageSize(
@@ -46,10 +45,12 @@ export default function Site() {
       dispatch(setPageProgression(relative, absolute, total))
     }
     window.addEventListener('resize', onWindowResize, false)
+    window.addEventListener('touchmove', onWindowResize, false)
     window.addEventListener('scroll', onPageScroll, false)
     window.addEventListener('load', onPageScroll, false)
     return () => {
       window.removeEventListener('resize', onWindowResize)
+      window.removeEventListener('touchmove', onWindowResize)
       window.removeEventListener('scroll', onPageScroll)
       window.removeEventListener('load', onPageScroll)
     }
