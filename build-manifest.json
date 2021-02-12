@@ -1,0 +1,1409 @@
+{
+  "inputs": {
+    "index.css": {
+      "bytes": 326,
+      "imports": []
+    },
+    "_snowpack/env.js": {
+      "bytes": 97,
+      "imports": []
+    },
+    "_snowpack/pkg/common/preact.module-e41cfcfd.js": {
+      "bytes": 9822,
+      "imports": []
+    },
+    "_snowpack/pkg/preact.js": {
+      "bytes": 122,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/preact.module-e41cfcfd.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/preact-render-to-string.js": {
+      "bytes": 4602,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/preact.module-e41cfcfd.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/common/hooks.module-03e96d9d.js": {
+      "bytes": 2327,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/preact.module-e41cfcfd.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/common/compat.module-f1e7964c.js": {
+      "bytes": 8366,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/hooks.module-03e96d9d.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/preact.module-e41cfcfd.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/common/index-324f3e48.js": {
+      "bytes": 2198,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/compat.module-f1e7964c.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/common/hoist-non-react-statics.cjs-39c9dff4.js": {
+      "bytes": 6122,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/compat.module-f1e7964c.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/react-redux.js": {
+      "bytes": 11862,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/compat.module-f1e7964c.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/index-324f3e48.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/hoist-non-react-statics.cjs-39c9dff4.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/hooks.module-03e96d9d.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/preact.module-e41cfcfd.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/redux.js": {
+      "bytes": 15608,
+      "imports": []
+    },
+    "_snowpack/pkg/redux-thunk.js": {
+      "bytes": 482,
+      "imports": []
+    },
+    "_snowpack/pkg/styled-components.js": {
+      "bytes": 45948,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/hoist-non-react-statics.cjs-39c9dff4.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/compat.module-f1e7964c.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/hooks.module-03e96d9d.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/preact.module-e41cfcfd.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/preact/hooks.js": {
+      "bytes": 182,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/hooks.module-03e96d9d.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/preact.module-e41cfcfd.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/static/theme.js": {
+      "bytes": 262,
+      "imports": []
+    },
+    "dist/store/actions.js": {
+      "bytes": 603,
+      "imports": []
+    },
+    "_snowpack/pkg/@fortawesome/free-solid-svg-icons.js": {
+      "bytes": 2664,
+      "imports": []
+    },
+    "_snowpack/pkg/@fortawesome/react-fontawesome.js": {
+      "bytes": 51340,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/index-324f3e48.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/compat.module-f1e7964c.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/hooks.module-03e96d9d.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/preact.module-e41cfcfd.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/utils/ExternalLink.js": {
+      "bytes": 1173,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/@fortawesome/free-solid-svg-icons.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/@fortawesome/react-fontawesome.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/utils/TimeRange.js": {
+      "bytes": 605,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/static/bio.js": {
+      "bytes": 589,
+      "imports": []
+    },
+    "dist/Site/utils/Title.js": {
+      "bytes": 1433,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/utils/AnchoredSection.js": {
+      "bytes": 1074,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/preact/hooks.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-redux.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/store/actions.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/utils/Content.js": {
+      "bytes": 673,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/utils/List.js": {
+      "bytes": 315,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/utils/ListItem.js": {
+      "bytes": 291,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/Bio.js": {
+      "bytes": 1146,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/ExternalLink.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/TimeRange.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/bio.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/Title.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/AnchoredSection.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/Content.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/List.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/ListItem.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/@fortawesome/free-brands-svg-icons.js": {
+      "bytes": 2950,
+      "imports": []
+    },
+    "_snowpack/pkg/@fortawesome/free-regular-svg-icons.js": {
+      "bytes": 802,
+      "imports": []
+    },
+    "dist/Site/Contact.js": {
+      "bytes": 2136,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/@fortawesome/free-brands-svg-icons.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/@fortawesome/free-regular-svg-icons.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/@fortawesome/free-solid-svg-icons.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/@fortawesome/react-fontawesome.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/AnchoredSection.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/Content.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/ExternalLink.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/List.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/ListItem.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/Title.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/Extra.js": {
+      "bytes": 405,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/AnchoredSection.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/Title.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/Home.js": {
+      "bytes": 510,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/AnchoredSection.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/Title.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/static/consts.js": {
+      "bytes": 36,
+      "imports": []
+    },
+    "dist/Site/Menu.js": {
+      "bytes": 4893,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/@fortawesome/free-solid-svg-icons.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/@fortawesome/react-fontawesome.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/preact/hooks.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-redux.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/consts.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/Meta.js": {
+      "bytes": 1776,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/AnchoredSection.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/Content.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/ExternalLink.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/List.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/ListItem.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/Title.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/utils.js": {
+      "bytes": 507,
+      "imports": []
+    },
+    "dist/store/thunks.js": {
+      "bytes": 2172,
+      "imports": [
+        {
+          "path": "dist/utils.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/store/actions.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/static/previews/default.png.proxy.js": {
+      "bytes": 51,
+      "imports": []
+    },
+    "dist/Site/Stars.js": {
+      "bytes": 796,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/@fortawesome/free-solid-svg-icons.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/@fortawesome/react-fontawesome.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/Project.js": {
+      "bytes": 3943,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-redux.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/consts.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/default.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/utils.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/Stars.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/ExternalLink.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/Projects.js": {
+      "bytes": 1182,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/preact/hooks.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-redux.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/store/thunks.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/Project.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/AnchoredSection.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/utils/Title.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Site/index.js": {
+      "bytes": 2160,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/preact/hooks.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-redux.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/theme.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/store/actions.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/Bio.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/Contact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/Extra.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/Home.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/Menu.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/Meta.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/Projects.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/common/three.module-29eb33ab.js": {
+      "bytes": 1009561,
+      "imports": []
+    },
+    "_snowpack/pkg/four-js.js": {
+      "bytes": 10322,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/three.module-29eb33ab.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/three.js": {
+      "bytes": 533,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/three.module-29eb33ab.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/three/examples/jsm/objects/Water2.js": {
+      "bytes": 23186,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/three.module-29eb33ab.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/common/Pass-bbdf888c.js": {
+      "bytes": 1789,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/three.module-29eb33ab.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/three/examples/jsm/postprocessing/AfterimagePass.js": {
+      "bytes": 3234,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/three.module-29eb33ab.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/Pass-bbdf888c.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/three/examples/jsm/postprocessing/EffectComposer.js": {
+      "bytes": 10676,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/three.module-29eb33ab.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/Pass-bbdf888c.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "_snowpack/pkg/three/examples/jsm/postprocessing/RenderPass.js": {
+      "bytes": 1901,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/three.module-29eb33ab.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/Pass-bbdf888c.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/Sky/fragmentShader.js": {
+      "bytes": 3909,
+      "imports": []
+    },
+    "dist/Sky/star.png.proxy.js": {
+      "bytes": 36,
+      "imports": []
+    },
+    "dist/Sky/vertexShader.js": {
+      "bytes": 2593,
+      "imports": []
+    },
+    "dist/Sky/Water0.jpg.proxy.js": {
+      "bytes": 38,
+      "imports": []
+    },
+    "dist/Sky/Water1.jpg.proxy.js": {
+      "bytes": 38,
+      "imports": []
+    },
+    "dist/Sky/index.js": {
+      "bytes": 10698,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/four-js.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/preact/hooks.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-redux.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/three.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/three/examples/jsm/objects/Water2.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/three/examples/jsm/postprocessing/AfterimagePass.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/three/examples/jsm/postprocessing/EffectComposer.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/three/examples/jsm/postprocessing/RenderPass.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/utils.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Sky/fragmentShader.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Sky/star.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Sky/vertexShader.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Sky/Water0.jpg.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Sky/Water1.jpg.proxy.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/static/previews/anakata.png.proxy.js": {
+      "bytes": 51,
+      "imports": []
+    },
+    "dist/static/previews/frustals.png.proxy.js": {
+      "bytes": 52,
+      "imports": []
+    },
+    "dist/static/previews/kalong.png.proxy.js": {
+      "bytes": 50,
+      "imports": []
+    },
+    "dist/static/previews/inversion.png.proxy.js": {
+      "bytes": 53,
+      "imports": []
+    },
+    "dist/static/previews/formol.png.proxy.js": {
+      "bytes": 50,
+      "imports": []
+    },
+    "dist/static/previews/unrest.png.proxy.js": {
+      "bytes": 50,
+      "imports": []
+    },
+    "dist/static/previews/pygal.png.proxy.js": {
+      "bytes": 49,
+      "imports": []
+    },
+    "dist/static/previews/wdb.png.proxy.js": {
+      "bytes": 47,
+      "imports": []
+    },
+    "dist/static/previews/umlaut.png.proxy.js": {
+      "bytes": 50,
+      "imports": []
+    },
+    "dist/static/previews/butterfly.png.proxy.js": {
+      "bytes": 53,
+      "imports": []
+    },
+    "dist/static/previews/anakataGL.png.proxy.js": {
+      "bytes": 53,
+      "imports": []
+    },
+    "dist/static/previews/annealation.png.proxy.js": {
+      "bytes": 55,
+      "imports": []
+    },
+    "dist/static/previews/graphit.png.proxy.js": {
+      "bytes": 51,
+      "imports": []
+    },
+    "dist/static/previews/graphitGL.png.proxy.js": {
+      "bytes": 53,
+      "imports": []
+    },
+    "dist/static/previews/hanabi.png.proxy.js": {
+      "bytes": 50,
+      "imports": []
+    },
+    "dist/static/previews/nocolon.png.proxy.js": {
+      "bytes": 51,
+      "imports": []
+    },
+    "dist/static/previews/clutterm.png.proxy.js": {
+      "bytes": 52,
+      "imports": []
+    },
+    "dist/static/previews/gnome-shell-shader-effect.png.proxy.js": {
+      "bytes": 69,
+      "imports": []
+    },
+    "dist/static/previews/gnome-shell-focus-effects-extension.png.proxy.js": {
+      "bytes": 79,
+      "imports": []
+    },
+    "dist/static/previews/jsfractals.png.proxy.js": {
+      "bytes": 54,
+      "imports": []
+    },
+    "dist/static/previews/gnome-shell-system-monitor.png.proxy.js": {
+      "bytes": 70,
+      "imports": []
+    },
+    "dist/static/previews/bemboo.png.proxy.js": {
+      "bytes": 50,
+      "imports": []
+    },
+    "dist/static/previews/atom-python-import-magic.png.proxy.js": {
+      "bytes": 68,
+      "imports": []
+    },
+    "dist/static/previews/atom-undo-tree.png.proxy.js": {
+      "bytes": 58,
+      "imports": []
+    },
+    "dist/static/previews/atom-rainbow-delimiters.png.proxy.js": {
+      "bytes": 67,
+      "imports": []
+    },
+    "dist/static/previews/atom-one-color-by-project.png.proxy.js": {
+      "bytes": 69,
+      "imports": []
+    },
+    "dist/static/previews/fawn.png.proxy.js": {
+      "bytes": 48,
+      "imports": []
+    },
+    "dist/static/previews/scudd.png.proxy.js": {
+      "bytes": 49,
+      "imports": []
+    },
+    "dist/static/projects.js": {
+      "bytes": 12434,
+      "imports": [
+        {
+          "path": "dist/static/previews/anakata.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/frustals.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/kalong.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/inversion.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/formol.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/unrest.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/pygal.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/wdb.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/umlaut.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/butterfly.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/anakataGL.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/annealation.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/graphit.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/graphitGL.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/hanabi.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/nocolon.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/clutterm.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/gnome-shell-shader-effect.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/gnome-shell-focus-effects-extension.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/jsfractals.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/gnome-shell-system-monitor.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/bemboo.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/atom-python-import-magic.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/atom-undo-tree.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/atom-rainbow-delimiters.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/atom-one-color-by-project.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/fawn.png.proxy.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/previews/scudd.png.proxy.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/store/reducer.js": {
+      "bytes": 1383,
+      "imports": [
+        {
+          "path": "dist/store/actions.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/static/projects.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "dist/index.js": {
+      "bytes": 1285,
+      "imports": [
+        {
+          "path": "_snowpack/env.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/preact.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/preact-render-to-string.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/react-redux.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/redux.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/redux-thunk.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/styled-components.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Site/index.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/Sky/index.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "dist/store/reducer.js",
+          "kind": "import-statement"
+        }
+      ]
+    }
+  },
+  "outputs": {
+    "../~~bundle~~/index.css": {
+      "imports": [],
+      "inputs": {
+        "index.css": {
+          "bytesInOutput": 225
+        }
+      },
+      "bytes": 311
+    },
+    "../~~bundle~~/dist/index.js": {
+      "imports": [],
+      "exports": [
+        "default"
+      ],
+      "inputs": {
+        "_snowpack/pkg/redux.js": {
+          "bytesInOutput": 8983
+        },
+        "_snowpack/env.js": {
+          "bytesInOutput": 25
+        },
+        "_snowpack/pkg/common/preact.module-e41cfcfd.js": {
+          "bytesInOutput": 14540
+        },
+        "_snowpack/pkg/preact.js": {
+          "bytesInOutput": 0
+        },
+        "_snowpack/pkg/preact-render-to-string.js": {
+          "bytesInOutput": 7386
+        },
+        "_snowpack/pkg/common/hooks.module-03e96d9d.js": {
+          "bytesInOutput": 3319
+        },
+        "_snowpack/pkg/common/compat.module-f1e7964c.js": {
+          "bytesInOutput": 10669
+        },
+        "_snowpack/pkg/common/index-324f3e48.js": {
+          "bytesInOutput": 1422
+        },
+        "_snowpack/pkg/common/hoist-non-react-statics.cjs-39c9dff4.js": {
+          "bytesInOutput": 6367
+        },
+        "_snowpack/pkg/react-redux.js": {
+          "bytesInOutput": 7591
+        },
+        "dist/index.js": {
+          "bytesInOutput": 765
+        },
+        "_snowpack/pkg/redux-thunk.js": {
+          "bytesInOutput": 482
+        },
+        "_snowpack/pkg/styled-components.js": {
+          "bytesInOutput": 51753
+        },
+        "_snowpack/pkg/preact/hooks.js": {
+          "bytesInOutput": 0
+        },
+        "dist/static/theme.js": {
+          "bytesInOutput": 265
+        },
+        "dist/store/actions.js": {
+          "bytesInOutput": 534
+        },
+        "_snowpack/pkg/@fortawesome/free-solid-svg-icons.js": {
+          "bytesInOutput": 2586
+        },
+        "_snowpack/pkg/@fortawesome/react-fontawesome.js": {
+          "bytesInOutput": 48147
+        },
+        "dist/Site/utils/ExternalLink.js": {
+          "bytesInOutput": 923
+        },
+        "dist/Site/utils/TimeRange.js": {
+          "bytesInOutput": 523
+        },
+        "dist/static/bio.js": {
+          "bytesInOutput": 588
+        },
+        "dist/Site/utils/Title.js": {
+          "bytesInOutput": 1279
+        },
+        "dist/Site/utils/AnchoredSection.js": {
+          "bytesInOutput": 721
+        },
+        "dist/Site/utils/Content.js": {
+          "bytesInOutput": 574
+        },
+        "dist/Site/utils/List.js": {
+          "bytesInOutput": 199
+        },
+        "dist/Site/utils/ListItem.js": {
+          "bytesInOutput": 177
+        },
+        "dist/Site/Bio.js": {
+          "bytesInOutput": 714
+        },
+        "_snowpack/pkg/@fortawesome/free-brands-svg-icons.js": {
+          "bytesInOutput": 2903
+        },
+        "_snowpack/pkg/@fortawesome/free-regular-svg-icons.js": {
+          "bytesInOutput": 779
+        },
+        "dist/Site/Contact.js": {
+          "bytesInOutput": 1407
+        },
+        "dist/Site/Extra.js": {
+          "bytesInOutput": 201
+        },
+        "dist/Site/Home.js": {
+          "bytesInOutput": 319
+        },
+        "dist/static/consts.js": {
+          "bytesInOutput": 28
+        },
+        "dist/Site/Menu.js": {
+          "bytesInOutput": 4446
+        },
+        "dist/Site/Meta.js": {
+          "bytesInOutput": 1413
+        },
+        "dist/utils.js": {
+          "bytesInOutput": 440
+        },
+        "dist/store/thunks.js": {
+          "bytesInOutput": 1935
+        },
+        "dist/static/previews/default.png.proxy.js": {
+          "bytesInOutput": 69
+        },
+        "dist/Site/Stars.js": {
+          "bytesInOutput": 530
+        },
+        "dist/Site/Project.js": {
+          "bytesInOutput": 3744
+        },
+        "dist/Site/Projects.js": {
+          "bytesInOutput": 748
+        },
+        "dist/Site/index.js": {
+          "bytesInOutput": 1548
+        },
+        "_snowpack/pkg/common/three.module-29eb33ab.js": {
+          "bytesInOutput": 927272
+        },
+        "_snowpack/pkg/four-js.js": {
+          "bytesInOutput": 8798
+        },
+        "_snowpack/pkg/three.js": {
+          "bytesInOutput": 0
+        },
+        "_snowpack/pkg/three/examples/jsm/objects/Water2.js": {
+          "bytesInOutput": 19761
+        },
+        "_snowpack/pkg/common/Pass-bbdf888c.js": {
+          "bytesInOutput": 959
+        },
+        "_snowpack/pkg/three/examples/jsm/postprocessing/AfterimagePass.js": {
+          "bytesInOutput": 2698
+        },
+        "_snowpack/pkg/three/examples/jsm/postprocessing/EffectComposer.js": {
+          "bytesInOutput": 9185
+        },
+        "_snowpack/pkg/three/examples/jsm/postprocessing/RenderPass.js": {
+          "bytesInOutput": 1585
+        },
+        "dist/Sky/fragmentShader.js": {
+          "bytesInOutput": 3925
+        },
+        "dist/Sky/star.png.proxy.js": {
+          "bytesInOutput": 51
+        },
+        "dist/Sky/vertexShader.js": {
+          "bytesInOutput": 2607
+        },
+        "dist/Sky/Water0.jpg.proxy.js": {
+          "bytesInOutput": 55
+        },
+        "dist/Sky/Water1.jpg.proxy.js": {
+          "bytesInOutput": 55
+        },
+        "dist/Sky/index.js": {
+          "bytesInOutput": 9271
+        },
+        "dist/static/previews/anakata.png.proxy.js": {
+          "bytesInOutput": 69
+        },
+        "dist/static/previews/frustals.png.proxy.js": {
+          "bytesInOutput": 71
+        },
+        "dist/static/previews/kalong.png.proxy.js": {
+          "bytesInOutput": 67
+        },
+        "dist/static/previews/inversion.png.proxy.js": {
+          "bytesInOutput": 73
+        },
+        "dist/static/previews/formol.png.proxy.js": {
+          "bytesInOutput": 67
+        },
+        "dist/static/previews/unrest.png.proxy.js": {
+          "bytesInOutput": 67
+        },
+        "dist/static/previews/pygal.png.proxy.js": {
+          "bytesInOutput": 65
+        },
+        "dist/static/previews/wdb.png.proxy.js": {
+          "bytesInOutput": 61
+        },
+        "dist/static/previews/umlaut.png.proxy.js": {
+          "bytesInOutput": 67
+        },
+        "dist/static/previews/butterfly.png.proxy.js": {
+          "bytesInOutput": 73
+        },
+        "dist/static/previews/anakataGL.png.proxy.js": {
+          "bytesInOutput": 73
+        },
+        "dist/static/previews/annealation.png.proxy.js": {
+          "bytesInOutput": 77
+        },
+        "dist/static/previews/graphit.png.proxy.js": {
+          "bytesInOutput": 69
+        },
+        "dist/static/previews/graphitGL.png.proxy.js": {
+          "bytesInOutput": 73
+        },
+        "dist/static/previews/hanabi.png.proxy.js": {
+          "bytesInOutput": 67
+        },
+        "dist/static/previews/nocolon.png.proxy.js": {
+          "bytesInOutput": 69
+        },
+        "dist/static/previews/clutterm.png.proxy.js": {
+          "bytesInOutput": 71
+        },
+        "dist/static/previews/gnome-shell-shader-effect.png.proxy.js": {
+          "bytesInOutput": 105
+        },
+        "dist/static/previews/gnome-shell-focus-effects-extension.png.proxy.js": {
+          "bytesInOutput": 125
+        },
+        "dist/static/previews/jsfractals.png.proxy.js": {
+          "bytesInOutput": 75
+        },
+        "dist/static/previews/gnome-shell-system-monitor.png.proxy.js": {
+          "bytesInOutput": 107
+        },
+        "dist/static/previews/bemboo.png.proxy.js": {
+          "bytesInOutput": 67
+        },
+        "dist/static/previews/atom-python-import-magic.png.proxy.js": {
+          "bytesInOutput": 103
+        },
+        "dist/static/previews/atom-undo-tree.png.proxy.js": {
+          "bytesInOutput": 83
+        },
+        "dist/static/previews/atom-rainbow-delimiters.png.proxy.js": {
+          "bytesInOutput": 101
+        },
+        "dist/static/previews/atom-one-color-by-project.png.proxy.js": {
+          "bytesInOutput": 105
+        },
+        "dist/static/previews/fawn.png.proxy.js": {
+          "bytesInOutput": 63
+        },
+        "dist/static/previews/scudd.png.proxy.js": {
+          "bytesInOutput": 65
+        },
+        "dist/static/projects.js": {
+          "bytesInOutput": 11132
+        },
+        "dist/store/reducer.js": {
+          "bytesInOutput": 1203
+        }
+      },
+      "bytes": 1196516
+    }
+  }
+}
