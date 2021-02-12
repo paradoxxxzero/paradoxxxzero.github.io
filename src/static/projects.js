@@ -9,6 +9,7 @@ import wdb from './previews/wdb.png'
 import umlaut from './previews/umlaut.png'
 import butterfly from './previews/butterfly.png'
 import anakataGL from './previews/anakataGL.png'
+import annealation from './previews/annealation.png'
 import graphit from './previews/graphit.png'
 import graphitGL from './previews/graphitGL.png'
 import hanabi from './previews/hanabi.png'
@@ -62,6 +63,18 @@ export default [
     type: 'experiments',
     description: '4 dimensions mesh renderer in WebGL.',
     preview: anakataGL,
+  },
+  {
+    id: 'paradoxxxzero/annealation',
+    name: 'Annealation',
+    url: 'https://github.com/paradoxxxzero/annealation',
+    demoUrl: 'https://paradoxxxzero.github.com/annealation',
+    languages: ['ECMAScript'],
+    libraries: ['three.js'],
+    major: true,
+    type: 'experiments',
+    description: 'Gravitational N-Body simulation in WebGL.',
+    preview: annealation,
   },
   {
     id: 'paradoxxxzero/inversion',

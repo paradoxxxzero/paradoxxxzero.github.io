@@ -57,6 +57,7 @@ const WrappingExternalLink = styled(ExternalLink)`
 
   &::before {
     position: absolute;
+    pointer-events: none;
     content: '';
     width: 100%;
     height: 100%;
