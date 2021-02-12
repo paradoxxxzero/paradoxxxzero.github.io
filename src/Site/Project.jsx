@@ -84,6 +84,7 @@ const ProjectLink = styled(ExternalLink)`
 
 const Preview = styled.img`
   width: 100%;
+  height: 100%;
   overflow: hidden;
   object-fit: cover;
   min-width: 256px;
