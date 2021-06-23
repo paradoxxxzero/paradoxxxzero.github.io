@@ -9,7 +9,7 @@ export default function Home() {
         Full Stack Developper
         <>Skilled Pythonist</>
         <>Seasoned ECMAScripter</>
-        <>Open Source Enthousiast</>
+        <>Open Source Enthusiast</>
       </Title>
     </AnchoredSection>
   )
