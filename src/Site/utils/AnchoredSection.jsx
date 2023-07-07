@@ -1,8 +1,7 @@
-import { h } from 'preact'
-import { useCallback, useEffect, useRef } from 'preact/hooks'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { setAnchor } from '../../store/actions'
+import { useCallback, useEffect, useRef } from 'react'
 
 const Section = styled.section`
   display: flex;

@@ -1,4 +1,3 @@
-import { h } from 'preact'
 import styled from 'styled-components'
 import AnchoredSection from './utils/AnchoredSection'
 import Content from './utils/Content'
@@ -26,8 +25,8 @@ export default function Meta() {
         </ListTitle>
         <List>
           <ListItem>
-            <ExternalLink url="https://preactjs.com/">preact</ExternalLink>{' '}
-            &mdash; the lightweight implementation of React.
+            <ExternalLink url="https://react.dev/">React</ExternalLink> &mdash;
+            for building the structure.
           </ListItem>
           <ListItem>
             <ExternalLink url="https://redux.js.org/">redux</ExternalLink>{' '}
@@ -38,14 +37,12 @@ export default function Meta() {
             &mdash; for a simple and powerful API on top of WebGL.
           </ListItem>
           <ListItem>
-            <ExternalLink url="https://www.snowpack.dev/">
-              snowpack
-            </ExternalLink>{' '}
-            &mdash; to put everything together.
+            <ExternalLink url="https://vitejs.dev/">vite</ExternalLink> &mdash;
+            to put everything together.
           </ListItem>
         </List>
       </Content>
-      <BottomTitle level={3}>
+      <BottomTitle $level={3}>
         Browse this site source code at
         <ExternalLink url="https://github.com/paradoxxxzero/paradoxxxzero.github.io/tree/src">
           github.com/paradoxxxzero/paradoxxxzero.github.io

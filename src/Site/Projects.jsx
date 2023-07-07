@@ -1,11 +1,10 @@
-import { h } from 'preact'
-import { useEffect } from 'preact/hooks'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { fetchStars } from '../store/thunks'
 import Project from './Project'
 import AnchoredSection from './utils/AnchoredSection'
 import Title from './utils/Title'
+import { useEffect } from 'react'
 
 const TYPES = {
   projects: 'Projects',
@@ -33,9 +32,11 @@ export default function Projects({ type }) {
     <AnchoredSection anchor={type}>
       <Title>{TYPES[type]}</Title>
       <ProjectList>
-        {projects.map(project => (
-          <Project key={project.id} {...project} />
-        ))}
+        {projects
+          .filter(({ hidden }) => !hidden)
+          .map(project => (
+            <Project key={project.id} {...project} />
+          ))}
       </ProjectList>
     </AnchoredSection>
   )

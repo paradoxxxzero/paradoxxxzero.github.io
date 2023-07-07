@@ -26,8 +26,36 @@ import atomRainbowDelimiters from './previews/atom-rainbow-delimiters.png'
 import atomOneColorByProject from './previews/atom-one-color-by-project.png'
 import fawn from './previews/fawn.png'
 import scudd from './previews/scudd.png'
+import helicity from './previews/helicity.png'
+import coxeterExplorer from './previews/coxeter-explorer.png'
+import raymarcher from './previews/raymarcher.png'
 
 export default [
+  {
+    id: 'paradoxxxzero/coxeter-explorer',
+    name: 'Coxeter Explorer',
+    url: 'https://github.com/paradoxxxzero/coxeter-explorer',
+    demoUrl: 'https://florian.mounier.dev/coxeter-explorer',
+    languages: ['ECMAScript', 'glsl'],
+    libraries: ['three.js'],
+    major: true,
+    type: 'experiments',
+    description: 'A N dimensional coxeter group explorer.',
+    preview: coxeterExplorer,
+  },
+  {
+    id: 'paradoxxxzero/helicity',
+    name: 'Helicity',
+    url: 'https://github.com/paradoxxxzero/helicity',
+    demoUrl: 'https://helicity.vercel.app/',
+    languages: ['ECMAScript'],
+    libraries: ['three.js'],
+    major: true,
+    type: 'experiments',
+    description: 'Shoot ’em up with power-ups as orbital shields.',
+    preview: helicity,
+    unreleased: true,
+  },
   {
     id: 'paradoxxxzero/kalong',
     name: 'Kalong',
@@ -40,23 +68,10 @@ export default [
     preview: kalong,
   },
   {
-    id: 'paradoxxxzero/frustals',
-    name: 'Frustals',
-    url: 'https://github.com/paradoxxxzero/frustals',
-    demoUrl: 'https://paradoxxxzero.github.io/frustals',
-    languages: ['ECMAScript', 'Rust'],
-    libraries: ['wasm-bindgen'],
-    major: true,
-    type: 'experiments',
-    description:
-      'Fractal plotter written in Rust with a web interface base on WASM.',
-    preview: frustals,
-  },
-  {
     id: 'paradoxxxzero/anakataGL',
     name: 'AnakataGL',
     url: 'https://github.com/paradoxxxzero/anakataGL',
-    demoUrl: 'https://paradoxxxzero.github.io/anakataGL',
+    demoUrl: 'https://florian.mounier.dev/anakataGL',
     languages: ['ECMAScript'],
     libraries: ['three.js'],
     major: true,
@@ -68,7 +83,7 @@ export default [
     id: 'paradoxxxzero/annealation',
     name: 'Annealation',
     url: 'https://github.com/paradoxxxzero/annealation',
-    demoUrl: 'https://paradoxxxzero.github.io/annealation',
+    demoUrl: 'https://florian.mounier.dev/annealation',
     languages: ['ECMAScript'],
     libraries: ['three.js'],
     major: true,
@@ -77,9 +92,34 @@ export default [
     preview: annealation,
   },
   {
+    id: 'paradoxxxzero/raymarcher',
+    name: 'Raymarcher',
+    url: 'https://github.com/paradoxxxzero/raymarcher',
+    demoUrl: 'https://florian.mounier.dev/raymarcher',
+    languages: ['ECMAScript', 'glsl'],
+    libraries: [],
+    type: 'experiments',
+    description: 'A simple glsl editor with bundled raymarching functions.',
+    preview: raymarcher,
+  },
+  {
+    id: 'paradoxxxzero/frustals',
+    name: 'Frustals',
+    url: 'https://github.com/paradoxxxzero/frustals',
+    demoUrl: 'https://florian.mounier.dev/frustals',
+    languages: ['ECMAScript', 'Rust'],
+    libraries: ['wasm-bindgen'],
+    major: false,
+    type: 'experiments',
+    description:
+      'Fractal plotter written in Rust with a web interface base on WASM.',
+    preview: frustals,
+  },
+  {
     id: 'paradoxxxzero/inversion',
     name: 'Inversion',
     url: 'https://github.com/paradoxxxzero/inversion',
+    demoUrl: 'https://inversion-one.vercel.app/',
     languages: ['ECMAScript'],
     libraries: ['three.js', 'React', 'Redux'],
     major: true,
@@ -173,7 +213,7 @@ export default [
   {
     id: 'paradoxxxzero/anakata',
     name: 'Anakata',
-    url: 'https://paradoxxxzero.github.io/anakata/',
+    url: 'https://florian.mounier.dev/anakata/',
     languages: ['ECMAScript'],
     libraries: ['canvas'],
     major: false,
@@ -185,7 +225,7 @@ export default [
   {
     id: 'paradoxxxzero/hanabi',
     name: 'Hanabi',
-    url: 'https://paradoxxxzero.github.io/hanabi/',
+    url: 'https://florian.mounier.dev/hanabi/',
     languages: ['ECMAScript'],
     libraries: ['canvas'],
     major: false,
@@ -214,6 +254,7 @@ export default [
     type: 'projects',
     description: 'Atom extension to automatically import python modules using',
     preview: atomPythonImportMagic,
+    hidden: true,
   },
   {
     id: 'paradoxxxzero/atom-undo-tree',
@@ -226,6 +267,7 @@ export default [
     description:
       'Atom extension to transform undo/redo in an undo tree similar to emacs',
     preview: atomUndoTree,
+    hidden: true,
   },
   {
     id: 'paradoxxxzero/atom-rainbow-delimiters',
@@ -237,6 +279,7 @@ export default [
     type: 'projects',
     description: 'Atom extension to highlight delimiters around the cursor.',
     preview: atomRainbowDelimiters,
+    hidden: true,
   },
   {
     id: 'paradoxxxzero/atom-one-theme-color-by-project',
@@ -249,6 +292,7 @@ export default [
     description:
       'Atom extension to colorize Atom One themes according to the current',
     preview: atomOneColorByProject,
+    hidden: true,
   },
   {
     id: 'paradoxxxzero/jinja2-mode',
@@ -269,6 +313,7 @@ export default [
     major: false,
     type: 'projects',
     description: 'Tornado template mode for Emacs.',
+    hidden: true,
   },
   {
     id: 'paradoxxxzero/graphit',
@@ -279,14 +324,14 @@ export default [
     libraries: ['canvas'],
     major: true,
     type: 'experiments',
-    description: 'Simple y = f(x) function plotter.',
+    description: 'Advanced function plotter and sound generator.',
     preview: graphit,
   },
   {
     id: 'paradoxxxzero/graphitGL',
     name: 'GraphitGL',
     url: 'https://github.com/paradoxxxzero/graphitGL',
-    demoUrl: 'https://paradoxxxzero.github.io/graphitGL',
+    demoUrl: 'https://florian.mounier.dev/graphitGL',
     languages: ['ECMAScript'],
     libraries: ['three.js'],
     type: 'experiments',
@@ -317,6 +362,7 @@ export default [
     description:
       'Gnome extension that allows to add glsl shaders on specific windows.',
     preview: gnomeShellShaderEffect,
+    hidden: true,
   },
   {
     id: 'paradoxxxzero/gnome-shell-focus-effects-extension',
@@ -328,6 +374,7 @@ export default [
     major: false,
     description: 'Gnome extension that allows to add custom effects on window',
     preview: gnomeShellFocusEffectsExtension,
+    hidden: true,
   },
   {
     id: 'paradoxxxzero/clutterm',
@@ -345,7 +392,7 @@ export default [
     id: 'paradoxxxzero/jsfractals',
     name: 'Jsfsactals',
     url: 'https://github.com/paradoxxxzero/jsfractals',
-    demoUrl: 'https://paradoxxxzero.github.io/jsfractals',
+    demoUrl: 'https://florian.mounier.dev/jsfractals',
     languages: ['ECMAScript'],
     libraries: ['canvas', 'jQuery'],
     type: 'experiments',
@@ -386,5 +433,6 @@ export default [
     description:
       'Small lib for inspecting React PureComponent render triggers.',
     preview: scudd,
+    hidden: true,
   },
 ]

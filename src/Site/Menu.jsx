@@ -1,15 +1,14 @@
-import { h } from 'preact'
 import { faArrowUp, faSpaceShuttle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useEffect, useRef } from 'preact/hooks'
 import { useSelector } from 'react-redux'
 import styled, { css } from 'styled-components'
 import { MOBILE_MAX_WIDTH } from '../static/consts'
+import { useEffect, useRef } from 'react'
 
 const Refs = styled.ul`
   position: relative;
   display: flex;
-  flex-direction: ${props => (props.expanded ? 'row' : 'column')};
+  flex-direction: ${props => (props.$expanded ? 'row' : 'column')};
   list-style: none;
   margin: 0;
   padding: 0;
@@ -19,13 +18,13 @@ const Refs = styled.ul`
 const Ref = styled.li`
   color: ${props => props.theme.fg.normal};
   cursor: pointer;
-  font-weight: ${props => (props.active ? 'bold' : 'normal')};
+  font-weight: ${props => (props.$active ? 'bold' : 'normal')};
   &:hover {
     background: ${props => props.theme.bg.normal};
   }
 
-  padding: 1em ${props => (props.expanded ? '2em' : '1em')};
-  font-size: ${props => (props.expanded ? '1em' : '1.25em')};
+  padding: 1em ${props => (props.$expanded ? '2em' : '1em')};
+  font-size: ${props => (props.$expanded ? '1em' : '1.25em')};
   user-select: none;
 `
 
@@ -54,7 +53,7 @@ const Nav = styled.nav`
   z-index: 42;
 
   ${props =>
-    props.expanded &&
+    props.$expanded &&
     css`
       border-top: 2px solid ${props => props.theme.fg.normal};
       min-width: 33%;
@@ -148,7 +147,7 @@ export default function Menu({ onScrollRequested }) {
       setPosition()
     } else {
       // Wait for css animation
-      // TODO: Retrieve from theme
+      // TODO: Retrieve from theme
       timeoutRef.current = setTimeout(setPosition, 250)
     }
     if (expanded) {
@@ -165,19 +164,19 @@ export default function Menu({ onScrollRequested }) {
   }, [hIndicatorRef, vIndicatorRef, timeoutRef, anchorsRefs, active, expanded])
 
   return (
-    <Nav anchor="extra" expanded={expanded}>
+    <Nav anchor="extra" $expanded={expanded}>
       <HIndicator ref={hIndicatorRef} />
       <VIndicator ref={vIndicatorRef} />
-      <Refs expanded={expanded}>
+      <Refs $expanded={expanded}>
         {MENU_ITEMS.map(({ name, content }) => (
           <Ref
             key={name}
-            anchor={name}
-            active={active === name}
+            $anchor={name}
+            $active={active === name}
+            $expanded={expanded}
             onClick={goTo(name)}
             ref={setAnchorRef(name)}
             title={typeof content === 'string' ? content : null}
-            expanded={expanded}
           >
             {expanded || typeof content !== 'string' ? content : content[0]}
           </Ref>

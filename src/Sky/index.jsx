@@ -1,29 +1,18 @@
-import { h } from 'preact'
-import {
-  HyperEdgeGeometry,
-  HyperGeometry,
-  HyperMesh,
-  HyperRenderer,
-  shapes,
-} from 'four-js'
-import { useEffect, useLayoutEffect, useMemo, useRef } from 'preact/hooks'
+import { HyperMesh, HyperRenderer, shapes } from 'four-js'
+import { useEffect, useMemo, useRef } from 'react'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
 import {
+  ACESFilmicToneMapping,
   AdditiveBlending,
   BackSide,
-  BoxBufferGeometry,
   BufferGeometry,
   CatmullRomCurve3,
-  Color,
   DoubleSide,
   Float32BufferAttribute,
   LineBasicMaterial,
-  LineSegments,
-  Mesh,
   MeshLambertMaterial,
   PerspectiveCamera,
-  PlaneBufferGeometry,
+  PlaneGeometry,
   PointLight,
   Points,
   PointsMaterial,
@@ -33,33 +22,25 @@ import {
   TextureLoader,
   Vector2,
   Vector3,
-  VertexColors,
   WebGLRenderer,
+  Mesh,
+  BoxGeometry,
 } from 'three'
 import { Water } from 'three/examples/jsm/objects/Water2'
-import { AfterimagePass } from 'three/examples/jsm/postprocessing/AfterimagePass'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 import { linearClamp } from '../utils'
-import fragmentShader from './fragmentShader.glsl'
+import fragmentShader from './fragmentShader.glsl?raw'
 import Star from './star.png'
-import vertexShader from './vertexShader.glsl'
+import vertexShader from './vertexShader.glsl?raw'
 import Water0 from './Water0.jpg'
 import Water1 from './Water1.jpg'
-
-const Canvas = styled.canvas`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`
 
 const STARS = 5000
 
 const cameraCurve = new CatmullRomCurve3(
   [
-    new Vector3(0, 1, 2),
+    new Vector3(0, 1, 2.5),
     new Vector3(0, 2, 0),
     // new Vector3(0, 0.5, -100),
     // new Vector3(0, 4, -200),
@@ -72,14 +53,15 @@ const cameraCurve = new CatmullRomCurve3(
 )
 
 export default function Sky() {
-  const threeRef = useRef()
-  const canvasRef = useRef()
   const { relative: progression, total: totalHeight } = useSelector(
     state => state.progression
   )
-  const { width: winWidth, height: winHeight, devicePixelRatio } = useSelector(
-    state => state.page
-  )
+  const threeRef = useRef()
+  const {
+    width: winWidth,
+    height: winHeight,
+    devicePixelRatio,
+  } = useSelector(state => state.page)
 
   const anchors = useSelector(state => state.anchors)
 
@@ -89,9 +71,17 @@ export default function Sky() {
         start: 0,
         end: (1.075 * anchors.bio) / (totalHeight - winHeight),
       },
+      night: {
+        start: (1.1 * anchors.bio) / (totalHeight - winHeight),
+        end: 0.6,
+      },
       stars: {
         start: (anchors.bio - winHeight) / (totalHeight - winHeight),
         end: anchors.contact / (totalHeight - winHeight),
+      },
+      water: {
+        start: anchors.projects / (totalHeight - winHeight),
+        end: 0.65,
       },
       travelling: {
         start: anchors.contact / (totalHeight - winHeight),
@@ -105,14 +95,19 @@ export default function Sky() {
     [anchors, winHeight, totalHeight]
   )
 
-  useLayoutEffect(() => {
-    const { current: canvas } = canvasRef
+  useEffect(() => {
     let renderer = null
 
     try {
-      renderer = new WebGLRenderer({ canvas, antialias: true })
+      renderer = new WebGLRenderer()
       renderer.setPixelRatio(devicePixelRatio)
       renderer.setSize(winWidth, winHeight)
+      renderer.setPixelRatio(window.devicePixelRatio)
+      renderer.setSize(window.innerWidth, window.innerHeight)
+      renderer.toneMapping = ACESFilmicToneMapping
+      renderer.toneMappingExposure = 0.25
+      renderer.domElement.id = 'canvas'
+      document.body.appendChild(renderer.domElement)
     } catch (e) {
       return
     }
@@ -121,13 +116,13 @@ export default function Sky() {
     camera.zoom = Math.min(1, winWidth / winHeight)
 
     const uniforms = {
-      luminance: { value: 1 },
-      turbidity: { value: 10 },
-      rayleigh: { value: 2 },
+      turbidity: { value: 20 },
+      rayleigh: { value: 3 },
       mieCoefficient: { value: 0.005 },
       mieDirectionalG: { value: 0.995 },
       sunPosition: { value: new Vector3() },
       up: { value: new Vector3(0, 1, 0) },
+      shade: { value: 0 },
     }
     const skyMaterial = new ShaderMaterial({
       fragmentShader,
@@ -135,8 +130,7 @@ export default function Sky() {
       uniforms,
       side: BackSide,
     })
-
-    const sky = new Mesh(new BoxBufferGeometry(1, 1, 1), skyMaterial)
+    const sky = new Mesh(new BoxGeometry(1, 1, 1), skyMaterial)
     sky.scale.setScalar(9000)
 
     const scene = new Scene()
@@ -199,7 +193,7 @@ export default function Sky() {
       map: new TextureLoader().load(Star, () => {
         renderer.render(scene, camera)
       }),
-      vertexColors: VertexColors,
+      vertexColors: true,
       blending: AdditiveBlending,
       transparent: true,
       opacity: 1,
@@ -210,7 +204,7 @@ export default function Sky() {
     scene.add(stars)
 
     const sunSpherical = new Spherical()
-    // const groundGeometry = new PlaneBufferGeometry(500, 500)
+    // const groundGeometry = new PlaneGeometry(500, 500)
     // const groundMaterial = new MeshStandardMaterial({
     //   color: 0xffffff,
     //   metalness: 0.5,
@@ -221,7 +215,7 @@ export default function Sky() {
     // scene.add(ground)
 
     const textureLoader = new TextureLoader()
-    const waterGeometry = new PlaneBufferGeometry(500, 500)
+    const waterGeometry = new PlaneGeometry(500, 500)
     const water = new Water(waterGeometry, {
       color: '#ffffff',
       scale: 5,
@@ -233,78 +227,55 @@ export default function Sky() {
     })
 
     water.rotation.x = -Math.PI / 2
+    water.visible = false
     scene.add(water)
 
     const { tesseract } = shapes
     const hyperRenderer = new HyperRenderer(1.5, 5)
-    const hyperGeometry = new HyperGeometry(
-      tesseract.vertices,
-      tesseract.faces,
-      tesseract.cells,
-      hyperRenderer
-    )
-    const hyperEdgeGeometry = new HyperEdgeGeometry(
-      tesseract.vertices,
-      tesseract.faces,
-      tesseract.cells,
-      hyperRenderer
-    )
-    const materials = [
-      '#5c6370',
-      '#e06c75',
-      '#98c379',
-      '#d19a66',
-      '#61afef',
-      '#c678dd',
-      '#56b6c2',
-      '#403e41',
-    ].map(color => {
-      const material = new MeshLambertMaterial()
-      material.opacity = 0.25
-      material.transparent = true
-      material.blending = AdditiveBlending
-      material.side = DoubleSide
-      material.depthWrite = false
-      material.color = new Color(color)
-      return material
-    })
-    const edgeMaterials = [
-      '#5c6370',
-      '#e06c75',
-      '#98c379',
-      '#d19a66',
-      '#61afef',
-      '#c678dd',
-      '#56b6c2',
-      '#403e41',
-    ].map(color => {
-      const material = new LineBasicMaterial()
-      material.opacity = 0.1
-      material.transparent = true
-      material.blending = AdditiveBlending
-      material.side = DoubleSide
-      material.depthWrite = false
-      material.linewidth = 2
-      material.color = new Color(color)
-      return material
+    const hyperMesh = new HyperMesh(tesseract, {
+      all: {
+        colors: [
+          '#5c6370',
+          '#e06c75',
+          '#98c379',
+          '#d19a66',
+          '#61afef',
+          '#c678dd',
+          '#56b6c2',
+          '#403e41',
+        ],
+      },
+      faces: {
+        material: new MeshLambertMaterial({
+          opacity: 0.25,
+          transparent: true,
+          blending: AdditiveBlending,
+          side: DoubleSide,
+          depthWrite: false,
+          vertexColors: true,
+        }),
+      },
+      edges: {
+        material: new LineBasicMaterial({
+          opacity: 0.1,
+          transparent: true,
+          blending: AdditiveBlending,
+          side: DoubleSide,
+          depthWrite: false,
+          linewidth: 2,
+          vertexColors: true,
+        }),
+      },
     })
 
-    const hyperMesh = new HyperMesh(hyperGeometry, materials)
-    const hyperEdges = new HyperMesh(
-      hyperEdgeGeometry,
-      edgeMaterials,
-      LineSegments
-    )
     hyperMesh.position.copy(cameraCurve.getPointAt(1).multiplyScalar(1.005))
-    hyperEdges.position.copy(hyperMesh.position)
     scene.add(hyperMesh)
-    scene.add(hyperEdges)
 
     const composer = new EffectComposer(renderer)
     composer.addPass(new RenderPass(scene, camera))
-    const afterimagePass = new AfterimagePass()
-    afterimagePass.uniforms.damp.value = 0.85
-    composer.addPass(afterimagePass)
+    // const afterimagePass = new AfterimagePass()
+    // afterimagePass.uniforms.damp.value = 0.85
+    // composer.addPass(afterimagePass)
 
     window.sky = threeRef.current = {
       scene,
@@ -312,17 +283,17 @@ export default function Sky() {
       renderer,
       composer,
       sky,
+      water,
       stars,
       sunSpherical,
       sunLight,
       hyperRenderer,
       hyperMesh,
-      hyperEdges,
     }
 
     composer.render(scene)
     // We voluntarly remove width height devicePixelRatio since it's handled separately
-  }, [canvasRef]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const { current: three } = threeRef
@@ -343,9 +314,10 @@ export default function Sky() {
     if (!three) {
       return
     }
-    const { composer, scene, hyperMesh, hyperEdges, hyperRenderer } = three
+    const { composer, scene, water, hyperMesh, hyperRenderer } = three
+    let raf = null
     const render = () => {
-      requestAnimationFrame(render)
+      raf = requestAnimationFrame(render)
       if (hyperMesh.visible) {
         hyperRenderer.rotate({
           xy: 0,
@@ -355,12 +327,14 @@ export default function Sky() {
           yw: 10,
           zw: 10,
         })
-        hyperMesh.update()
-        hyperEdges.update()
+        hyperMesh.update(hyperRenderer)
       }
-      composer.render(scene)
+      if (hyperMesh.visible || water.visible) {
+        composer.render(scene)
+      }
     }
-    requestAnimationFrame(render)
+    raf = requestAnimationFrame(render)
+    return () => cancelAnimationFrame(raf)
   }, [])
 
   useEffect(() => {
@@ -373,13 +347,12 @@ export default function Sky() {
       scene,
       camera,
       sky,
+      water,
       stars,
       sunSpherical,
       sunLight,
       hyperMesh,
-      hyperEdges,
     } = three
-
     const sunProgression = linearClamp(progression, boundaries.day)
     sunSpherical.radius = 1000
     sunSpherical.theta = (Math.PI / 2 - Math.PI * sunProgression) / Math.PI
@@ -392,6 +365,12 @@ export default function Sky() {
     } = sky.material
     sunPosition.value.setFromSpherical(sunSpherical)
     sunLight.position.setFromSpherical(sunSpherical)
+
+    const nightProgression = linearClamp(progression, boundaries.night)
+    sky.material.uniforms.shade.value = nightProgression
+
+    const waterProgression = linearClamp(progression, boundaries.water)
+    water.visible = waterProgression > 0 && waterProgression < 1
 
     const starsProgression = linearClamp(progression, boundaries.stars)
     stars.material.opacity = Math.pow(starsProgression, 3)
@@ -411,19 +390,14 @@ export default function Sky() {
     camera.updateProjectionMatrix()
 
     const tesseractProgression = linearClamp(progression, boundaries.tesseract)
-    hyperEdges.visible = hyperMesh.visible = !!tesseractProgression
-    hyperEdges.cellSize = hyperMesh.cellSize =
+    hyperMesh.visible = !!tesseractProgression
+    hyperMesh.config.faces.splitScale = hyperMesh.config.edges.splitScale =
       tesseractProgression * tesseractProgression * tesseractProgression * 100
     const scaleDownEffect = 50 - 49 * tesseractProgression
-    hyperEdges.scale.setScalar(scaleDownEffect)
     hyperMesh.scale.setScalar(scaleDownEffect)
 
     composer.render(scene)
   }, [progression, boundaries])
 
-  return (
-    <aside>
-      <Canvas ref={canvasRef} tabIndex="1" />
-    </aside>
-  )
+  return null
 }

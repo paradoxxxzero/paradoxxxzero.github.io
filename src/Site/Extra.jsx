@@ -1,4 +1,3 @@
-import { h } from 'preact'
 import styled from 'styled-components'
 import AnchoredSection from './utils/AnchoredSection'
 import Title from './utils/Title'

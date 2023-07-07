@@ -12,7 +12,16 @@ export const extractStars = projects =>
 export const clamp = (x, min, max) =>
   isNaN(x) ? min : Math.min(max, Math.max(min, x))
 
-export const linearClamp = (x, { start, end }) =>
-  clamp((x - start) / (end - start), 0, 1)
+export const linearClamp = (x, { start, end }, min = 0, max = 1) =>
+  clamp((x - start) / (end - start), min, max)
 
 export const currentTime = () => new Date().getTime()
+export const debounce = (fn, delay) => {
+  let timeout
+  return (...args) => {
+    clearTimeout(timeout)
+    timeout = setTimeout(() => fn(...args), delay)
+
+    return () => clearTimeout(timeout)
+  }
+}

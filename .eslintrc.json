@@ -1,15 +1,18 @@
 {
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 13,
+    "sourceType": "module"
+  },
   "plugins": ["prettier", "import"],
   "rules": {
     "prettier/prettier": "error",
     "import/no-anonymous-default-export": "off"
   },
-  "extends": [
-    "react-app",
-    "plugin:prettier/recommended",
-    "prettier/react",
-    "plugin:jest-playwright/recommended"
-  ],
+  "extends": ["eslint:recommended", "react-app", "plugin:prettier/recommended"],
   "globals": {
     "globalThis": false
   }

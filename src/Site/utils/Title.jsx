@@ -1,17 +1,16 @@
-import { h } from 'preact'
-import { toChildArray } from 'preact'
+import { Children } from 'react'
 import styled from 'styled-components'
 
 const Header = styled.header`
   margin-top: 2em;
   margin-bottom: 2em;
-  margin-right: ${props => (props.left ? '1em' : 0)};
-  margin-left: ${props => (props.left ? 0 : '1em')};
+  margin-right: ${props => (props.$left ? '1em' : 0)};
+  margin-left: ${props => (props.$left ? 0 : '1em')};
   display: flex;
   flex-direction: column;
-  text-align: ${props => (props.left ? 'right' : 'left')};
-  min-width: ${props => (props.left ? 57 : 48)}%;
-  align-self: ${props => (props.left ? 'flex-start' : 'flex-end')};
+  text-align: ${props => (props.$left ? 'right' : 'left')};
+  min-width: ${props => (props.$left ? 57 : 48)}%;
+  align-self: ${props => (props.$left ? 'flex-start' : 'flex-end')};
 `
 
 const UnderlinedTitle = styled.div`
@@ -20,15 +19,15 @@ const UnderlinedTitle = styled.div`
   border-bottom: 2px solid ${props => props.theme.fg.normal};
   font-size: 2em;
   align-self: flex-end;
-  margin-left: ${props => (props.left ? '1em' : 0)};
+  margin-left: ${props => (props.$left ? '1em' : 0)};
   margin-bottom: 0.5em;
 `
 
 const SubTitle = styled.div`
   color: ${props => props.theme.fg.mute};
   font-size: 1.25em;
-  margin-left: ${props => (props.left ? '1em' : 0)};
-  margin-right: ${props => (props.left ? 0 : '1em')};
+  margin-left: ${props => (props.$left ? '1em' : 0)};
+  margin-right: ${props => (props.$left ? 0 : '1em')};
 `
 
 export default function Title({ level, children, className }) {
@@ -36,14 +35,14 @@ export default function Title({ level, children, className }) {
   const left = level % 2
 
   return (
-    <Header left={left} className={className}>
-      {toChildArray(children).map((child, i) =>
+    <Header $left={left} className={className}>
+      {Children.map(children, (child, i) =>
         i === 0 ? (
-          <UnderlinedTitle as={`h${level}`} left={left}>
+          <UnderlinedTitle as={`h${level}`} $left={left}>
             {child}
           </UnderlinedTitle>
         ) : (
-          <SubTitle left={left}>{child}</SubTitle>
+          <SubTitle $left={left}>{child}</SubTitle>
         )
       )}
     </Header>

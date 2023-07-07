@@ -1,5 +1,3 @@
-import { h } from 'preact'
-import { useCallback, useEffect } from 'preact/hooks'
 import { useDispatch } from 'react-redux'
 import styled, { ThemeProvider } from 'styled-components'
 import theme from '../static/theme'
@@ -11,9 +9,11 @@ import Home from './Home'
 import Menu from './Menu'
 import Meta from './Meta'
 import Projects from './Projects'
+import { useCallback, useEffect } from 'react'
 
 const Main = styled.main`
   position: relative;
+  z-index: 2;
   height: 100%;
 `
 
@@ -45,7 +45,7 @@ export default function Site() {
       dispatch(setPageProgression(relative, absolute, total))
     }
     window.addEventListener('resize', onWindowResize, false)
-    window.addEventListener('scroll', onPageScroll, false)
+    window.addEventListener('scroll', onPageScroll, { passive: true })
     window.addEventListener('load', onPageScroll, false)
     return () => {
       window.removeEventListener('resize', onWindowResize)

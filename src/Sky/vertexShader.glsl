@@ -1,7 +1,6 @@
 // This shader comes from three.js sky example by zz85 / https://github.com/zz85
 // See https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/Sky.js
 // For original source and credits
-
 uniform vec3 sunPosition;
 uniform float rayleigh;
 uniform float turbidity;
@@ -70,4 +69,5 @@ void main() {
 
    // mie coefficients
    vBetaM = totalMie( turbidity ) * mieCoefficient;
+
 }

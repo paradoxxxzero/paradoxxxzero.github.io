@@ -1,4 +1,3 @@
-import { h } from 'preact'
 import { useSelector } from 'react-redux'
 import styled, { css } from 'styled-components'
 import { MOBILE_MAX_WIDTH } from '../static/consts'
@@ -20,7 +19,7 @@ const Name = styled.h2`
   margin: 0.5em 0;
 `
 const Subtle = styled.span`
-  font-size: 0.5em;
+  font-size: 0.75em;
   color: ${props => props.theme.fg.mute};
 `
 const Pills = styled.ul`
@@ -92,14 +91,13 @@ const Preview = styled.img`
 const ProjectItem = styled.li`
   background: ${props => props.theme.bg.normal};
   ${props =>
-    props.unreleased &&
+    props.$unreleased &&
     css`
-      filter: grayscale(1);
-      pointer-events: none;
+      filter: grayscale(0.1);
     `};
 
   margin: 1em;
-  font-size: ${props => (props.major ? '1.5em' : '1.15em')};
+  font-size: ${props => (props.$major ? '1.5em' : '1.15em')};
   text-align: left;
   display: flex;
   flex-direction: row-reverse;
@@ -142,13 +140,10 @@ export default function Project({
   const projectUrl = demoUrl || url
 
   return (
-    <ProjectItem major={major} unreleased={unreleased}>
+    <ProjectItem $major={major} $unreleased={unreleased}>
       <Article>
         <Name>
-          <TitleLink url={projectUrl}>
-            {name}
-            {unreleased && <Subtle> Unreleased</Subtle>}
-          </TitleLink>
+          <TitleLink url={projectUrl}>{name}</TitleLink>
           <Stars url={url} stars={stars} />
         </Name>
         <Pills>
@@ -160,7 +155,11 @@ export default function Project({
           ))}
         </Pills>
         <Content>{description}</Content>
-        <ProjectLink url={projectUrl}>{prettyUrl(projectUrl)}</ProjectLink>
+        {unreleased ? (
+          <Subtle> Unreleased</Subtle>
+        ) : (
+          <ProjectLink url={projectUrl}>{prettyUrl(projectUrl)}</ProjectLink>
+        )}
       </Article>
       <Aside>
         <WrappingExternalLink url={projectUrl}>

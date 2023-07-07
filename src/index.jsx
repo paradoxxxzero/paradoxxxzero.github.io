@@ -1,10 +1,7 @@
-// import 'preact/debug'
-import { h, hydrate, render } from 'preact'
-import { renderToString } from 'preact-render-to-string'
+import { hydrateRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
-import { ServerStyleSheet } from 'styled-components'
 import Site from './Site'
 import Sky from './Sky'
 import reducer from './store/reducer'
@@ -22,18 +19,4 @@ const App = (
   </Provider>
 )
 
-if (typeof window !== 'undefined') {
-  const renderMode = import.meta.env.MODE === 'development' ? render : hydrate
-  renderMode(App, document.getElementById('root'))
-}
-
-export default () => {
-  const sheet = new ServerStyleSheet()
-  try {
-    const app = renderToString(sheet.collectStyles(App))
-    const style = sheet.getStyleTags() // or sheet.getStyleElement();
-    return { app, style }
-  } finally {
-    sheet.seal()
-  }
-}
+hydrateRoot(document.getElementById('root'), App)
