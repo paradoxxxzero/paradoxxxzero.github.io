@@ -22,8 +22,12 @@ const Ref = styled.li`
   &:hover {
     background: ${props => props.theme.bg.normal};
   }
+  ${props =>
+    props.$display &&
+    css`
+      padding: 1em ${props => (props.$expanded ? '2em' : '1em')};
+    `};
 
-  padding: 1em ${props => (props.$expanded ? '2em' : '1em')};
   font-size: ${props => (props.$expanded ? '1em' : '1.25em')};
   user-select: none;
 `
@@ -89,6 +93,14 @@ const MENU_ITEMS = [
   {
     name: 'extra',
     content: <FontAwesomeIcon icon={faSpaceShuttle} />,
+  },
+  {
+    name: 'extra2',
+    content: null,
+  },
+  {
+    name: 'end',
+    content: null,
   },
 ]
 
@@ -174,6 +186,7 @@ export default function Menu({ onScrollRequested }) {
             $anchor={name}
             $active={active === name}
             $expanded={expanded}
+            $display={!!content}
             onClick={goTo(name)}
             ref={setAnchorRef(name)}
             title={typeof content === 'string' ? content : null}

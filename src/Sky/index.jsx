@@ -73,7 +73,7 @@ export default function Sky() {
       },
       night: {
         start: (1.1 * anchors.bio) / (totalHeight - winHeight),
-        end: 0.6,
+        end: anchors.extra2 / (totalHeight - winHeight),
       },
       stars: {
         start: (anchors.bio - winHeight) / (totalHeight - winHeight),
@@ -81,7 +81,7 @@ export default function Sky() {
       },
       water: {
         start: anchors.projects / (totalHeight - winHeight),
-        end: 0.65,
+        end: anchors.extra2 / (totalHeight - winHeight),
       },
       travelling: {
         start: anchors.contact / (totalHeight - winHeight),
@@ -367,7 +367,9 @@ export default function Sky() {
     sunLight.position.setFromSpherical(sunSpherical)
 
     const nightProgression = linearClamp(progression, boundaries.night)
+    console.log(nightProgression)
     sky.material.uniforms.shade.value = nightProgression
+    console.log(boundaries.night, progression)
 
     const waterProgression = linearClamp(progression, boundaries.water)
     water.visible = waterProgression > 0 && waterProgression < 1

@@ -29,7 +29,7 @@ export default function Site() {
       dispatch(
         setPageSize(
           window.innerWidth,
-          window.innerHeight,
+          document.body.clientHeight,
           window.devicePixelRatio
         )
       )
