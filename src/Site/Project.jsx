@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import styled, { css } from 'styled-components'
 import { MOBILE_MAX_WIDTH } from '../static/consts'
-import defaultPreview from '../static/previews/default.png'
+import defaultPreview from '../static/previews/default.webp'
 import { prettyUrl } from '../utils'
 import Stars, { Star } from './Stars'
 import ExternalLink from './utils/ExternalLink'
