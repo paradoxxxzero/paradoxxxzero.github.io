@@ -2,41 +2,43 @@ import { HyperMesh, HyperRenderer, shapes } from 'four-js'
 import { useEffect, useMemo, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import {
-  ACESFilmicToneMapping,
   AdditiveBlending,
+  AmbientLight,
   BackSide,
+  BoxGeometry,
   BufferGeometry,
   CatmullRomCurve3,
+  CustomToneMapping,
   DoubleSide,
   Float32BufferAttribute,
   LineBasicMaterial,
+  LinearSRGBColorSpace,
+  Mesh,
   MeshLambertMaterial,
   PerspectiveCamera,
   PlaneGeometry,
-  PointLight,
   Points,
   PointsMaterial,
   Scene,
+  ShaderChunk,
   ShaderMaterial,
   Spherical,
   TextureLoader,
   Vector2,
   Vector3,
   WebGLRenderer,
-  Mesh,
-  BoxGeometry,
 } from 'three'
 import { Water } from 'three/examples/jsm/objects/Water2'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 import { linearClamp } from '../utils'
+import Water0 from './Water0.jpg'
+import Water1 from './Water1.jpg'
 import fragmentShader from './fragmentShader.glsl?raw'
 import Star from './star.png'
 import vertexShader from './vertexShader.glsl?raw'
-import Water0 from './Water0.jpg'
-import Water1 from './Water1.jpg'
 
-const STARS = 5000
+const STARS = 20000
 
 const cameraCurve = new CatmullRomCurve3(
   [
@@ -51,6 +53,22 @@ const cameraCurve = new CatmullRomCurve3(
   false,
   'chordal'
 )
+
+// Uncharted 2 tone mapping
+ShaderChunk.tonemapping_pars_fragment =
+  ShaderChunk.tonemapping_pars_fragment.replace(
+    'vec3 CustomToneMapping( vec3 color ) { return color; }',
+
+    `#define Uncharted2Helper( x ) max( ( ( x * ( 0.15 * x + 0.10 * 0.50 ) + 0.20 * 0.02 ) / ( x * ( 0.15 * x + 0.50 ) + 0.20 * 0.30 ) ) - 0.02 / 0.30, vec3( 0.0 ) )
+
+      float toneMappingWhitePoint = 1.0;
+
+      vec3 CustomToneMapping( vec3 color ) {
+        color *= toneMappingExposure;
+        return saturate( Uncharted2Helper( color ) / Uncharted2Helper( vec3( toneMappingWhitePoint ) ) );
+
+      }`
+  )
 
 export default function Sky() {
   const { relative: progression, total: totalHeight } = useSelector(
@@ -73,7 +91,7 @@ export default function Sky() {
       },
       night: {
         start: (1.1 * anchors.bio) / (totalHeight - winHeight),
-        end: anchors.extra2 / (totalHeight - winHeight),
+        end: anchors.meta / (totalHeight - winHeight),
       },
       stars: {
         start: (anchors.bio - winHeight) / (totalHeight - winHeight),
@@ -104,8 +122,9 @@ export default function Sky() {
       renderer.setSize(winWidth, winHeight)
       renderer.setPixelRatio(window.devicePixelRatio)
       renderer.setSize(window.innerWidth, window.innerHeight)
-      renderer.toneMapping = ACESFilmicToneMapping
-      renderer.toneMappingExposure = 0.25
+      renderer.toneMapping = CustomToneMapping
+      renderer.toneMappingExposure = 0.4
+      renderer.outputColorSpace = LinearSRGBColorSpace
       renderer.domElement.id = 'canvas'
       document.body.appendChild(renderer.domElement)
     } catch (e) {
@@ -118,7 +137,7 @@ export default function Sky() {
     const uniforms = {
       turbidity: { value: 20 },
       rayleigh: { value: 3 },
-      mieCoefficient: { value: 0.005 },
+      mieCoefficient: { value: 0.001 },
       mieDirectionalG: { value: 0.995 },
       sunPosition: { value: new Vector3() },
       up: { value: new Vector3(0, 1, 0) },
@@ -136,17 +155,18 @@ export default function Sky() {
     const scene = new Scene()
     scene.add(sky)
 
-    const sunLight = new PointLight(0xffffdd, 1, 0, 2)
-    scene.add(sunLight)
+    const ambientLight = new AmbientLight(0xffffff)
+    scene.add(ambientLight)
 
     const starsSpherical = new Spherical()
     const starsGeometry = new BufferGeometry()
     const starVertices = new Array(STARS)
       .fill()
       .map(() => {
-        starsSpherical.radius = 250 + Math.random() * 750
-        starsSpherical.theta = -Math.PI / 2 + Math.random() * Math.PI
-        starsSpherical.phi = Math.random() * 2 * Math.PI
+        starsSpherical.radius = 250 + Math.random() * 800
+        starsSpherical.theta = Math.random() * 2 * Math.PI
+        starsSpherical.phi = Math.acos(Math.random())
+
         const starVector = new Vector3().setFromSpherical(starsSpherical)
         return [starVector.x, starVector.y, starVector.z]
       })
@@ -197,8 +217,11 @@ export default function Sky() {
       blending: AdditiveBlending,
       transparent: true,
       opacity: 1,
-      depthTest: false,
+      depthWrite: false,
     })
+    starsMaterial.map.premultiplyAlpha = true
+    starsMaterial.map.colorSpace = LinearSRGBColorSpace
+
     const stars = new Points(starsGeometry, starsMaterial)
     stars.rotation.reorder('ZXY')
     scene.add(stars)
@@ -286,7 +309,6 @@ export default function Sky() {
       water,
       stars,
       sunSpherical,
-      sunLight,
       hyperRenderer,
       hyperMesh,
     }
@@ -344,13 +366,13 @@ export default function Sky() {
     }
     const {
       composer,
+      renderer,
       scene,
       camera,
       sky,
       water,
       stars,
       sunSpherical,
-      sunLight,
       hyperMesh,
     } = three
     const sunProgression = linearClamp(progression, boundaries.day)
@@ -364,12 +386,10 @@ export default function Sky() {
       uniforms: { sunPosition },
     } = sky.material
     sunPosition.value.setFromSpherical(sunSpherical)
-    sunLight.position.setFromSpherical(sunSpherical)
 
     const nightProgression = linearClamp(progression, boundaries.night)
-    console.log(nightProgression)
     sky.material.uniforms.shade.value = nightProgression
-    console.log(boundaries.night, progression)
+    renderer.toneMappingExposure = 0.4 + 0.4 * nightProgression
 
     const waterProgression = linearClamp(progression, boundaries.water)
     water.visible = waterProgression > 0 && waterProgression < 1
