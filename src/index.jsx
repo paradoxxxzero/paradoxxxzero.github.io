@@ -1,7 +1,7 @@
 import { hydrateRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
-import thunk from 'redux-thunk'
+import { thunk } from 'redux-thunk'
 import Site from './Site'
 import Sky from './Sky'
 import reducer from './store/reducer'

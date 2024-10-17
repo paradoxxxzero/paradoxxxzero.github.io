@@ -1,7 +1,7 @@
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore } from 'redux'
-import thunk from 'redux-thunk'
+import { thunk } from 'redux-thunk'
 import { ServerStyleSheet } from 'styled-components'
 
 import Sky from './Sky'

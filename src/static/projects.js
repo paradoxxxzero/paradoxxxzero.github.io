@@ -27,6 +27,7 @@ import atomOneColorByProject from './previews/atom-one-color-by-project.webp'
 import fawn from './previews/fawn.webp'
 import scudd from './previews/scudd.webp'
 import helicity from './previews/helicity.webp'
+import fracture from './previews/fracture.webp'
 import coxeterExplorer from './previews/coxeter-explorer.webp'
 import raymarcher from './previews/raymarcher.webp'
 
@@ -37,11 +38,24 @@ export default [
     url: 'https://github.com/paradoxxxzero/coxeter-explorer',
     demoUrl: 'https://florian.mounier.dev/coxeter-explorer',
     languages: ['ECMAScript', 'glsl'],
-    libraries: ['three.js'],
+    libraries: ['webgl'],
     major: true,
     type: 'experiments',
     description: 'A N dimensional coxeter group explorer.',
     preview: coxeterExplorer,
+  },
+  {
+    id: 'paradoxxxzero/fracture',
+    name: 'Fracture',
+    url: 'https://github.com/paradoxxxzero/fracture',
+    demoUrl: 'https://florian.mounier.dev/fracture',
+    languages: ['ECMAScript'],
+    libraries: ['webgl'],
+    major: true,
+    type: 'experiments',
+    description:
+      'Domain coloring of various complex functions and associated fractals.',
+    preview: fracture,
   },
   {
     id: 'paradoxxxzero/helicity',
@@ -409,6 +423,7 @@ export default [
     type: 'projects',
     major: false,
     description: 'Browser page reloader based on WebSocket.',
+    hidden: true,
   },
   {
     id: 'paradoxxxzero/fawn',
